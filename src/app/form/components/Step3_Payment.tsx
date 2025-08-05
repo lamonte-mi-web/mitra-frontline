@@ -13,40 +13,40 @@ export default function Step3_Payment({ control, errors }: Props) {
     <div className="space-y-4">
       {/* Bank */}
       <div>
-        <label className="block font-medium mb-1">Nama Bank</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Nama Bank</label>
         <Controller
           name="bank"
           control={control}
-          render={({ field }) => <input {...field} className="input w-full" />}
+          render={({ field }) => <input {...field} className="input w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent" />}
         />
         {typeof errors.bank?.message === 'string' && (
-          <p className="text-red-500 text-sm">{errors.bank.message}</p>
+          <p className="text-sm text-red-500 mt-1">{errors.bank.message}</p>
         )}
       </div>
 
       {/* Nomor Rekening */}
       <div>
-        <label className="block font-medium mb-1">Nomor Rekening</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Nomor Rekening</label>
         <Controller
           name="rekening"
           control={control}
-          render={({ field }) => <input {...field} className="input w-full" />}
+          render={({ field }) => <input {...field} className="input w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent" />}
         />
         {typeof errors.rekening?.message === 'string' && (
-          <p className="text-red-500 text-sm">{errors.rekening.message}</p>
+          <p className="text-sm text-red-500 mt-1">{errors.rekening.message}</p>
         )}
       </div>
 
       {/* Nama Akun */}
       <div>
-        <label className="block font-medium mb-1">Nama Akun</label>
+        <label className="block text-sm font-medium text-gray-700 mb-1">Nama Akun</label>
         <Controller
           name="namaRekening"
           control={control}
-          render={({ field }) => <input {...field} className="input w-full" />}
+          render={({ field }) => <input {...field} className="input w-full rounded-md border border-gray-300 px-4 py-2 shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent" />}
         />
         {typeof errors.namaRekening?.message === 'string' && (
-          <p className="text-red-500 text-sm">{errors.namaRekening.message}</p>
+          <p className="text-sm text-red-500 mt-1">{errors.namaRekening.message}</p>
         )}
       </div>
     </div>

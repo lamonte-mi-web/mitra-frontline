@@ -4,12 +4,13 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
     fullSchema,
-    FormData,
     personalInfoSchema,
     companyProfileSchema,
     paymentSchema,
     extraSchema,
 } from "@/lib/formSchema";
+import type { FormData } from "@/lib/formSchema";
+
 import { useState } from "react";
 
 import Step1 from "./Step1_PersonalInfo";
@@ -95,31 +96,55 @@ export default function MultiStepForm() {
 
     const handleBack = () => setCurrentStep((prev) => prev - 1);
 
-    const onSubmit = (data: FormData) => {
-        console.log("Submitted:", data);
+    const onSubmit = async (data: FormData) => {
+        const formData = new FormData();
+
+        Object.entries(data).forEach(([key, value]) => {
+            if (value instanceof File || typeof value === 'string') {
+                formData.append(key, value);
+            }
+        });
+
+        const response = await fetch('/api/submit', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+        if (result.success) {
+            alert(`Form berhasil dikirim! Folder ID: ${result.folder}`);
+        } else {
+            alert('Gagal mengirim form.');
+        }
     };
 
+
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-2xl mx-auto p-4">
+        <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="space-y-6 max-w-3xl mx-auto px-4 sm:px-6"
+        >
+
             <h2 className="text-2xl font-bold mb-4">{steps[currentStep].name}</h2>
             {steps[currentStep].component}
 
-            <div className="flex justify-between">
+            <div className="flex justify-between mt-8">
                 {currentStep > 0 && (
-                    <button type="button" onClick={handleBack} className="btn">
-                        Kembali
+                    <button type="button" onClick={handleBack} className="btn px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">
+                        ← Kembali
                     </button>
                 )}
                 {currentStep < steps.length - 1 ? (
-                    <button type="button" onClick={handleNext} className="btn">
-                        Selanjutnya
+                    <button type="button" onClick={handleNext} className="btn px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">
+                        Selanjutnya →
                     </button>
                 ) : (
-                    <button type="submit" className="btn-primary">
+                    <button type="submit" className="btn-primary px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition font-medium">
                         Kirim Formulir
                     </button>
                 )}
             </div>
+
         </form>
     );
 }
