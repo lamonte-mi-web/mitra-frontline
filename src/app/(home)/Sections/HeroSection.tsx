@@ -23,7 +23,7 @@ export default function HeroSection() {
                     Mulai perjalanan Anda bersama Lamonte—dengan dukungan penuh, produk laris, dan peluang bisnis nyata. Kini giliran Anda meraih hasil maksimal tanpa ribet.
                 </p>
                 <CustomButton href="https://wa.me/628111829921?text=Halo%20Kak%20Erni%2C%20saya%20tertarik%20menjadi%20Mitra%20Lamonte.%20Bisa%20dibantu%20penjelasannya%3F">
-                    Gabung Sekarang & Raih Kesuksesan
+                    Hubungi Kami
                 </CustomButton>
             </div>
         </section>
