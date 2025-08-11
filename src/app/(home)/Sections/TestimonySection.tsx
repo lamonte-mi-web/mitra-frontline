@@ -3,7 +3,7 @@ import Image from "next/image"
 
 export default function TestimonySection() {
     return (
-        <section className="relative w-full min-h-[700px] my-10">
+        <section className="relative w-full min-h-[700px] py-10">
             <Image
                 src="/assets/img/bg-testimony.png"
                 alt="Lamonte Logo"
