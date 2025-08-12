@@ -28,7 +28,7 @@ export default function DefaultHeader() {
       id="primary-header"
       className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/60 border-b border-white/20 transition-all duration-300"
     >
-      <nav className="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <nav className="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
         {/* LEFT SIDE */}
         <div className="flex items-center space-x-4 min-w-[25%]">
           {/* Optional: Add menu items or icons here */}
