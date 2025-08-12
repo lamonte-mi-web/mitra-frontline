@@ -6,7 +6,7 @@ config.autoAddCss = false;
 
 
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faChartBar, faUsers, faChartLine } from '@fortawesome/free-solid-svg-icons';
+import { faChartBar, faUsers, faChartLine, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 
-library.add(faChartBar, faUsers, faChartLine);
+library.add(faChartBar, faUsers, faChartLine, faArrowUp);

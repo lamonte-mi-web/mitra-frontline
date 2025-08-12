@@ -25,7 +25,7 @@
 
 
 body {
-    background: var(--background);
+    background: #efefef;
     color: var(--foreground);
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -58,7 +58,7 @@ body {
 }
 
 .custom-btn span {
-    background: #13287c none repeat scroll 0 0;
+    background: #229659 none repeat scroll 0 0;
     border-radius: 50%;
     display: block;
     height: 0;
@@ -84,7 +84,7 @@ body {
 
 /* Reverse version of custom button */
 .custom-btn.reverse {
-    background: #13287c;
+    background: #229659;
     color: #fff;
 }
 

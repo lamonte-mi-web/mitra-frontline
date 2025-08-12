@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+
 import "@/styles/globals.css";
+import 'react-multi-carousel/lib/styles.css';
+
+
 import DefaultHeader from "@/components/DefaultHeader";
 import DefaultFooter from "@/components/DefaultFooter";
 import ScrollProgressBar from "@/components/ScrollProgressBar";
@@ -11,6 +15,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 
 import '@/lib/fontAwesome'; // adjust path accordingly
 import { FixExtensionArtifacts } from "@/lib/FixExtensionArtifacts";
+import FloatingButtons from "@/components/FloatingButtons";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,8 +48,8 @@ export default function RootLayout({
         <Preloader />
         {children}
         <DefaultFooter />
+        <FloatingButtons />
       </body>
-
     </html>
   );
 }
