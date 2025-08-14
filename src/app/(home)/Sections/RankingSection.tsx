@@ -111,13 +111,13 @@ export default function RankingSection() {
                 </div>
 
                 {/* Podium */}
-                <div className="flex flex-col md:flex-row justify-center items-center md:items-end h-auto md:h-96 gap-6 md:gap-8">
+                <div className="flex flex-col md:flex-row justify-center items-center md:items-end h-auto md:h-96 gap-6 md:gap-8 overflow-x-hidden">
                     {orderedPerformers.map((p) => {
                         if (!p) return null;
                         return (
                             <div
                                 key={p.place}
-                                className="podium-step group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 w-full md:w-1/4 max-w-xs"
+                                className="podium-step group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 w-full max-w-[200px] sm:max-w-xs"
                                 onMouseEnter={() => setIsHovered(true)}
                                 onMouseLeave={() => setIsHovered(false)}
                             >
