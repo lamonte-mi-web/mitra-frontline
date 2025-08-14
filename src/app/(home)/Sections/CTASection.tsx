@@ -5,29 +5,38 @@ import Image from "next/image";
 
 export default function CTASection() {
     return (
-        <section className="relative w-full h-[700px] bg-gray-400">
-            <Image
-                src="/assets/img/bg-cta.png"
-                alt="Background CTA Section"
-                fill
-                className="object-cover"
-                priority
-            />
-            <div className="absolute inset-0 bg-black/70 z-10" />
+        <section className="w-full bg-[#33A940] py-16">
+            <div className="max-w-6xl mx-auto px-6">
+                <div className="grid md:grid-cols-[3fr_2fr] gap-12 items-center">
+                    <div>
 
-            <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-4">
-                <h2 className="text-[3rem] font-bold uppercase text-white mb-3 max-w-4xl">
-                    Jadi Bagian dari 99% Mitra Kami yang Sukses Meroket Bersama Lamonte
-                </h2>
-                <OrangeDivider className="mb-3" />
-                <p className="text-white text-[1.2rem] max-w-5xl mb-6">
-                    Jangan biarkan kesempatan emas ini berlalu begitu saja. Bergabunglah dengan Lamonte sekarang, nikmati dukungan penuh, produk laris, dan peluang bisnis nyata yang siap mengubah hidup Anda. <strong>Tunggu apa lagi? Kesuksesan Anda dimulai hari ini!</strong>
-                </p>
+                        <h2 className="text-5xl font-bold text-white mb-6">
+                            Saatnya Bergabung dan Raih Kesuksesan Bersama Lamonte
+                        </h2>
+                        <p className="text-white text-xl mb-3">
+                            Tidak perlu menunggu momen sempurna. Mitra sukses kami memulainya dengan satu langkah kecil — dan kini mereka memetik hasil besar.
+                        </p>
+                        <p className="text-white text-lg mb-3">
+                            Bergabunglah hari ini, dan jadilah bagian dari kesuksesan Lamonte.
+                        </p>
 
-                <CTAButton />
+                        <CTAButton styles="brown" />
+                    </div>
+                    <div className="relative w-full h-full mx-auto md:mx-0 rounded-lg overflow-hidden shadow-lg">
+                        <Image
+                            src="/assets/img/supportimg-cta.png"
+                            alt="Image for supporting the CTA"
+                            fill
+                            style={{ objectFit: 'cover' }}
+                            sizes="(max-width: 768px) 100vw, 50vw"
+                            quality={80}
+                        />
+                    </div>
 
+
+                </div>
             </div>
-        </section>
+        </section >
 
     );
 }

@@ -55,10 +55,10 @@ export default function ClassificationSection() {
                                 </h3>
                                 <ul className="space-y-3 text-gray-700 text-lg">
                                     {pkg.points.map((point, i) => (
-                                        <li key={i} className="flex items-start">
+                                        <li key={i} className="flex items-center">
                                             <FontAwesomeIcon
                                                 icon={faCheckCircle}
-                                                className="text-yellow-500 mr-2 mt-1 group-hover:scale-110 group-hover:text-yellow-400 transition-transform duration-200"
+                                                className="text-yellow-500 mr-2 group-hover:scale-110 group-hover:text-yellow-400 transition-transform duration-200 flex-shrink-0"
                                             />
                                             <span>{point}</span>
                                         </li>
