@@ -24,10 +24,9 @@ export default function ReviewProofSection() {
         <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 pb-20">
 
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-4xl font-bold uppercase text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
+                <h2 className="text-4xl font-bold text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
                     Real Testimoni Customer!
                 </h2>
-                <OrangeDivider className="mb-4" />
                 <p className="max-w-3xl text-center text-gray-700 mb-8 px-4 md:px-0">
                     Lihat beberapa screenshot chat dari Mitra Lamonte yang mempercayakan belanja produk di Lamonte di bawah.
                 </p>

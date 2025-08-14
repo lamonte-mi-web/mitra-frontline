@@ -6,9 +6,13 @@ export default function MouseTether() {
     const { buttons } = useCTAContext();
     const [mouse, setMouse] = useState({ x: 0, y: 0 });
     const [nearest, setNearest] = useState<{ x: number; y: number } | null>(null);
+    const [showTether, setShowTether] = useState(false);
+
+    const DISTANCE_THRESHOLD = 300; // px — adjust to taste
 
     useEffect(() => {
-        const handleMouseMove = (e: MouseEvent) => setMouse({ x: e.clientX, y: e.clientY });
+        const handleMouseMove = (e: MouseEvent) =>
+            setMouse({ x: e.clientX, y: e.clientY });
         window.addEventListener("mousemove", handleMouseMove);
         return () => window.removeEventListener("mousemove", handleMouseMove);
     }, []);
@@ -32,14 +36,20 @@ export default function MouseTether() {
             }
         });
 
-        setNearest(closestBtn);
+        if (closestBtn && minDist <= DISTANCE_THRESHOLD) {
+            setNearest(closestBtn);
+            setShowTether(true);
+        } else {
+            setNearest(null);
+            setShowTether(false);
+        }
     }, [mouse, buttons]);
 
-    if (!nearest) return null;
+    if (!nearest || !showTether) return null;
 
     // Control point for quadratic Bezier: midway + slight offset for curve
     const cx = (mouse.x + nearest.x) / 2;
-    const cy = (mouse.y + nearest.y) / 2 - 50; // raise curve slightly
+    const cy = (mouse.y + nearest.y) / 2 - 50;
 
     // Arrowhead points
     const arrowSize = 10;

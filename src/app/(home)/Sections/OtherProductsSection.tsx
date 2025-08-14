@@ -10,15 +10,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function OtherProductsSection() {
     return (
-        <section className="max-w-6xl mx-auto p-6 my-10">
-            <div className="flex flex-col items-center justify-center mb-6">
+        <section className="w-full bg-[#FAF4F0] py-16">
+            <div className="max-w-6xl mx-auto px-6">
                 <h2 className="text-[2rem] font-bold uppercase text-gray-800 mb-3 text-center leading-snug">
                     Bukan hanya itu! <br />
                     Lamonte hadirkan kemudahan belanja dari rumah <br /> dan custom produk sesuai keinginan Anda
                 </h2>
-                <OrangeDivider />
                 <div className="container mx-auto px-4 mt-8">
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                    <div className="grid md:grid-cols-2 gap-8">
                         {[
                             {
                                 title: "Grosir Baju Anak",

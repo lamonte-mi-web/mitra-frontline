@@ -1,4 +1,4 @@
-import { OrangeDivider } from "@/components/OrangeDivider";
+
 
 export default function DeliverySection() {
     return (
@@ -7,7 +7,6 @@ export default function DeliverySection() {
                 <h2 className="text-4xl font-bold uppercase text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
                     PENGIRIMAN CEPAT keseluruh Indonesia!
                 </h2>
-                <OrangeDivider className="mb-4" />
                 <p className="max-w-3xl text-center text-gray-700 mb-8 px-4 md:px-0">
                     Kami telah bekerjasama dengan berbagai Expedisi untuk memastikan pesanan kamu terkirim dengan cepat dan hemat.
                     <br />

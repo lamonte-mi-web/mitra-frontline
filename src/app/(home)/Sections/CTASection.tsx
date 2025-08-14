@@ -22,7 +22,7 @@ export default function CTASection() {
 
                         <CTAButton styles="brown" />
                     </div>
-                    <div className="relative w-full h-full mx-auto md:mx-0 rounded-lg overflow-hidden shadow-lg">
+                    <div className="relative w-full h-64 md:h-full mx-auto md:mx-0 rounded-lg overflow-hidden shadow-lg">
                         <Image
                             src="/assets/img/supportimg-cta.png"
                             alt="Image for supporting the CTA"
@@ -32,6 +32,7 @@ export default function CTASection() {
                             quality={80}
                         />
                     </div>
+
 
 
                 </div>
