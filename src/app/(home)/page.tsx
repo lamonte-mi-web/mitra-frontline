@@ -13,6 +13,8 @@ import CTASection from "./Sections/CTASection";
 import TransactionProofSection from "./Sections/TransactionProofSection";
 import ReviewProofSection from "./Sections/ReviewProofSection";
 import DeliverySection from "./Sections/DeliverySection";
+import AboutUsSection from "./Sections/AboutUsSection";
+import CoreValueSection from "./Sections/CoreValueSection";
 
 export const metadata: Metadata = {
 
@@ -24,8 +26,10 @@ export default function Home() {
       <main className="flex flex-col items-center sm:items-start">
         <HeroSection />
         <TestimonySection />
-        <StatisticSection />
         <MediaCoverageSection />
+        <AboutUsSection />
+        <CoreValueSection />
+        <StatisticSection />
         <MagicKeywordsSection />
         <ResearchSection />
         <ClassificationSection />

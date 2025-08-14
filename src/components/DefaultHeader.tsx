@@ -26,7 +26,7 @@ export default function DefaultHeader() {
   return (
     <header
       id="primary-header"
-      className="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-white/60 border-b border-white/20 transition-all duration-300"
+      className="fixed top-0 left-0 w-full z-[1000] backdrop-blur-md bg-white/60 border-b border-white/20 transition-all duration-300"
     >
       <nav className="max-w-6xl mx-auto px-4 py-5 flex items-center justify-between">
         {/* LEFT SIDE */}

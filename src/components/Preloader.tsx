@@ -11,7 +11,7 @@ export default function Preloader() {
 
     return (
         <div
-            className={`fixed inset-0 bg-white z-[999] flex items-center justify-center transition-all duration-250 ${loaded ? "opacity-0 invisible" : "opacity-100 visible"
+            className={`fixed inset-0 bg-white z-[1500] flex items-center justify-center transition-all duration-250 ${loaded ? "opacity-0 invisible" : "opacity-100 visible"
                 }`}
         >
             <div className="bg-[#FF9000] w-10 h-10 rounded-full animate-scaleout"></div>

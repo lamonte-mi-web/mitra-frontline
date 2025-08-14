@@ -4,7 +4,7 @@ export default function DeliverySection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-[2.5rem] font-bold uppercase text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
+                <h2 className="text-4xl font-bold uppercase text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
                     PENGIRIMAN CEPAT keseluruh Indonesia!
                 </h2>
                 <OrangeDivider className="mb-4" />

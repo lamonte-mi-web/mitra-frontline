@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
     return (
-        <section className="relative w-full h-[700px] bg-gray-400">
+        <section className="relative w-full min-h-[500px] bg-gray-400">
             <Image
                 src="/assets/img/bg-cta.png"
                 alt="Background CTA Section"
@@ -13,17 +13,16 @@ export default function HeroSection() {
                 className="object-cover"
                 priority
             />
-            <div className="absolute inset-0 bg-black/70 z-10" />
+            <div className="absolute inset-0 bg-amber-500/80 z-10" />
 
             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-4">
-                <h2 className="text-[3rem] font-bold uppercase text-white mb-3 max-w-4xl">
-                    Bergabunglah dengan 99% Mitra Kami yang Telah Mencapai Kesuksesan
+                <h2 className="text-4xl font-bold uppercase text-white mb-3 max-w-5xl">
+                    Raih Kesuksesan Bisnis Fashion Anak Bersama Lamonte
                 </h2>
-                <OrangeDivider className="mb-3" />
-                <p className="text-white text-[1.2rem] max-w-5xl mb-6">
-                    Mulai perjalanan Anda bersama Lamonte—dengan dukungan penuh, produk laris, dan peluang bisnis nyata. Kini giliran Anda meraih hasil maksimal tanpa ribet.
+                <p className="text-white font-semibold text-xl max-w-5xl mb-6">
+                    Bergabunglah dengan 99% Mitra Kami yang Sukses Raih Omzet Impian Bersama Lamonte
                 </p>
-                <CTAButton />
+                <CTAButton styles="brown" />
             </div>
         </section>
     );

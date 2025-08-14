@@ -23,7 +23,7 @@ export default function FloatingButtons() {
   return (
     <div
       id="scrollup"
-      className="fixed bottom-8 right-8 flex flex-col items-end gap-3 z-[999]"
+      className="fixed bottom-8 right-8 flex flex-col items-end gap-3 z-50"
     >
       <div
         className={`transition-all duration-500 ease-in-out transform ${showScroll

@@ -1,69 +1,60 @@
-'use client'
+'use client';
 import CountUp from "react-countup";
+
+const stats = [
+    {
+        end: 500000,
+        suffix: "+",
+        label: "Produk Terjual",
+        description: 'Bukti kepercayaan pasar terhadap kualitas produk fashion anak Lamonte'
+    },
+    {
+        end: 12,
+        suffix: "+",
+        label: "Tahun Pengalaman",
+        description: 'Dedikasi dalam industri fashion anak sejak 2011'
+    },
+    {
+        end: 99,
+        suffix: "%",
+        label: "Mitra Sukses",
+        description: 'Tingkat keberhasilan mitra yang bermitra dengan Lamonte'
+    },
+    {
+        end: 700,
+        suffix: "+",
+        label: "Anggota Kemitraan",
+        description: 'Jaringan luas distributor, agen, dan reseller di seluruh Indonesia'
+    },
+];
 
 export default function StatisticSection() {
     return (
-        <section className="relative w-full min-h-[210px] flex items-center justify-center p-4">
-            <div className="grid grid-cols-1 max-w-6xl md:grid-cols-4 gap-6 w-full">
-                {/* Stat Item 1 */}
-                <div className="p-6 bg-white border-2 border-[#FF9000] border-dashed shadow rounded flex flex-col justify-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-                    <CountUp
-                        end={500000}
-                        duration={3}
-                        scrollSpyOnce
-                        enableScrollSpy
-                        suffix="+"
-                        className="text-4xl text-[#FF9000] font-bold text-center"
-                    />
-                    <p className="mt-2 text-gray-600 font-semibold text-center">
-                        Produk Terjual
-                    </p>
+        <section className="w-full min-h-[210px] flex items-center justify-center p-4">
+            <div className="max-w-6xl mx-auto px-6 py-10">
+                <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
+                    Pencapaian Kami dalam Angka
+                </h2>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl w-full">
+                    {stats.map(({ end, suffix, label, description }, idx) => (
+                        <div
+                            key={idx}
+                            className="p-6 flex flex-col transform transition-transform duration-300 ease-in-out"
+                        >
+                            <CountUp
+                                end={end}
+                                duration={3}
+                                enableScrollSpy
+                                scrollSpyOnce
+                                suffix={suffix}
+                                className="text-5xl text-black font-bold text-center"
+                            />
+                            <h5 className="mt-2 text-xl text-gray-600 font-semibold text-center">{label}</h5>
+                            <p className="text-center text-lg">{description}</p>
+                        </div>
+                    ))}
                 </div>
-
-                {/* Stat Item 2 */}
-                <div className="p-6 bg-white border-2 border-[#FF9000] border-dashed shadow rounded flex flex-col justify-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-                    <CountUp
-                        end={12}
-                        duration={3}
-                        enableScrollSpy
-                        scrollSpyOnce
-                        suffix="+"
-                        className="text-4xl text-[#FF9000] font-bold text-center"
-                    />
-                    <p className="mt-2 text-gray-600 font-semibold text-center">
-                        Tahun Pengalaman
-                    </p>
-                </div>
-
-                {/* Stat Item 3 */}
-                <div className="p-6 bg-white border-2 border-[#FF9000] border-dashed shadow rounded flex flex-col justify-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-                    <CountUp
-                        end={99}
-                        duration={3}
-                        enableScrollSpy
-                        scrollSpyOnce
-                        suffix="%"
-                        className="text-4xl text-[#FF9000] font-bold text-center"
-                    />
-                    <p className="mt-2 text-gray-600 font-semibold text-center">
-                        Mitra Sukses
-                    </p>
-                </div>
-
-                {/* Stat Item 4 */}
-                <div className="p-6 bg-white border-2 border-[#FF9000] border-dashed shadow rounded flex flex-col justify-center transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
-                    <CountUp
-                        end={700}
-                        duration={3}
-                        enableScrollSpy
-                        scrollSpyOnce
-                        suffix="+"
-                        className="text-4xl text-[#FF9000] font-bold text-center"
-                    />
-                    <p className="mt-2 text-gray-600 font-semibold text-center">
-                        Anggota Kemitraan
-                    </p>
-                </div>
+                <p className="text-center text-lg">Bergabunglah dengan ratusan mitra yang telah membuktikan keberhasilan sistem kemitraan Lamonte dan nikmati pertumbuhan bisnis yang konsisten.</p>
             </div>
         </section>
     );

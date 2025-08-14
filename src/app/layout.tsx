@@ -16,6 +16,8 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import '@/lib/fontAwesome'; // adjust path accordingly
 import { FixExtensionArtifacts } from "@/lib/FixExtensionArtifacts";
 import FloatingButtons from "@/components/FloatingButtons";
+import { CTAProvider } from "../context/CTAContext";
+import MouseTether from "@/components/MouseTether";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,13 +44,16 @@ export default function RootLayout({
       <FixExtensionArtifacts />
 
       <body>
-        <GoogleTagManager gtmId="GTM-TPCF34N6" />
-        <DefaultHeader />
-        <ScrollProgressBar />
-        <Preloader />
-        {children}
-        <DefaultFooter />
-        <FloatingButtons />
+        <CTAProvider>
+          <GoogleTagManager gtmId="GTM-TPCF34N6" />
+          <MouseTether />
+          <DefaultHeader />
+          <ScrollProgressBar />
+          <Preloader />
+          {children}
+          <DefaultFooter />
+          <FloatingButtons />
+        </CTAProvider>
       </body>
     </html>
   );

@@ -29,72 +29,83 @@ body {
     color: var(--foreground);
     font-family: Arial, Helvetica, sans-serif;
 }
-
 .custom-btn {
     display: inline-block;
-    background: #FF9000;
-    color: #ffffff;
     font-family: 'Heebo', sans-serif;
     font-size: 15px;
     font-weight: 600;
     height: 45px;
     line-height: 45px;
     padding: 0 35px;
-    letter-spacing: 0;
     border-radius: 2rem;
     overflow: hidden;
     position: relative;
     margin-left: 20px;
-    transition: all ease 700ms;
-    -moz-transition: all ease 700ms;
-    -webkit-transition: all ease 700ms;
-    -ms-transition: all ease 700ms;
-    -o-transition: all ease 700ms;
+    transition: all 0.3s ease;
     z-index: 1;
-}
-
-.custom-btn:hover {
-    color: #fff;
+    cursor: pointer;
 }
 
 .custom-btn span {
-    background: #229659 none repeat scroll 0 0;
-    border-radius: 50%;
-    display: block;
-    height: 0;
     position: absolute;
+    top: 50%;
+    left: 50%;
     transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    -webkit-transform: translate(-50%, -50%);
-    -ms-transform: translate(-50%, -50%);
-    -o-transform: translate(-50%, -50%);
-    transition: width 1s ease 0s, height 1s ease 0s;
-    -moz-transition: width 1s ease 0s, height 1s ease 0s;
-    -webkit-transition: width 1s ease 0s, height 1s ease 0s;
-    -ms-transition: width 1s ease 0s, height 1s ease 0s;
-    -o-transition: width 1s ease 0s, height 1s ease 0s;
+    display: block;
     width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: width 0.7s ease, height 0.7s ease;
     z-index: -1;
 }
 
+/* Hover ripple effect */
 .custom-btn:hover span {
-    height: 700px;
     width: 700px;
+    height: 700px;
 }
 
-/* Reverse version of custom button */
+/* Default button */
+.custom-btn.default {
+    background: #FF9000;
+    color: #fff;
+}
+
+.custom-btn.default:hover {
+    color: #fff;
+}
+
+.custom-btn.default span {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Reverse button */
 .custom-btn.reverse {
     background: #229659;
     color: #fff;
 }
 
 .custom-btn.reverse:hover {
-    color: #FF9000;
+    color: #fff;
 }
 
 .custom-btn.reverse span {
-    background: #FFF261;
-    /* or switch to lighter/darker for contrast */
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Brown button */
+.custom-btn.brown {
+    background: #4A2E02;
+    color: #fff;
+}
+
+.custom-btn.brown:hover {
+    color: #fff;
+}
+
+.custom-btn.brown span {
+    background: rgba(255, 255, 255, 0.2);
 }
 
 @keyframes scaleout {

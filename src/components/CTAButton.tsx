@@ -1,11 +1,16 @@
-import CustomButton from "./CustomButton";
+'use client';
+import { useRef, useEffect } from "react";
+import CustomButton, { CustomButtonProps } from "./CustomButton";
+import { useCTAContext } from "@/context/CTAContext";
 
-export default function CTAButton() {
-    return (
-        <CustomButton
-            href="https://api.whatsapp.com/send?phone=628111209921&text=Halo%20Kak%2C%20saya%20ingin%20daftar%20kemitraan%20Lamonte.%20Bisa%20bantu%20penjelasannya%3F"
-        >
-            Gabung Sekarang
-        </CustomButton>
-    );
+
+export default function CTAButton(props: Partial<CustomButtonProps>) {
+  const btnRef = useRef<HTMLButtonElement | HTMLAnchorElement>(null);
+  const { register } = useCTAContext();
+
+  useEffect(() => {
+    register(btnRef);
+  }, [btnRef]);
+
+  return <CustomButton ref={btnRef} {...props}>{props.children ?? "Gabung Sekarang"}</CustomButton>;
 }

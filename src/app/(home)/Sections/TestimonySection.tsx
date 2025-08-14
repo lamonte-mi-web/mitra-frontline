@@ -1,30 +1,30 @@
-import Image from "next/image"
-
-
 export default function TestimonySection() {
     return (
-        <section className="relative w-full min-h-[700px] py-10">
-            <Image
-                src="/assets/img/bg-testimony.png"
-                alt="Lamonte Logo"
-                fill
-                className="object-cover"
-                priority
-            />
-            <div className="absolute inset-0 bg-white/40 z-10" />
-            <div className="absolute inset-0 z-20 flex flex-col justify-center items-center text-center p-4">
-                <h2 className="text-[3rem] upppercase font-bold text-white mb-3 max-w-3xl">
-                    Sukses Bersama Mitra Lamonte
+        <section className="max-w-6xl mx-auto p-6 my-10">
+            <div className="flex flex-col justify-center items-center text-center p-4">
+                <h2 className="text-4xl uppercase font-bold text-gray-800 mb-3 max-w-3xl">
+                    Kisah Sukses Para Mitra Lamonte
                 </h2>
-                <video
-                    className="w-full max-w-4xl h-auto rounded-lg shadow-lg"
-                    controls
-                >
-                    <source src="/assets/video/video-testimony.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                </video>
+                <p className="mb-4 text-xl max-w-5xl text-gray-600">
+                    Dengarkan langsung dari mereka yang telah membuktikan kesuksesan bermitra dengan Lamonte. Dari distributor hingga reseller, lihat transformasi bisnis mereka setelah bergabung dengan kami.
+                </p>
+                <p className="mb-4 text-xl max-w-5xl text-gray-600">
+                    Testimoni video ini menampilkan perjalanan nyata mitra kami dari awal memulai hingga meraih omzet signifikan. Saksikan perbedaan "sebelum dan sesudah" bergabung dengan Lamonte dan bagaimana sistem kami mengubah bisnis fashion anak mereka.
+                </p>
 
+                {/* YouTube embed responsive */}
+                <div className="w-full max-w-4xl aspect-video rounded-lg shadow-lg overflow-hidden">
+                    <iframe
+                        className="w-full h-full"
+                        src="https://www.youtube.com/embed/eCr-ey5_4Y4?si=8yOjS-OMTt0k9M_s"
+                        title="YouTube video player"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                    ></iframe>
+                </div>
             </div>
         </section>
-    )
+    );
 }
