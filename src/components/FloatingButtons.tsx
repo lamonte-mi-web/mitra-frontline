@@ -23,13 +23,7 @@ export default function FloatingButtons() {
   return (
     <div
       id="scrollup"
-      className="
-    fixed 
-    bottom-8 right-8 
-    sm:bottom-8 sm:right-8 
-    bottom-4 right-4  /* mobile */
-    flex flex-col items-end gap-3 z-50
-  "
+      className="fixed bottom-8 right-8sm:bottom-8 sm:right-8bottom-4 right-4 /* mobile */ flex flex-col items-end gap-3 z-50"
     >
 
       <div
@@ -41,11 +35,7 @@ export default function FloatingButtons() {
         <button
           id="scroll-top"
           onClick={scrollToTop}
-          className="
-    w-12 h-12 sm:w-12 sm:h-12
-    w-10 h-10 /* mobile */
-    rounded-full bg-[#FF9000] text-white flex items-center justify-center shadow-lg 
-    hover:bg-[#229659] transition-colors duration-300
+          className="w-12 h-12 sm:w-12 sm:h-12 w-10 h-10 /* mobile */ rounded-full bg-[#FF9000] text-white flex items-center justify-center shadow-lg hover:bg-[#229659] transition-colors duration-300
   "
         >
           <FontAwesomeIcon icon={faAngleUp} className="text-white text-lg sm:text-xl" />
