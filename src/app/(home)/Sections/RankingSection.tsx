@@ -23,18 +23,18 @@ type Category = "distributor" | "agen" | "reseller";
 
 const topPerformers: Record<Category, Performer[]> = {
     distributor: [
-        { mitraId: "", place: 2, name: "PT. Jaya Abadi", income: 700640000, color: "gray" },
-        { mitraId: "", place: 1, name: "CV. Makmur Sentosa", income: 642400000, color: "yellow" },
+        { mitraId: "", place: 2, name: "PT. Jaya Abadi", income: 642400000, color: "gray" },
+        { mitraId: "", place: 1, name: "CV. Makmur Sentosa", income: 700640000, color: "yellow" },
         { mitraId: "", place: 3, name: "UD. Lancar Jaya", income: 638700000, color: "amber" },
     ],
     agen: [
-        { mitraId: "", place: 2, name: "Agen Sejahtera", income: 152530000, color: "gray" },
-        { mitraId: "", place: 1, name: "Agen Utama", income: 145750000, color: "yellow" },
+        { mitraId: "", place: 2, name: "Agen Sejahtera", income: 145750000, color: "gray" },
+        { mitraId: "", place: 1, name: "Agen Utama", income: 152530000, color: "yellow" },
         { mitraId: "", place: 3, name: "Agen Barokah", income: 142700000, color: "amber" },
     ],
     reseller: [
-        { mitraId: "", place: 2, name: "Budi Santoso", income: 72850000, color: "gray" },
-        { mitraId: "", place: 1, name: "Ani Wijaya", income: 68880000, color: "yellow" },
+        { mitraId: "", place: 2, name: "Budi Santoso", income: 68880000, color: "gray" },
+        { mitraId: "", place: 1, name: "Ani Wijaya", income: 72850000, color: "yellow" },
         { mitraId: "", place: 3, name: "Cahyo Pratama", income: 62490000, color: "amber" },
     ],
 };
