@@ -47,7 +47,7 @@ export default function CoreValueSection() {
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
                     Nilai & Dedikasi Kami: <span className="text-white">SEJATII!</span>
                 </h2>
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-12 items-center">
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-12 items-center">
                     {coreValues.map((value, index) => (
                         <div
                             key={index}
