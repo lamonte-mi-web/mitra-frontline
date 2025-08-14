@@ -32,9 +32,6 @@ export default function CTASection() {
                             quality={80}
                         />
                     </div>
-
-
-
                 </div>
             </div>
         </section >
