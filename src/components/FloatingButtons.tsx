@@ -23,21 +23,34 @@ export default function FloatingButtons() {
   return (
     <div
       id="scrollup"
-      className="fixed bottom-8 right-8 flex flex-col items-end gap-3 z-50"
+      className="
+    fixed 
+    bottom-8 right-8 
+    sm:bottom-8 sm:right-8 
+    bottom-4 right-4  /* mobile */
+    flex flex-col items-end gap-3 z-50
+  "
     >
+
       <div
         className={`transition-all duration-500 ease-in-out transform ${showScroll
-            ? "translate-y-0 opacity-100" // move up when visible
-            : "translate-y-10 opacity-0 pointer-events-none" // hide + block clicks
+          ? "translate-y-0 opacity-100" // move up when visible
+          : "translate-y-10 opacity-0 pointer-events-none" // hide + block clicks
           }`}
       >
         <button
           id="scroll-top"
           onClick={scrollToTop}
-          className="w-12 h-12 rounded-full bg-[#FF9000] text-white flex items-center justify-center shadow-lg hover:bg-[#229659] transition-colors duration-300"
+          className="
+    w-12 h-12 sm:w-12 sm:h-12
+    w-10 h-10 /* mobile */
+    rounded-full bg-[#FF9000] text-white flex items-center justify-center shadow-lg 
+    hover:bg-[#229659] transition-colors duration-300
+  "
         >
-          <FontAwesomeIcon icon={faAngleUp} className="text-white text-xl" />
+          <FontAwesomeIcon icon={faAngleUp} className="text-white text-lg sm:text-xl" />
         </button>
+
       </div>
 
       <CTAButton />
