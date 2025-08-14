@@ -16,7 +16,7 @@ export default function CTASection() {
                         <p className="text-white text-xl mb-3">
                             Tidak perlu menunggu momen sempurna. Mitra sukses kami memulainya dengan satu langkah kecil — dan kini mereka memetik hasil besar.
                         </p>
-                        <p className="text-white text-lg mb-3">
+                        <p className="text-white text-lg mb-6">
                             Bergabunglah hari ini, dan jadilah bagian dari kesuksesan Lamonte.
                         </p>
 
