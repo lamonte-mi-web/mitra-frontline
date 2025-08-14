@@ -82,7 +82,7 @@ export default function RankingSection() {
         : topPerformers[activeCategory].slice().sort((a, b) => a.place - b.place);
 
     return (
-        <section className="max-w-6xl mx-auto p-6 my-10">
+        <section className="w-full max-w-full overflow-x-hidden py-10 px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center mb-6">
                 <h2 className="text-4xl font-bold uppercase text-gray-800 mb-3 text-center">
                     Update terkini top kemitraan lamonte
@@ -117,7 +117,7 @@ export default function RankingSection() {
                         return (
                             <div
                                 key={p.place}
-                                className="podium-step group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 w-full max-w-[200px] sm:max-w-xs"
+                                className="podium-step group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 w-[45%] sm:w-[40%] md:w-1/4 max-w-xs"
                                 onMouseEnter={() => setIsHovered(true)}
                                 onMouseLeave={() => setIsHovered(false)}
                             >
