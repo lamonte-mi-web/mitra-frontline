@@ -87,7 +87,6 @@ export default function RankingSection() {
                 <h2 className="text-4xl font-bold uppercase text-gray-800 mb-3 text-center">
                     Update terkini top kemitraan lamonte
                 </h2>
-                <OrangeDivider />
             </div>
             <div className="container mx-auto px-4">
                 {/* Category Tabs */}

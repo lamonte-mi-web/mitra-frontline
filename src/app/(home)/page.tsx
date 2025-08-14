@@ -15,6 +15,7 @@ import ReviewProofSection from "./Sections/ReviewProofSection";
 import DeliverySection from "./Sections/DeliverySection";
 import AboutUsSection from "./Sections/AboutUsSection";
 import CoreValueSection from "./Sections/CoreValueSection";
+import MiddleCTASection from "./Sections/MiddleCTASection";
 
 export const metadata: Metadata = {
 
@@ -30,6 +31,7 @@ export default function Home() {
         <AboutUsSection />
         <CoreValueSection />
         <StatisticSection />
+        <MiddleCTASection />
         <MagicKeywordsSection />
         <ResearchSection />
         <ClassificationSection />
