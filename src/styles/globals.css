@@ -29,20 +29,34 @@ body {
     color: var(--foreground);
     font-family: Arial, Helvetica, sans-serif;
 }
+
 .custom-btn {
-    display: inline-block;
     font-family: 'Heebo', sans-serif;
     font-size: 15px;
     font-weight: 600;
     height: 45px;
     line-height: 45px;
-    padding: 0 35px;
     border-radius: 2rem;
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
     z-index: 1;
     cursor: pointer;
+    display: block;
+    /* Makes it naturally resize & center */
+    max-width: 100%;
+    /* Prevents overflow */
+    width: fit-content;
+    /* Shrinks to content */
+    margin: 0 auto;
+    /* Centers horizontally */
+    padding: 0 1.5rem;
+    /* Relative padding instead of fixed 35px */
+    white-space: nowrap;
+    /* Keep text on one line */
+    box-sizing: border-box;
+    /* Include padding in width */
+
 }
 
 .custom-btn span {
@@ -57,6 +71,14 @@ body {
     background: rgba(255, 255, 255, 0.2);
     transition: width 0.7s ease, height 0.7s ease;
     z-index: -1;
+}
+
+@media (max-width: 480px) {
+    .custom-btn {
+        font-size: 14px;
+        /* Slightly smaller on very small screens */
+        padding: 0 1rem;
+    }
 }
 
 /* Hover ripple effect */
