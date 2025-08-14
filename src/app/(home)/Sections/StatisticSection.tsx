@@ -35,7 +35,7 @@ export default function StatisticSection() {
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
                     Pencapaian Kami dalam Angka
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl w-full">
+                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl w-full">
                     {stats.map(({ end, suffix, label, description }, idx) => (
                         <div
                             key={idx}

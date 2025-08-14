@@ -25,17 +25,14 @@ export default function FloatingButtons() {
       className={`
     fixed bottom-4 z-50
     sm:right-4 sm:flex sm:flex-col sm:items-end sm:gap-3
-    max-sm:left-0 max-sm:right-0 max-sm:flex max-sm:flex-row max-sm:justify-between max-sm:px-4
+    max-sm:left-0 max-sm:right-0 max-sm:flex max-sm:flex-row-reverse max-sm:justify-between max-sm:px-4
   `}
     >
-      <div className="max-sm:self-start">
-        <CTAButton />
-      </div>
 
       <div
         className={`transition-all duration-500 ease-in-out transform ${showScroll
-            ? "translate-y-0 opacity-100"
-            : "translate-y-10 opacity-0 pointer-events-none"
+          ? "translate-y-0 opacity-100"
+          : "translate-y-10 opacity-0 pointer-events-none"
           }`}
       >
         <button
@@ -48,6 +45,9 @@ export default function FloatingButtons() {
             className="text-white text-lg sm:text-xl"
           />
         </button>
+      </div>
+      <div className="max-sm:self-start">
+        <CTAButton />
       </div>
     </div>
   );

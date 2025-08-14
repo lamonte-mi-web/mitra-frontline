@@ -43,7 +43,7 @@ export default function ClassificationSection() {
                     Pilih Paket Kemitraan Yang Sesuai Dengan Anda
                 </h2>
 
-                <div className="grid gap-8 md:grid-cols-3">
+                <div className="grid gap-8 lg:grid-cols-3">
                     {packages.map((pkg, index) => (
                         <div
                             key={index}
