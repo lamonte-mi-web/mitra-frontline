@@ -46,7 +46,7 @@ export default function RootLayout({
       <body>
         <CTAProvider>
           <GoogleTagManager gtmId="GTM-TPCF34N6" />
-          <MouseTether />
+          {/* <MouseTether /> */}
           <DefaultHeader />
           <ScrollProgressBar />
           <Preloader />
