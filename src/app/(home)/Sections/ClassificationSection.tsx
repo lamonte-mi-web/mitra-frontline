@@ -5,25 +5,32 @@ const packages = [
     {
         title: "Reseller",
         points: [
-            "Modal mulai Rp500 ribuan",
-            "Produk siap jual",
-            "Bimbingan penjualan online"
+            "Diskon Khusus Reseller",
+            "Margin Keuntungan 20-30%",
+            "Beragam Produk Tersedia Lengkap",
+            "Dapatkan Bonus Menarik Setiap Tahunnya",
+            "Grup Sharing Session Kemitraan",
+            "Gratis Materi Promosi",
         ],
     },
     {
         title: "Agen",
         points: [
-            "Harga lebih kompetitif",
-            "Potensi untung lebih besar",
-            "Akses stok prioritas"
+            "Harga khusus Agen",
+            "Keuntungan 20-40% dari Harga Jual",
+            "Prioritas Produk Unggukan",
+            "Mendapatkan Bimbingan Bisnis",
+            "Bonus Tahunan dan Beragam Hadiah Menarik",
         ],
     },
     {
         title: "Distributor",
         points: [
-            "Margin keuntungan tertinggi",
-            "Dukungan marketing penuh",
-            "Pengembangan bisnis skala besar"
+            "Hak Eksklusif 1 Kota 1 Distributor",
+            "Dicantumkan Sebagai Distributor Resmi",
+            "Reward Point Setiap Pembelian",
+            "Akses E-Katalog, Foto Produk, Detail Produk",
+            "Dapat Bimbingan Bisnis Eksklusif",
         ],
     }
 ];
