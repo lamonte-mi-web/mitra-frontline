@@ -5,14 +5,14 @@ import Image from 'next/image';
 import { faBolt, faChartLine, faClock, faMoneyBill, faServer, faShirt, faHandshake, faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const MagicKeywords = [
-    { icon: faMoneyBill, text: "Profit tinggi, investasi ringan. Hasil nyata tanpa ribet." },
-    { icon: faChartLine, text: "Produk laris cepat, mudah dijual kapan saja." },
-    { icon: faShirt, text: "Update tren fashion terbaru. Selalu pilihan produk segar dan relevan." },
-    { icon: faHeart, text: "Dukungan penuh. Pendampingan sampai Anda benar-benar sukses." },
-    { icon: faServer, text: "Sistem mandiri. Semua langkah bisnis Anda mudah dan terintegrasi." },
-    { icon: faBolt, text: "Pengiriman cepat. Menjangkau seluruh Indonesia dan Asia." },
-    { icon: faClock, text: "Kemitraan jangka panjang. Bukan sekadar transaksi, tapi hubungan berkelanjutan." },
-    { icon: faHandshake, text: "Komitmen nyata. Transparansi, kepercayaan, dan kepuasan mitra diutamakan." },
+    { icon: faMoneyBill, text: "Untung maksimal dengan modal ringan. Hasil cepat terasa." },
+    { icon: faChartLine, text: "Produk bestseller yang selalu dicari pasar." },
+    { icon: faShirt, text: "Tren fashion anak terbaru. Selalu fresh, selalu relevan." },
+    { icon: faHeart, text: "Dukungan 100%. Kami ada sampai Anda sukses." },
+    { icon: faServer, text: "Sistem bisnis otomatis, mudah, dan terintegrasi." },
+    { icon: faBolt, text: "Pengiriman kilat ke seluruh Indonesia & Asia." },
+    { icon: faClock, text: "Kemitraan jangka panjang dengan keuntungan berkelanjutan." },
+    { icon: faHandshake, text: "Transparansi dan kepercayaan yang dibuktikan, bukan dijanjikan." },
 ];
 
 export default function MagicKeywordsSection() {
@@ -29,10 +29,10 @@ export default function MagicKeywordsSection() {
 
             <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-12">
                 <h2 className="text-4xl font-bold uppercase text-white mb-3 max-w-5xl">
-                    Ratusan Mitra Sudah Bersama Kami
+                    Ratusan Mitra Sudah Bergabung
                 </h2>
                 <p className="text-white font-semibold text-xl max-w-5xl mb-6">
-                    Apa yang Membuat Mereka Memilih Lamonte?
+                    Inilah Alasan Mereka Memilih Lamonte
                 </p>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-8 max-w-6xl w-full">

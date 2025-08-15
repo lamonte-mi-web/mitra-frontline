@@ -17,18 +17,20 @@ export default function AboutUsSection() {
           {/* Text */}
           <div className="space-y-4 text-gray-700 text-lg">
             <p>
-              Sejak 2011, PT Lamonte Mode Internasional telah menjadi mitra
-              terpercaya dalam industri fashion anak di Indonesia. Kami tidak
-              hanya memproduksi pakaian berkualitas tinggi, tetapi juga membangun
-              kemitraan yang saling menguntungkan dengan lebih dari 1.500 mitra
-              setiap bulannya.
+              Sejak 2011, PT Lamonte Mode Internasional telah menjadi pilihan 
+              utama bagi para pelaku bisnis fashion anak di Indonesia. Kami 
+              menyediakan koleksi terkini yang siap jual, dengan kualitas terjaga 
+              dan harga yang bersaing.
             </p>
             <p>
-              Dengan fasilitas produksi modern dan tenaga kerja terampil, kami
-              memastikan setiap produk memenuhi standar kualitas tertinggi.
-              Komitmen kami untuk mengikuti tren mode terkini, menawarkan harga
-              terbaik, dan memberikan pelayanan prima menjadikan kami pilihan
-              utama bagi para mitra yang ingin berkembang bersama kami.
+              Ratusan mitra aktif setiap bulan mempercayai Lamonte sebagai sumber 
+              produk mereka — karena kami mengerti apa yang dibutuhkan untuk 
+              memenangkan pasar: tren yang relevan, ketersediaan stok, dan dukungan 
+              penjualan yang nyata.
+            </p>
+            <p>
+              Bergabunglah bersama kami, dan temukan cara mudah untuk mengembangkan 
+              bisnis fashion anak dengan produk yang selalu diminati pelanggan.
             </p>
           </div>
 

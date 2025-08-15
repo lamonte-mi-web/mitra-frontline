@@ -4,16 +4,16 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 
 const researchPoints = [
     {
-        title: "Transformasi Belanja Online",
-        description: "80% ibu di Indonesia kini memilih membeli baju anak secara online — peluang pasar yang luar biasa (Survei Nielsen)"
+        title: "Belanja Online Jadi Kebiasaan",
+        description: "80% ibu di Indonesia kini membeli baju anak secara online — peluang pasar yang tak boleh dilewatkan (Survei Nielsen)."
     },
     {
-        title: "Pasar Yang Terus Bertumbuh",
-        description: "Dengan 4,2 juta kelahiran setiap tahun, potensi pasar fashion anak di Indonesia terus tumbuh pesat (Data Kementerian Kesehatan 2023)"
+        title: "Pasar Terus Melebar",
+        description: "4,2 juta kelahiran setiap tahun menciptakan permintaan fashion anak yang terus meningkat (Data Kementerian Kesehatan 2023)."
     },
     {
-        title: "Trend Pencarian Meningkat",
-        description: 'Pencarian produk "baju anak" naik 20% sepanjang 2023 — tren yang terus memperkuat peluang bisnis Anda (Google Trends)'
+        title: "Tren Pencarian Naik",
+        description: 'Pencarian “baju anak” tumbuh 20% sepanjang 2023 — sinyal kuat untuk memulai bisnis sekarang (Google Trends).'
     }
 ];
 
@@ -22,10 +22,11 @@ export default function ResearchSection() {
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col items-center justify-center mb-6">
                 <h2 className="text-4xl font-bold uppercase text-gray-800 mb-3 text-center">
-                    Pertumbuhan Pesat Bisnis Fashion Anak
+                    Fakta yang Menguatkan Peluang Bisnis Anda
                 </h2>
                 <p className="text-center text-gray-600 font-semibold text-xl max-w-5xl mb-6">
-                    Pasar fashion anak di Indonesia menunjukkan potensi luar biasa dengan pertumbuhan yang konsisten. Inilah fakta dan data yang menunjukkan mengapa saat ini adalah waktu yang tepat untuk terjun ke bisnis ini.
+                    Data terbaru menunjukkan pasar fashion anak di Indonesia sedang berada di puncak pertumbuhan. 
+                    Ini adalah waktu terbaik untuk mengambil posisi dan mulai menghasilkan.
                 </p>
             </div>
 
@@ -34,7 +35,7 @@ export default function ResearchSection() {
                 <div className="relative w-full h-full mx-auto md:mx-0 aspect-square rounded-lg overflow-hidden shadow-lg">
                     <Image
                         src="/assets/img/support-research.png"
-                        alt="Image to Sopport Research"
+                        alt="Ilustrasi Data Pasar Fashion Anak"
                         fill
                         style={{ objectFit: 'cover' }}
                         sizes="(max-width: 768px) 100vw, 50vw"

@@ -5,32 +5,31 @@ const packages = [
     {
         title: "Reseller",
         points: [
-            "Diskon Khusus Reseller",
-            "Margin Keuntungan 20-30%",
-            "Beragam Produk Tersedia Lengkap",
-            "Dapatkan Bonus Menarik Setiap Tahunnya",
-            "Grup Sharing Session Kemitraan",
-            "Gratis Materi Promosi",
+            "Harga khusus untuk reseller, margin hingga 30%",
+            "Produk ready stock, pilihan lengkap dan bervariasi",
+            "Bonus tahunan dan hadiah menarik",
+            "Materi promosi gratis untuk memudahkan penjualan",
+            "Akses grup sharing & strategi penjualan",
         ],
     },
     {
         title: "Agen",
         points: [
-            "Harga khusus Agen",
-            "Keuntungan 20-40% dari Harga Jual",
-            "Prioritas Produk Unggukan",
-            "Mendapatkan Bimbingan Bisnis",
-            "Bonus Tahunan dan Beragam Hadiah Menarik",
+            "Harga khusus agen, keuntungan hingga 40%",
+            "Akses prioritas produk unggulan",
+            "Bimbingan bisnis untuk mempercepat perkembangan",
+            "Bonus tahunan dan reward tambahan",
+            "Hubungan langsung dengan tim Lamonte",
         ],
     },
     {
         title: "Distributor",
         points: [
-            "Hak Eksklusif 1 Kota 1 Distributor",
-            "Dicantumkan Sebagai Distributor Resmi",
-            "Reward Point Setiap Pembelian",
-            "Akses E-Katalog, Foto Produk, Detail Produk",
-            "Dapat Bimbingan Bisnis Eksklusif",
+            "Hak eksklusif: 1 kota hanya 1 distributor",
+            "Status resmi sebagai distributor Lamonte",
+            "Reward point setiap pembelian",
+            "Akses penuh ke e-katalog, foto & detail produk",
+            "Bimbingan bisnis eksklusif dan personal",
         ],
     }
 ];
@@ -40,7 +39,7 @@ export default function ClassificationSection() {
         <section className="w-full bg-[#fcd92b] py-16">
             <div className="max-w-6xl mx-auto px-6 bg-white py-8 rounded-xl shadow-lg">
                 <h2 className="text-4xl font-bold text-center text-gray-800 mb-12">
-                    Pilih Paket Kemitraan Yang Sesuai Dengan Anda
+                    Pilih Paket Kemitraan yang Tepat untuk Anda
                 </h2>
 
                 <div className="grid gap-8 lg:grid-cols-3">

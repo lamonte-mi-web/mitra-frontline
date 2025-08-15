@@ -3,13 +3,15 @@ export default function TestimonySection() {
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col justify-center items-center text-center p-4">
                 <h2 className="text-4xl uppercase font-bold text-gray-800 mb-3 max-w-3xl">
-                    Kisah Sukses Para Mitra Lamonte
+                    Lihat Sendiri Perubahan yang Kami Hadirkan
                 </h2>
-                <p className="mb-4 text-xl max-w-5xl text-gray-600">
-                    Dengarkan langsung dari mereka yang telah membuktikan kesuksesan bermitra dengan Lamonte. Dari distributor hingga reseller, lihat transformasi bisnis mereka setelah bergabung dengan kami.
+                <p className="mb-4 text-lg max-w-4xl text-gray-600">
+                    Dari pemula hingga pebisnis sukses—mitra Lamonte membagikan kisah nyata
+                    bagaimana mereka mengubah impian menjadi penghasilan.
                 </p>
-                <p className="mb-4 text-xl max-w-5xl text-gray-600">
-                    Testimoni video ini menampilkan perjalanan nyata mitra kami dari awal memulai hingga meraih omzet signifikan. Saksikan perbedaan "sebelum dan sesudah" bergabung dengan Lamonte dan bagaimana sistem kami mengubah bisnis fashion anak mereka.
+                <p className="mb-4 text-lg max-w-4xl text-gray-600">
+                    Tonton bagaimana sistem dan dukungan kami membantu mereka naik level
+                    di bisnis fashion anak.
                 </p>
 
                 {/* YouTube embed responsive */}

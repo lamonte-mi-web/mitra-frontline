@@ -30,14 +30,14 @@ export default function MediaCoverageSection() {
         <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 pb-20">
             {/* Heading */}
             <div className="flex flex-col items-center justify-center mb-10">
-                <h2 className="text-4xl font-bold uppercase text-gray-800 leading-snug text-center flex-shrink-0 mb-4">
+                <h2 className="text-4xl font-bold uppercase text-gray-800 leading-snug text-center mt-6 mb-4">
                     Diakui Media Nasional
                 </h2>
-                <blockquote className="text-xl text-center text-[#FF9000] border-l-4 border-[#FF9000] py-5 italic w-full">
+                <blockquote className="text-xl text-center text-[#FF9000] border-l-4 border-[#FF9000] py-5 italic w-full max-w-4xl">
                     "Lamonte Mode Internasional, Pemain Kuat di Fashion Anak Digital"
                 </blockquote>
-                <p className="text-xl text-center text-gray-600 my-2">
-                    Perjalanan kesuksesan Lamonte telah menarik perhatian berbagai media nasional. Dengan inovasi dan komitmen pada kualitas, kami diakui sebagai salah satu pemimpin di industri fashion anak Indonesia yang terus berkembang.
+                <p className="text-lg text-center text-gray-600 max-w-3xl">
+                    Inovasi dan kualitas kami menarik perhatian media terkemuka Indonesia. Lamonte telah terbukti sebagai pemimpin dalam industri fashion anak, menghadirkan produk dan sistem yang mengubah cara mitra meraih sukses.
                 </p>
             </div>
 
