@@ -32,6 +32,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Kemitraan Bisnis Baju Anak No. 1 Di Indonesia - Mitra Lamonte",
   description: "Kemitraan baju anak no. 1 di Indonesia. Bergabunglah sekarang dan dapatkan keuntungan maksimal dengan peluang bisnis yang menguntungkan.",
+  
 };
 
 export default function RootLayout({
@@ -42,10 +43,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
       <FixExtensionArtifacts />
-
+      <head>
+        <GoogleTagManager gtmId="GTM-TPCF34N6" />
+        <meta name="google-site-verification" content="UtGdM3vdrIG7OKV-YOYGy4rcVXwJcRFDGgz9Tx6LrW0" />
+      </head>
       <body>
         <CTAProvider>
-          <GoogleTagManager gtmId="GTM-TPCF34N6" />
           {/* <MouseTether /> */}
           <DefaultHeader />
           <ScrollProgressBar />
