@@ -20,7 +20,7 @@ export default function CTASection() {
                             Bergabunglah hari ini, dan jadilah bagian dari kesuksesan Lamonte.
                         </p>
 
-                        <CTAButton styles="brown" />
+                        <CTAButton />
                     </div>
                     <div className="relative w-full h-64 md:h-full mx-auto md:mx-0 rounded-lg overflow-hidden shadow-lg">
                         <Image

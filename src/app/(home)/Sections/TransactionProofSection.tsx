@@ -1,6 +1,5 @@
 "use client";
 
-import { OrangeDivider } from "@/components/OrangeDivider";
 import Image from "next/image";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -28,10 +27,10 @@ export default function TransactionProofSection() {
         <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 pb-20">
 
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-4xl font-bold text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
-                    Real Transaksi Customer!
+                <h2 className="text-4xl font-bold text-[#FF9000] leading-snug text-center flex-shrink-0 mb-2">
+                    Real Transaksi Customer
                 </h2>
-                <p className="max-w-3xl text-center text-gray-700 mb-8 px-4 md:px-0">
+                <p className="max-w-3xl text-center text-[#166534] mb-8 px-4 md:px-0">
                     Lihat beberapa screenshot chat dari Mitra Lamonte yang mempercayakan belanja produk di Lamonte di bawah.
                 </p>
             </div>
@@ -45,9 +44,10 @@ export default function TransactionProofSection() {
                     keyBoardControl={true}
                     showDots={true}
                     arrows={true}
-                    containerClass="carousel-container"
                     itemClass="px-2"
                     pauseOnHover={true}
+                    containerClass="carousel-container pb-6"
+                    transitionDuration={800}
                 >
                     {screenshots.map((src, i) => (
                         <div
@@ -60,7 +60,9 @@ export default function TransactionProofSection() {
                                 fill
                                 className="object-cover"
                                 priority={i < 4}
+                                loading={i < 4 ? "eager" : "lazy"}
                             />
+
                         </div>
                     ))}
                 </Carousel>

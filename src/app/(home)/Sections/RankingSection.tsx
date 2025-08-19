@@ -40,7 +40,8 @@ const topPerformers: Record<Category, Performer[]> = {
 };
 
 const formatIncomeID = (income: number) =>
-    income.toLocaleString("id-ID", { minimumFractionDigits: 0 });
+    income.toLocaleString("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 });
+
 
 export default function RankingSection() {
     const [activeCategory, setActiveCategory] = useState<Category>("distributor");
@@ -84,7 +85,7 @@ export default function RankingSection() {
     return (
         <section className="w-full max-w-full overflow-x-hidden py-10 px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-4xl font-bold capitalize text-gray-800 mb-3 text-center">
+                <h2 className="text-4xl font-bold capitalize text-[#FF9000] mb-3 text-center">
                     Update terkini top kemitraan lamonte
                 </h2>
             </div>
@@ -98,9 +99,9 @@ export default function RankingSection() {
                             key={category}
                             onClick={() => setActiveCategory(category)}
                             className={`category-tab ${activeCategory === category
-                                    ? "text-[#FF9000] border-b-2 border-[#FF9000]"
-                                    : "text-gray-700"
-                                } bg-white px-6 py-3 rounded-lg shadow-md font-medium`}
+                                ? "text-[#FF9000] border-b-2 border-[#FF9000]"
+                                : "text-gray-700"
+                                } bg-white px-6 py-3 rounded-full shadow-md font-medium hover:text-[#FF9000] hover:border-b-2 hover:border-[#FF9000]`}
                         >
                             {category === "distributor" && <i className="fas fa-truck mr-2"></i>}
                             {category === "agen" && <i className="fas fa-store mr-2"></i>}
@@ -138,7 +139,7 @@ export default function RankingSection() {
                                                 <div className="absolute -top-5 -right-1 transform transition duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_8px_rgba(255,144,0,0.8)]">
                                                     <FontAwesomeIcon
                                                         icon={faCrown}
-                                                        className="text-[#FF9000] text-3xl rotate-25"
+                                                        className="text-[#FF9000] text-3xl rotate-[25deg] transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,144,0,0.8)]"
                                                     />
                                                 </div>
                                             )}
@@ -154,17 +155,17 @@ export default function RankingSection() {
                                 </div>
                                 <div
                                     className={`${p.place === 1
-                                            ? podiumColors[p.color][1]
-                                            : p.place === 3
-                                                ? podiumColors[p.color][2]
-                                                : podiumColors[p.color][0]
+                                        ? podiumColors[p.color][1]
+                                        : p.place === 3
+                                            ? podiumColors[p.color][2]
+                                            : podiumColors[p.color][0]
                                         } w-full py-4 rounded-b-lg text-center`}
                                 >
                                     <h3 className={`font-bold ${p.place === 3 ? "text-white" : "text-gray-800"}`}>
                                         {p.name}
                                     </h3>
                                     <p className={`text-sm ${p.place === 3 ? "text-white" : "text-gray-600"}`}>
-                                        Rp{formatIncomeID(p.income)},00
+                                        Rp{formatIncomeID(p.income)}
                                     </p>
                                 </div>
                             </div>
@@ -177,10 +178,12 @@ export default function RankingSection() {
                     {(Object.keys(topPerformers) as Category[]).map((category) => (
                         <button
                             key={category}
+                            aria-label={`Go to ${category} ranking`}
                             onClick={() => setActiveCategory(category)}
                             className={`carousel-nav w-3 h-3 rounded-full ${activeCategory === category ? "bg-[#FF9000]" : "bg-gray-300"
                                 }`}
-                        ></button>
+                        />
+
                     ))}
                 </div>
             </div>

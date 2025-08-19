@@ -45,7 +45,7 @@ export default function CoreValueSection() {
         <section className="w-full bg-[#F59607] py-16">
             <div className="max-w-6xl mx-auto px-6">
                 <h2 className="text-4xl font-bold text-center text-amber-100 mb-8">
-                    Nilai & Dedikasi Kami: SEJATI!
+                    Nilai & Dedikasi Kami: SEJATI
                 </h2>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-12 items-center">
                     {coreValues.map((value, index) => (

@@ -4,10 +4,10 @@ export default function DeliverySection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-4xl font-bold text-gray-800 leading-snug text-center flex-shrink-0 mb-2">
+                <h2 className="text-4xl font-bold text-[#FF9000] leading-snug text-center flex-shrink-0 mb-2">
                     Pengiriman Cepat keseluruh Indonesia!
                 </h2>
-                <p className="max-w-3xl text-center text-gray-700 mb-8 px-4 md:px-0">
+                <p className="max-w-3xl text-center text-[#166534] mb-8 px-4 md:px-0">
                     Kami telah bekerjasama dengan berbagai Expedisi untuk memastikan pesanan kamu terkirim dengan cepat dan hemat.
                     <br />
                     <br />

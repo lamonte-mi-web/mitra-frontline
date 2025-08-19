@@ -50,7 +50,7 @@ export default function MagicKeywordsSection() {
                               group-hover:animate-pulse">
                                 <FontAwesomeIcon icon={item.icon} className="text-white text-xl" />
                             </div>
-                            <p className="font-semibold text-center">{item.text}</p>
+                            <p className="font-semibold text-[#166534] text-center">{item.text}</p>
                         </div>
                     ))}
                 </div>
