@@ -2,14 +2,14 @@ export default function TestimonySection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col justify-center items-center text-center p-4">
-                <h2 className="text-4xl uppercase font-bold text-gray-800 mb-3 max-w-3xl">
+                <h2 className="text-4xl capitalize font-bold text-[#FF9000] mb-3 max-w-3xl">
                     Lihat Sendiri Perubahan yang Kami Hadirkan
                 </h2>
-                <p className="mb-4 text-lg max-w-4xl text-gray-600">
-                    Dari pemula hingga pebisnis sukses—mitra Lamonte membagikan kisah nyata
+                <p className="mb-4 text-lg max-w-4xl text-[#166534]">
+                    Dari pemula hingga pebisnis sukses, mitra Lamonte membagikan kisah nyata
                     bagaimana mereka mengubah impian menjadi penghasilan.
                 </p>
-                <p className="mb-4 text-lg max-w-4xl text-gray-600">
+                <p className="mb-4 text-lg max-w-4xl text-[#166534]">
                     Tonton bagaimana sistem dan dukungan kami membantu mereka naik level
                     di bisnis fashion anak.
                 </p>

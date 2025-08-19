@@ -44,8 +44,8 @@ export default function CoreValueSection() {
     return (
         <section className="w-full bg-[#F59607] py-16">
             <div className="max-w-6xl mx-auto px-6">
-                <h2 className="text-4xl font-bold text-center text-gray-800 mb-8">
-                    Nilai & Dedikasi Kami: <span className="text-white">SEJATII!</span>
+                <h2 className="text-4xl font-bold text-center text-amber-100 mb-8">
+                    Nilai & Dedikasi Kami: SEJATI!
                 </h2>
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-12 items-center">
                     {coreValues.map((value, index) => (
@@ -53,10 +53,10 @@ export default function CoreValueSection() {
                             key={index}
                             className="flex flex-col md:flex-row text-center items-center md:text-left"
                         >
-                            <FontAwesomeIcon icon={value.icon} className="text-4xl mr-4" />
-                            <div>
-                                <h5 className="text-2xl font-bold">{value.title}</h5>
-                                <p className="text-lg">{value.description}</p>
+                            <FontAwesomeIcon icon={value.icon} className="text-green-600 text-4xl mr-4" />
+                            <div className="">
+                                <h5 className="text-2xl font-bold text-amber-100">{value.title}</h5>
+                                <p className="text-lg text-white">{value.description}</p>
                             </div>
                         </div>
                     ))}

@@ -5,7 +5,7 @@ export default function OtherProductsSection() {
     return (
         <section className="w-full bg-[#FAF4F0] py-16">
             <div className="max-w-6xl mx-auto px-6">
-                <h2 className="text-[2rem] font-bold uppercase text-gray-800 mb-3 text-center leading-snug">
+                <h2 className="text-[2rem] font-bold capitalize text-gray-800 mb-3 text-center leading-snug">
                     Lebih dari sekadar produk! <br />
                     Lamonte memberi Anda kemudahan, pilihan, <br /> dan solusi bisnis yang siap pakai
                 </h2>

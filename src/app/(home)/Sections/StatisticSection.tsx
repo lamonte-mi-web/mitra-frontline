@@ -50,13 +50,13 @@ export default function StatisticSection() {
                                 suffix={suffix}
                                 className="text-5xl text-[#FF9000] font-bold text-center"
                             />
-                            <h5 className="mt-2 text-xl text-gray-700 font-semibold text-center">{label}</h5>
-                            <p className="text-center text-gray-600 text-lg mt-1">{description}</p>
+                            <h5 className="mt-2 text-xl text-gray-800 font-semibold text-center">{label}</h5>
+                            <p className="text-center text-gray-500 text-lg mt-1">{description}</p>
                         </div>
                     ))}
                 </div>
 
-                <p className="text-center text-lg mt-8 text-gray-700 max-w-3xl mx-auto">
+                <p className="text-center text-xl mt-8 text-[#166534] max-w-3xl mx-auto">
                     Bergabunglah dengan <strong>99% Mitra Sukses Bersama Lamonte</strong> dan rasakan pertumbuhan bisnis fashion anak Anda dengan sistem yang sudah terbukti.
                 </p>
             </div>

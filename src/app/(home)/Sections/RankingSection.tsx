@@ -84,7 +84,7 @@ export default function RankingSection() {
     return (
         <section className="w-full max-w-full overflow-x-hidden py-10 px-4 md:px-6 mx-auto">
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-4xl font-bold uppercase text-gray-800 mb-3 text-center">
+                <h2 className="text-4xl font-bold capitalize text-gray-800 mb-3 text-center">
                     Update terkini top kemitraan lamonte
                 </h2>
             </div>

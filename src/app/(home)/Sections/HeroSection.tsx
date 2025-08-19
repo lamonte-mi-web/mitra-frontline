@@ -14,10 +14,10 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-amber-500/80 z-10" />
 
             <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center p-4">
-                <h2 className="text-4xl font-bold uppercase text-black mb-3 max-w-5xl leading-tight">
+                <h2 className="text-6xl font-bold capitalize text-[#3B1F0B] mb-3 max-w-5xl leading-tight">
                     99% Mitra Sukses Bersama Lamonte
                 </h2>
-                <p className="text-black font-semibold text-xl max-w-5xl mb-6">
+                <p className="text-[#3B1F0B] font-semibold text-xl max-w-5xl mb-6">
                     Saatnya Anda bergabung dan meraih omzet impian di bisnis fashion anak,
                     dengan sistem yang sudah terbukti membawa ratusan mitra naik level.
                 </p>

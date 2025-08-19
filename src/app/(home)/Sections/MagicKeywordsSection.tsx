@@ -28,7 +28,7 @@ export default function MagicKeywordsSection() {
             <div className="absolute inset-0 bg-green-600/70 z-10" />
 
             <div className="relative z-10 flex flex-col items-center text-center p-6 md:p-12">
-                <h2 className="text-4xl font-bold uppercase text-white mb-3 max-w-5xl">
+                <h2 className="text-4xl font-bold capitalize text-white mb-3 max-w-5xl">
                     Ratusan Mitra Sudah Bergabung
                 </h2>
                 <p className="text-white font-semibold text-xl max-w-5xl mb-6">

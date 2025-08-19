@@ -21,7 +21,7 @@ export default function ResearchSection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col items-center justify-center mb-6">
-                <h2 className="text-4xl font-bold uppercase text-gray-800 mb-3 text-center">
+                <h2 className="text-4xl font-bold capitalize text-gray-800 mb-3 text-center">
                     Fakta yang Menguatkan Peluang Bisnis Anda
                 </h2>
                 <p className="text-center text-gray-600 font-semibold text-xl max-w-5xl mb-6">
