@@ -1,5 +1,5 @@
 // CustomButton.tsx
-import { forwardRef, useRef } from "react";
+import { forwardRef, HTMLAttributeAnchorTarget } from "react";
 import Link from "next/link";
 
 type BaseProps = {
@@ -7,16 +7,16 @@ type BaseProps = {
   styles?: "default" | "brown" | "reverse";
   id?: string;
   className?: string;
+  onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 };
 
 type ButtonProps = BaseProps & {
   type?: "button" | "submit" | "reset";
-  onClick?: () => void;
 };
 
 type LinkProps = BaseProps & {
   href: string;
-  target?: string;
+  target?: HTMLAttributeAnchorTarget;
   rel?: string;
 };
 
@@ -28,7 +28,15 @@ const CustomButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CustomBut
 
     if ("href" in props) {
       return (
-        <Link id={props.id} href={props.href} ref={ref as any} className={classes}>
+        <Link
+          id={props.id}
+          href={props.href}
+          ref={ref as any}
+          className={classes}
+          target={props.target}
+          rel={props.rel}
+          onClick={props.onClick as React.MouseEventHandler<HTMLAnchorElement>}
+        >
           <span></span>
           {props.children}
         </Link>
@@ -36,7 +44,13 @@ const CustomButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CustomBut
     }
 
     return (
-      <button id={props.id} type={props.type ?? "button"} ref={ref as any} className={classes}>
+      <button
+        id={props.id}
+        type={props.type ?? "button"}
+        ref={ref as any}
+        className={classes}
+        onClick={props.onClick as React.MouseEventHandler<HTMLButtonElement>}
+      >
         <span></span>
         {props.children}
       </button>
