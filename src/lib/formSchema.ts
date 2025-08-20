@@ -2,7 +2,7 @@
 import { z } from "zod";
 
 export const personalInfoSchema = z.object({
-  mitraType: z.enum(["Reseller", "Mitra Agen", "Distributor"]),
+  mitraType: z.enum(["Retail", "Dropshipper", "Reseller", "Mitra Agen", "Distributor"]),
   nama: z.string().min(1),
   email: z.string().email(),
   phone: z.string().min(10),
