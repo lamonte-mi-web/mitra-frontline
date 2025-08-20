@@ -5,6 +5,7 @@ import Link from "next/link";
 type BaseProps = {
   children: React.ReactNode;
   styles?: "default" | "brown" | "reverse";
+  id?: string;
   className?: string;
 };
 
@@ -27,7 +28,7 @@ const CustomButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CustomBut
 
     if ("href" in props) {
       return (
-        <Link href={props.href} ref={ref as any} className={classes}>
+        <Link id={props.id} href={props.href} ref={ref as any} className={classes}>
           <span></span>
           {props.children}
         </Link>
@@ -35,7 +36,7 @@ const CustomButton = forwardRef<HTMLButtonElement | HTMLAnchorElement, CustomBut
     }
 
     return (
-      <button type={props.type ?? "button"} ref={ref as any} className={classes}>
+      <button id={props.id} type={props.type ?? "button"} ref={ref as any} className={classes}>
         <span></span>
         {props.children}
       </button>
