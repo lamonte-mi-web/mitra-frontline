@@ -23,7 +23,7 @@ export default function CTAButton({ children = "Gabung Sekarang", ...props }: CT
         // Fire GTM event
         sendGTMEvent({
             event: "cta_click",
-            label: children?.toString() ?? "Gabung Sekarang",
+            label: children?.toString(),
             href:
                 props.href ??
                 "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F",
@@ -47,7 +47,7 @@ export default function CTAButton({ children = "Gabung Sekarang", ...props }: CT
             onClick={handleClick}
             {...props}
         >
-            {children ?? "Gabung Sekarang"}
+            {children}
         </CustomButton>
     );
 }
