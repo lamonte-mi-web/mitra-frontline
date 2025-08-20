@@ -3,7 +3,7 @@ import { forwardRef, HTMLAttributeAnchorTarget } from "react";
 import Link from "next/link";
 
 type BaseProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   styles?: "default" | "brown" | "reverse";
   id?: string;
   className?: string;
