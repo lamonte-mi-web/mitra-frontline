@@ -16,6 +16,7 @@ import { FixExtensionArtifacts } from "@/lib/FixExtensionArtifacts";
 import FloatingButtons from "@/components/FloatingButtons";
 import { CTAProvider } from "../context/CTAContext";
 import MouseTether from "@/components/MouseTether";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -63,6 +64,7 @@ export default function RootLayout({
         </noscript>
 
         <FixExtensionArtifacts />
+        <Toaster  />
         <CTAProvider>
           {/* <MouseTether /> */}
           <DefaultHeader />
