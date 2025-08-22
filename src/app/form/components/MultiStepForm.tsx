@@ -129,28 +129,41 @@ export default function MultiStepForm({
         }
     };
 
+    const progress = Math.round(((currentStep + 1) / steps.length) * 100);
+
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-3xl mx-auto px-4 sm:px-6">
-            <h2 className="text-2xl font-bold mb-4">{steps[currentStep].name}</h2>
-            {steps[currentStep].component}
-
-            <div className="flex justify-between mt-8">
-                {currentStep > 0 && (
-                    <CustomButton type="button" onClick={handleBack}>
-                        ← Kembali
-                    </CustomButton>
-                )}
-                {currentStep < steps.length - 1 ? (
-                    <CustomButton type="button" onClick={handleNext}>
-                        Selanjutnya →
-                    </CustomButton>
-                ) : (
-                    <CustomButton type="submit" className="font-medium">
-                        Kirim Formulir
-                    </CustomButton>
-                )}
+        <>
+            <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
+                <div
+                    className="bg-[#F59607] h-2 rounded-full transition-all duration-300"
+                    style={{ width: `${progress}%` }}
+                />
             </div>
-        </form>
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-3xl mx-auto px-4 sm:px-6">
+                <h2 className="text-2xl font-bold mb-4">{steps[currentStep].name}</h2>
+                <p className="text-sm text-gray-600 mb-2">
+                    Step {currentStep + 1} of {steps.length}
+                </p>
+                {steps[currentStep].component}
+
+                <div className="flex justify-between mt-8">
+                    {currentStep > 0 && (
+                        <CustomButton type="button" onClick={handleBack}>
+                            ← Kembali
+                        </CustomButton>
+                    )}
+                    {currentStep < steps.length - 1 ? (
+                        <CustomButton type="button" onClick={handleNext}>
+                            Selanjutnya →
+                        </CustomButton>
+                    ) : (
+                        <CustomButton type="submit" className="font-medium">
+                            Kirim Formulir
+                        </CustomButton>
+                    )}
+                </div>
+            </form>
+        </>
     );
 }
