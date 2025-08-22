@@ -1,9 +1,12 @@
+// /form/components/MultiStepForm.tsx
 'use client';
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema, paymentSchema, extraSchema } from "@/lib/formSchema";
 import type { FormData } from "@/lib/formSchema";
+import { insertMitraAction } from "../actions";
+
 
 import { useState } from "react";
 
@@ -12,8 +15,26 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import CustomButton from "@/components/CustomButton";
+import { APIFormData } from "@/lib/APIFormSchema";
 
-export default function MultiStepForm() {
+export default function MultiStepForm({
+    mitraTypes,
+    agama,
+    banks,
+    companies,
+    csStaff,
+    channels,
+    sources,
+}: {
+    mitraTypes: { id: string, name: string }[]
+    agama: { id: string, name: string }[]
+    banks: { id: string, name: string }[]
+    companies: { id: string, name: string }[]
+    csStaff: { id: string, name: string, phone: string }[]
+    channels: { id: string, name: string }[]
+    sources: { id: string, name: string, channel_id: string | null }[]
+}) {
     const [currentStep, setCurrentStep] = useState(0);
 
     const { control, handleSubmit, trigger, watch, formState: { errors } } = useForm<FormData>({
@@ -25,10 +46,10 @@ export default function MultiStepForm() {
             alamat: '',
             nikKtp: '',
             bod: '',
-            agama: 'Lainnya',
-            pendapatanBulanan: 0,
-            pengeluaranBulanan: 0,
-            jumlahTanggungan: 0,
+            agama: '',
+            pendapatanBulanan: "0",
+            pengeluaranBulanan: "0",
+            jumlahTanggungan: "0",
             jenisPerusahaan: '',
             namaPerusahaan: '',
             nib: '',
@@ -36,9 +57,9 @@ export default function MultiStepForm() {
             npwp: '',
             nikDireksi: '',
             nikKomisaris: '',
-            pengalaman: 0,
-            rataPenghasilan: 0,
-            buyPower: 0,
+            pengalaman: "0",
+            rataPenghasilan: "0",
+            buyPower: "0",
             alamatUsaha: '',
             bank: '',
             rekening: '',
@@ -47,36 +68,38 @@ export default function MultiStepForm() {
             tahuDari: '',
         },
     });
-
+    const selectedMitraTypeId = watch("mitraType");
+    const selectedMitraTypeName = mitraTypes.find(m => m.id === selectedMitraTypeId)?.name ?? "";
     const steps = [
-        { name: "Ingin Menjadi Apa?", component: <Step0 control={control} errors={errors} watch={watch} />, schema: classificationSchema },
-        { name: "Informasi Pribadi", component: <Step1 control={control} errors={errors} watch={watch} />, schema: personalInfoSchema },
-        { name: "Profil Perusahaan", component: <Step2 control={control} errors={errors} watch={watch} />, schema: companyProfileSchema },
-        { name: "Detail Pembayaran", component: <Step3 control={control} errors={errors} />, schema: paymentSchema },
-        { name: "Info Tambahan", component: <Step4 control={control} errors={errors} />, schema: extraSchema },
+        { name: "Ingin Bergabung Menjadi Apa?", component: <Step0 control={control} errors={errors} watch={watch} mitraTypes={mitraTypes} />, schema: classificationSchema },
+        { name: "Informasi Pribadi", component: <Step1 control={control} errors={errors} watch={watch} agama={agama} />, schema: personalInfoSchema },
+        // hide Step2 if B2C
+        ...(selectedMitraTypeName === "B2C" ? [] : [
+            { name: "Profil Perusahaan", component: <Step2 control={control} errors={errors} watch={watch} companies={companies} mitraTypes={mitraTypes} />, schema: companyProfileSchema }
+        ]),
+        { name: "Detail Pembayaran", component: <Step3 control={control} errors={errors} banks={banks} />, schema: paymentSchema },
+        { name: "Info Tambahan", component: <Step4 control={control} errors={errors} csStaff={csStaff} channels={channels} sources={sources} />, schema: extraSchema },
     ];
 
-    // serialize form data to string | number
-    const serializeData = (data: FormData): Record<string, string | number | undefined> => {
-        const serialized: Record<string, string | number | undefined> = {};
 
+    // serialize form data to string | number
+    const serializeData = (data: FormData): APIFormData => {
         const isDate = (value: unknown): value is Date => value instanceof Date;
 
-        Object.entries(data).forEach(([key, value]) => {
-            if (isDate(value)) {
-                serialized[key] = value.toISOString().split('T')[0]; // "YYYY-MM-DD"
-            } else if (typeof value === 'boolean') {
-                serialized[key] = value ? 1 : 0;
-            } else if (typeof value === 'string' || typeof value === 'number' || value === undefined) {
-                serialized[key] = value;
-            } else {
-                // fallback for unexpected types
-                serialized[key] = undefined;
-            }
-        });
-
-        return serialized;
+        return Object.fromEntries(
+            Object.entries(data).map(([key, value]) => {
+                if (isDate(value)) {
+                    return [key, value.toISOString().split("T")[0]];
+                } else if (typeof value === "boolean") {
+                    return [key, value ? 1 : 0];
+                } else if (typeof value === "string" || typeof value === "number" || value === undefined) {
+                    return [key, value];
+                }
+                return [key, undefined];
+            })
+        ) as APIFormData;
     };
+
 
 
     const handleNext = async () => {
@@ -90,18 +113,19 @@ export default function MultiStepForm() {
     const onSubmit = async (data: FormData) => {
         const payload = serializeData(data);
 
-        const response = await fetch('/api/submit', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload),
-        });
-
-        const result = await response.json();
+        const result = await insertMitraAction(payload, "Form Pendaftaran Online");
 
         if (result.success) {
-            alert(`Form berhasil dikirim! Folder ID: ${result.folder}`);
+            alert(`Form berhasil dikirim! ID Mitra: ${result.mitraId}`);
         } else {
-            alert('Gagal mengirim form.');
+            // Check if error has code and message
+            if (result.error && "code" in result.error && "message" in result.error) {
+                alert(`Gagal mengirim form!\nKode Error: ${result.error.code}\nPesan: ${JSON.stringify(result.error.message, null, 2)}`);
+                console.error(`Submit failed at step: ${result.error.code}`, result.error.message);
+            } else {
+                alert(`Gagal mengirim form! ${JSON.stringify(result.error, null, 2)}`);
+                console.error("Submit failed:", result.error);
+            }
         }
     };
 
@@ -113,18 +137,18 @@ export default function MultiStepForm() {
 
             <div className="flex justify-between mt-8">
                 {currentStep > 0 && (
-                    <button type="button" onClick={handleBack} className="btn px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">
+                    <CustomButton type="button" onClick={handleBack}>
                         ← Kembali
-                    </button>
+                    </CustomButton>
                 )}
                 {currentStep < steps.length - 1 ? (
-                    <button type="button" onClick={handleNext} className="btn px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition">
+                    <CustomButton type="button" onClick={handleNext}>
                         Selanjutnya →
-                    </button>
+                    </CustomButton>
                 ) : (
-                    <button type="submit" className="btn-primary px-4 py-2 bg-yellow-500 text-white rounded hover:bg-yellow-600 transition font-medium">
+                    <CustomButton type="submit" className="font-medium">
                         Kirim Formulir
-                    </button>
+                    </CustomButton>
                 )}
             </div>
         </form>

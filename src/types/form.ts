@@ -1,0 +1,30 @@
+// types/form.ts
+export type FormValues = {
+    mitraType: string;
+    nama: string;
+    email: string;
+    phone: string;
+    nikKtp: string;
+    alamat: string;
+    agama: string;
+    pendapatanBulanan: number;
+    pengeluaranBulanan: number;
+    jumlahTanggungan: number;
+    jenisPerusahaan: string;
+    namaPerusahaan: string;
+    pengalaman: number;
+    rataPenghasilan: number;
+    buyPower: number;
+    alamatUsaha: string;
+    bank: string;
+    rekening: string;
+    namaRekening: string;
+    cs: string;
+    tahuDari: string;
+    bod?: string;
+    nib?: string;
+    skdu?: string;
+    npwp?: string;
+    nikDireksi?: string;
+    nikKomisaris?: string;
+};

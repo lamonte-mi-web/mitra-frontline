@@ -2,45 +2,48 @@
 import { z } from "zod";
 
 export const classificationSchema = z.object({
-  mitraType: z.enum(["B2C", "Dropshipper", "Reseller", "Mitra", "Distributor"]),
+  mitraType: z.string().min(1, "Jenis mitra wajib dipilih"),
 });
 
 export const personalInfoSchema = z.object({
-  nama: z.string().min(1),
-  email: z.string().email(),
-  phone: z.string().min(10),
-  nikKtp: z.string().min(1),
-  alamat: z.string().min(1),
-  bod: z.string().optional(), // Can parse to Date later
-  agama: z.enum(["Islam", "Kristen", "Hindu", "Buddha", "Konghucu", "Lainnya"]),
-  pendapatanBulanan: z.number().min(0),
-  pengeluaranBulanan: z.number().min(0),
-  jumlahTanggungan: z.number().int().min(0),
+  nama: z.string().min(1, "Nama wajib diisi"),
+  email: z.string().email("Format email tidak valid"),
+  phone: z.string().min(10, "Nomor telepon minimal 10 digit"),
+  nikKtp: z.string().min(1, "NIK KTP wajib diisi"),
+  alamat: z.string().min(1, "Alamat wajib diisi"),
+  bod: z.string().optional(),
+  agama: z.string().min(1, "Agama wajib dipilih"),
+
+  // keep them as string for form
+  pendapatanBulanan: z.string().min(1, "Pendapatan bulanan wajib diisi"),
+  pengeluaranBulanan: z.string().min(1, "Pengeluaran bulanan wajib diisi"),
+  jumlahTanggungan: z.string().min(1, "Jumlah tanggungan wajib diisi"),
 });
 
 export const companyProfileSchema = z.object({
-  jenisPerusahaan: z.string().min(1), // Will map to lookup table
-  namaPerusahaan: z.string().min(1),
+  jenisPerusahaan: z.string().optional(),
+  namaPerusahaan: z.string().optional(),
   nib: z.string().optional(),
   skdu: z.string().optional(),
   npwp: z.string().optional(),
   nikDireksi: z.string().optional(),
   nikKomisaris: z.string().optional(),
-  pengalaman: z.number().min(0),
-  rataPenghasilan: z.number().min(0),
-  buyPower: z.number().min(0),
-  alamatUsaha: z.string().min(1),
+
+  pengalaman: z.string().optional(),
+  rataPenghasilan: z.string().optional(),
+  buyPower: z.string().optional(),
+  alamatUsaha: z.string().optional(),
 });
 
 export const paymentSchema = z.object({
-  bank: z.string().min(1), // Will map to lookup table
-  rekening: z.string().min(1),
-  namaRekening: z.string().min(1),
+  bank: z.string().min(1, "Bank wajib dipilih"),
+  rekening: z.string().min(1, "Nomor rekening wajib diisi"),
+  namaRekening: z.string().min(1, "Nama pemilik rekening wajib diisi"),
 });
 
 export const extraSchema = z.object({
-  cs: z.string().min(1), // Will map to lookup table
-  tahuDari: z.string().min(1),
+  cs: z.string().min(1, "Customer service wajib dipilih"),
+  tahuDari: z.string().min(1, "Sumber informasi wajib dipilih"),
 });
 
 export const fullSchema = classificationSchema

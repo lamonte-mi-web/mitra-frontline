@@ -7,13 +7,35 @@ import FormInput from '@/components/FormInput';
 type Props = {
     control: Control<FormData>;
     errors: FieldErrors<FormData>;
+    csStaff: { id: string; name: string; phone: string }[];
+    channels: { id: string; name: string }[];
+    sources: { id: string; name: string; channel_id: string | null }[];
 };
 
-export default function Step4_Extra({ control, errors }: Props) {
+export default function Step4_Extra({ control, errors, csStaff, channels, sources }: Props) {
+    // map sources into "Source - Channel"
+    const sourceOptions = sources.map((s) => {
+        const channelName = channels.find((c) => c.id === s.channel_id)?.name ?? "Unknown";
+        return {
+            value: s.id,
+            label: `${s.name} - ${channelName}`,
+        };
+    });
+
     return (
         <div className="space-y-4">
             {/* Nama CS */}
-            <FormInput name="cs" label="Nama CS yang Melayani" control={control} errors={errors} />
+            <FormInput
+                type="select"
+                name="cs"
+                label="Nama CS yang Melayani"
+                control={control}
+                errors={errors}
+                options={csStaff.map((cs) => ({
+                    value: cs.id,
+                    label: `${cs.name} - ${cs.phone}`,
+                }))}
+            />
 
             {/* Tahu Lamonte dari Mana */}
             <FormInput
@@ -22,13 +44,7 @@ export default function Step4_Extra({ control, errors }: Props) {
                 control={control}
                 errors={errors}
                 type="select"
-                options={[
-                    { label: "Google Ads", value: "Google Ads" },
-                    { label: "Sosial Media", value: "Sosial Media" },
-                    { label: "Artikel", value: "Artikel" },
-                    { label: "Marketplace", value: "Marketplace" },
-                    { label: "Teman / Referensi", value: "Teman/Referensi" },
-                ]}
+                options={sourceOptions}
             />
         </div>
     );
