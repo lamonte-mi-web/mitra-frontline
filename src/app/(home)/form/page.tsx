@@ -1,17 +1,18 @@
 // /form/page.tsx
 import Image from "next/image";
 import MultiStepForm from "./components/MultiStepForm";
-import { supabaseClient } from "@/lib/supabase";
+import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 
 export default async function MitraForm() {
-  const { data: mitraTypes, error: mitraError } = await supabaseClient.from("mitra_type").select("id, name");
-  const { data: agama, error: agamaError } = await supabaseClient.from("agama").select("id, name");
-  const { data: banks, error: banksError } = await supabaseClient.from("bank_list").select("id, name");
-  const { data: companies, error: companiesError } = await supabaseClient.from("jenis_perusahaan").select("id, name");
-  const { data: csStaff, error: csStaffError } = await supabaseClient.from("cs_staff").select("id, name, phone");
-  const { data: channels, error: channelsError } = await supabaseClient.from("lead_channel").select("id, name");
-  const { data: sources, error: sourcesError } = await supabaseClient.from("lead_source").select("id, name, channel_id");
+  const supabase = supabaseAdmin();
+  const { data: mitraTypes, error: mitraError } = await supabase.from("mitra_type").select("id, name");
+  const { data: agama, error: agamaError } = await supabase.from("agama").select("id, name");
+  const { data: banks, error: banksError } = await supabase.from("bank_list").select("id, name");
+  const { data: companies, error: companiesError } = await supabase.from("jenis_perusahaan").select("id, name");
+  const { data: csStaff, error: csStaffError } = await supabase.from("cs_staff").select("id, name, phone");
+  const { data: channels, error: channelsError } = await supabase.from("lead_channel").select("id, name");
+  const { data: sources, error: sourcesError } = await supabase.from("lead_source").select("id, name, channel_id");
 
   // console.log("mitraTypes", mitraTypes, mitraError);
   // console.log("agama", agama, agamaError);

@@ -4,19 +4,11 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "@/styles/globals.css";
 import "react-multi-carousel/lib/styles.css";
 
-import DefaultHeader from "@/components/DefaultHeader";
-import DefaultFooter from "@/components/DefaultFooter";
-import ScrollProgressBar from "@/components/ScrollProgressBar";
-import Preloader from "@/components/Preloader";
-
 import { GoogleTagManager } from "@next/third-parties/google";
-
-import "@/lib/fontAwesome"; // adjust path accordingly
 import { FixExtensionArtifacts } from "@/lib/FixExtensionArtifacts";
-import FloatingButtons from "@/components/FloatingButtons";
-import { CTAProvider } from "../context/CTAContext";
-import MouseTether from "@/components/MouseTether";
+import { CTAProvider } from "@/context/CTAContext";
 import { Toaster } from "react-hot-toast";
+import Preloader from "@/components/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,9 +28,9 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html
       lang="en"
@@ -64,16 +56,9 @@ export default function RootLayout({
         </noscript>
 
         <FixExtensionArtifacts />
-        <Toaster  />
-        <CTAProvider>
-          {/* <MouseTether /> */}
-          <DefaultHeader />
-          <ScrollProgressBar />
-          <Preloader />
-          {children}
-          <DefaultFooter />
-          <FloatingButtons />
-        </CTAProvider>
+        <Preloader />
+        <Toaster />
+        <CTAProvider>{children}</CTAProvider>
       </body>
     </html>
   );
