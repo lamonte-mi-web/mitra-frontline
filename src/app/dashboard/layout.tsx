@@ -6,21 +6,11 @@ import { supabaseServer } from "@/lib/supabaseServer";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
     const supabase = await supabaseServer();
-
-    // Get the current session
     const { data: { session } } = await supabase.auth.getSession();
 
-    // Redirect to login if not authenticated
-    if (!session) {
-        redirect("/login");
-    }
+    if (!session) redirect("/login");
 
-    // Optionally pass user info to DashboardWrapper
-    // const user = session.user;
+    const user = session.user;
 
-    return (
-        <DashboardWrapper>
-            {children}
-        </DashboardWrapper>
-    );
+    return <DashboardWrapper user={user}>{children}</DashboardWrapper>;
 }
