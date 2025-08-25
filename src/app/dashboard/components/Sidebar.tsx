@@ -28,7 +28,7 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, pathname }: Sideb
         >
             {/* Logo */}
             <div className="p-4 flex flex-col items-center">
-                <Link href="/" className="flex flex-col items-center justify-center">
+                <Link href="/dashboard" className="flex flex-col items-center justify-center">
                     <span
                         className={`transition-all duration-300 font-extrabold tracking-wide ${sidebarOpen ? "text-2xl" : "text-sm"
                             } text-white`}
@@ -132,8 +132,8 @@ export default function Sidebar({ sidebarOpen, setSidebarOpen, pathname }: Sideb
                                                             <Link
                                                                 href={child.href}
                                                                 className={`flex items-center gap-2 py-1 px-3 rounded-md transition ${isActive
-                                                                        ? "bg-[#FF9000] text-white font-semibold"
-                                                                        : "hover:bg-[#FF9000] hover:text-white"
+                                                                    ? "bg-[#FF9000] text-white font-semibold"
+                                                                    : "hover:bg-[#FF9000] hover:text-white"
                                                                     }`}
                                                             >
                                                                 <FontAwesomeIcon icon={child.icon} className="w-4 h-4" />
