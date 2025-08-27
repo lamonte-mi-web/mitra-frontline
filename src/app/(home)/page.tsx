@@ -18,10 +18,25 @@ import DeliverySection from "./Sections/DeliverySection";
 import CTASection from "./Sections/CTASection";
 
 export const metadata: Metadata = {
-  title: "Lamonte - Your Partner Management System",
-  description: "Discover Lamonte's solutions, products, and insights.",
+  title: "Mitra Lamonte - Kemitraan Bisnis Baju Anak No. 1 di Indonesia",
+  description:
+    "Lamonte hadir sebagai mitra terpercaya dalam bisnis baju anak & bayi sejak 2011. Bergabunglah bersama ribuan reseller, agen, dan dropshipper yang telah meraih keuntungan besar. Produk trendi, harga kompetitif, dan sistem kemitraan terpercaya untuk kesuksesan bisnis Anda.",
+  keywords: [
+    "bisnis baju anak",
+    "reseller baju anak",
+    "dropshipper baju anak",
+    "agen baju anak",
+    "supplier baju anak terpercaya",
+    "kemitraan baju bayi",
+    "peluang usaha baju anak",
+    "Lamonte Indonesia",
+    "jualan baju anak online",
+    "reseller terpercaya",
+  ],
+  
 };
 
+// Page
 export default function Home() {
   const sections = [
     HeroSection,

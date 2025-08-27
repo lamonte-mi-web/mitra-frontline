@@ -4,6 +4,7 @@ import CTAButton from "./CTAButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 export default function FloatingButtons() {
   const [showScroll, setShowScroll] = useState(false);
@@ -46,9 +47,14 @@ export default function FloatingButtons() {
       </div>
 
       {!hideCTA && (
-        <div className="max-sm:self-start">
-          <CTAButton />
-        </div>
+        <>
+          <div className="max-sm:self-start">
+            <CTAButton />
+          </div>
+          <div className="max-sm:self-start">
+            <CTAButton styles="whatsapp" href="https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F"><FontAwesomeIcon icon={faWhatsapp} /> Tanya Sekarang</CTAButton>
+          </div>
+        </>
       )}
     </div>
   );

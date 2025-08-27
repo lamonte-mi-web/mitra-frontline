@@ -9,7 +9,16 @@ type CTAButtonProps = Omit<React.ComponentProps<typeof CustomButton>, "href"> & 
     href?: string;
 };
 
-export default function CTAButton({ children = "Gabung Sekarang", ...props }: CTAButtonProps) {
+const DEFAULT_FORM = "/form";
+const DEFAULT_WHATSAPP =
+    "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F";
+
+
+export default function CTAButton({
+    children = "Gabung Sekarang",
+    href = DEFAULT_FORM,
+    ...props
+}: CTAButtonProps) {
     const btnRef = useRef<HTMLAnchorElement>(null);
     const { register } = useCTAContext();
 
@@ -20,16 +29,12 @@ export default function CTAButton({ children = "Gabung Sekarang", ...props }: CT
     }, [register]);
 
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        // Fire GTM event
         sendGTMEvent({
             event: "cta_click",
             label: children?.toString(),
-            href:
-                props.href ??
-                "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F",
+            href, // use the actual href the user clicked
         });
 
-        // If parent passed custom onClick, still call it
         if (props.onClick) {
             props.onClick(e);
         }
@@ -39,10 +44,7 @@ export default function CTAButton({ children = "Gabung Sekarang", ...props }: CT
         <CustomButton
             ref={btnRef}
             target="_blank"
-            href={
-                props.href ??
-                "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F"
-            }
+            href={href}
             className={clsx("cta-button", props.className)}
             onClick={handleClick}
             {...props}

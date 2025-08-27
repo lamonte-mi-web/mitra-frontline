@@ -4,7 +4,7 @@ import Link from "next/link";
 
 type BaseProps = {
   children?: React.ReactNode;
-  styles?: "default" | "brown" | "reverse";
+  styles?: "default" | "brown" | "reverse" | "whatsapp";
   id?: string;
   className?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
