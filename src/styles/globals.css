@@ -52,8 +52,6 @@ body {
     /* Prevents overflow */
     width: fit-content;
     /* Shrinks to content */
-    margin: 0 auto;
-    /* Centers horizontally */
     padding: 0 1.5rem;
     /* Relative padding instead of fixed 35px */
     white-space: nowrap;

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
         title: "Mitra Lamonte - Kemitraan Bisnis Baju Anak No. 1 di Indonesia",
         description:
             "Peluang bisnis baju anak yang menguntungkan. Bergabung bersama ribuan reseller Lamonte sekarang!",
-        images: ["/assets/img/logo-lamonte.png"], // ✅ global default Twitter image
+        images: ["/assets/img/logo-lamonte.png"],
     },
     robots: {
         index: true,

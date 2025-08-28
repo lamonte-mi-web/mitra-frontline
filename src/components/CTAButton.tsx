@@ -1,5 +1,6 @@
 "use client";
 import { useRef, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import CustomButton from "./CustomButton";
 import { useCTAContext } from "@/context/CTAContext";
 import { sendGTMEvent } from "@next/third-parties/google";
@@ -7,47 +8,71 @@ import clsx from "clsx";
 
 type CTAButtonProps = Omit<React.ComponentProps<typeof CustomButton>, "href"> & {
     href?: string;
+    ariaLabel?: string;
+    source?: string; // <- added
 };
 
 const DEFAULT_FORM = "/form";
 const DEFAULT_WHATSAPP =
     "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F";
 
-
 export default function CTAButton({
     children = "Gabung Sekarang",
     href = DEFAULT_FORM,
+    ariaLabel,
+    className,
+    source,
     ...props
 }: CTAButtonProps) {
-    const btnRef = useRef<HTMLAnchorElement>(null);
+    const btnRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
     const { register } = useCTAContext();
+    const pathname = usePathname(); // use as sensible default for source
 
     useEffect(() => {
-        if (btnRef.current) {
+        if (btnRef.current && typeof register === "function") {
             register(btnRef);
         }
     }, [register]);
 
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-        sendGTMEvent({
-            event: "cta_click",
-            label: children?.toString(),
-            href, // use the actual href the user clicked
-        });
+    const isExternal = /^(https?:)?\/\//i.test(href);
+
+    const defaultSource = source ?? pathname ?? "global";
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+        try {
+            sendGTMEvent({
+                event: "cta_click",
+                label: typeof children === "string" ? children : "cta_button",
+                href,
+                source: defaultSource,
+                ts: Date.now(),
+            });
+        } catch {
+            // analytics must not block UX
+        }
 
         if (props.onClick) {
-            props.onClick(e);
+            props.onClick(e as any);
         }
     };
 
+    const dataCta = typeof children === "string" ? children.replace(/\s+/g, "_").toLowerCase() : "cta_button";
+
+    const linkProps = isExternal
+        ? { target: "_blank" as const, rel: "noopener noreferrer" as const }
+        : { target: undefined, rel: undefined };
+
     return (
         <CustomButton
-            ref={btnRef}
-            target="_blank"
+            ref={btnRef as any}
             href={href}
-            className={clsx("cta-button", props.className)}
             onClick={handleClick}
-            {...props}
+            aria-label={ariaLabel ?? (typeof children === "string" ? children : "Gabung Sekarang")}
+            data-cta={dataCta}
+            data-source={defaultSource}
+            className={clsx("cta-button", className)}
+            {...linkProps}
+            {...(props as any)}
         >
             {children}
         </CustomButton>

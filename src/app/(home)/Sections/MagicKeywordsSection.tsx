@@ -44,10 +44,7 @@ export default function MagicKeywordsSection() {
                         transform transition-all duration-300 ease-in-out
                         hover:scale-105 hover:shadow-2xl"
                         >
-                            <div className="w-12 h-12 bg-[#FF9000] rounded-full flex items-center justify-center
-                              transition-all duration-300 ease-in-out
-                              group-hover:ring-4 group-hover:ring-[#FF9000] group-hover:ring-opacity-60
-                              group-hover:animate-pulse">
+                            <div className="w-12 h-12 bg-[#FF9000] rounded-full flex items-center justify-center transition-all duration-300 ease-in-out group-hover:ring-4 group-hover:ring-[#FF9000] group-hover:ring-opacity-60 group-hover:animate-pulse">
                                 <FontAwesomeIcon icon={item.icon} className="text-white text-xl" />
                             </div>
                             <p className="font-semibold text-[#166534] text-center">{item.text}</p>

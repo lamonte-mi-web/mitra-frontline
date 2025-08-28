@@ -1,21 +1,21 @@
 // app/page.tsx
 import { Metadata } from "next";
-import HeroSection from "./Sections/HeroSection";
-import TestimonySection from "./Sections/TestimonySection";
-import MediaCoverageSection from "./Sections/MediaCoverageSection";
-import AboutUsSection from "./Sections/AboutUsSection";
-import CoreValueSection from "./Sections/CoreValueSection";
-import StatisticSection from "./Sections/StatisticSection";
-import MiddleCTASection from "./Sections/MiddleCTASection";
-import MagicKeywordsSection from "./Sections/MagicKeywordsSection";
-import ResearchSection from "./Sections/ResearchSection";
-import ClassificationSection from "./Sections/ClassificationSection";
-import RankingSection from "./Sections/RankingSection";
-import OtherProductsSection from "./Sections/OtherProductsSection";
-import TransactionProofSection from "./Sections/TransactionProofSection";
-import ReviewProofSection from "./Sections/ReviewProofSection";
-import DeliverySection from "./Sections/DeliverySection";
-import CTASection from "./Sections/CTASection";
+import HeroSection from "./sections/HeroSection";
+import TestimonySection from "./sections/TestimonySection";
+import MediaCoverageSection from "./sections/MediaCoverageSection";
+import AboutUsSection from "./sections/AboutUsSection";
+import CoreValueSection from "./sections/CoreValueSection";
+import StatisticSection from "./sections/StatisticSection";
+import MiddleCTASection from "./sections/MiddleCTASection";
+import MagicKeywordsSection from "./sections/MagicKeywordsSection";
+import ResearchSection from "./sections/ResearchSection";
+import ClassificationSection from "./sections/ClassificationSection";
+import RankingSection from "./sections/RankingSection";
+import OtherProductsSection from "./sections/OtherProductsSection";
+import TransactionProofSection from "./sections/TransactionProofSection";
+import ReviewProofSection from "./sections/ReviewProofSection";
+import DeliverySection from "./sections/DeliverySection";
+import CTASection from "./sections/CTASection";
 
 export const metadata: Metadata = {
   title: "Mitra Lamonte - Kemitraan Bisnis Baju Anak No. 1 di Indonesia",
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     "peluang usaha baju anak",
     "Lamonte Indonesia",
     "jualan baju anak online",
-    "reseller terpercaya",
+    "kemitraan terpercaya",
   ],
   
 };

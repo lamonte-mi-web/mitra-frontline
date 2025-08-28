@@ -39,17 +39,17 @@ export default function DefaultFooter({
     const year = new Date().getFullYear();
 
     return (
-        <footer className="bg-gray-100 text-black py-10 px-4">
+        <footer className="text-black py-10 px-4">
             <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-6 items-start text-center sm:text-left">
                 {/* Logo */}
-                <div>
+                <div className='mx-auto sm:mx-0'>
                     <Image {...logo} priority />
                 </div>
 
                 {/* Contact Info */}
                 <div>
-                    <h3 className="font-semibold text-lg mb-2">Kontak Kami</h3>
-                    <ul className="space-y-1 text-sm">
+                    <h3 className="font-semibold text-lg mb-2 text-[#ff9000]">Kontak Kami</h3>
+                    <ul className="space-y-1 text-sm text-[#166534]">
                         <li>
                             Email:{' '}
                             <a href={`mailto:${contact.email}`} className="hover:text-blue">
@@ -68,7 +68,7 @@ export default function DefaultFooter({
 
                 {/* Social Media */}
                 <div>
-                    <h3 className="font-semibold text-lg mb-2">Ikuti Kami</h3>
+                    <h3 className="font-semibold text-lg mb-2 text-[#ff9000]">Ikuti Kami</h3>
                     <div className="flex justify-center sm:justify-start gap-5 text-2xl">
                         {socials.map((s) => (
                             <a
