@@ -32,7 +32,7 @@ const itemVariants: Variants = {
     visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] } }
 };
 
-export default function PainPointsSection() {
+export default function ResellerPainPointsSection() {
     return (
         <section
             id="painpoints"

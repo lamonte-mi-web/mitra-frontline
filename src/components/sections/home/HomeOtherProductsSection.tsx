@@ -1,7 +1,7 @@
 import { faBoxesPacking, faShoppingCart, faTablet, faTools } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function OtherProductsSection() {
+export default function HomeOtherProductsSection() {
     return (
         <section className="w-full py-16">
             <div className="max-w-6xl mx-auto px-6">

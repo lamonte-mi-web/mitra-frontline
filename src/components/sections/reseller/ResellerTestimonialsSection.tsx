@@ -33,7 +33,7 @@ const cardVariants: Variants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] } }
 };
 
-export default function TestimonialsSection() {
+export default function ResellerTestimonialsSection() {
     const responsive = {
         superLargeDesktop: { breakpoint: { max: 4000, min: 1536 }, items: 3, slidesToSlide: 1 },
         desktop: { breakpoint: { max: 1536, min: 1024 }, items: 2, slidesToSlide: 1 },

@@ -3,7 +3,7 @@
 import CTAButton from "@/components/CTAButton";
 import { motion } from "framer-motion";
 
-export default function ClosingCTASection() {
+export default function ResellerClosingCTASection() {
     return (
         <section className="bg-[#FF9000]/70 w-full text-white py-20 px-6">
             <motion.div

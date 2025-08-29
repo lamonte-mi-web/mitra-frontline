@@ -1,14 +1,14 @@
-// app/reseller/page.tsx
+// app/(home)/reseller/page.tsx
 import { Metadata } from "next";
-import HeroSection from "./sections/HeroSection";
-import PainPointsSection from "./sections/PainPointsSection";
-import WhyLamonteSection from "./sections/WhyLamonteSection";
-import ResearchSection from "./sections/ResearchSection";
-import BenefitsSection from "./sections/BenefitsSection";
-import HowToJoinSection from "./sections/HowToJoinSection";
-import TermsSection from "./sections/TermsSection";
-import TestimonialsSection from "./sections/TestimonialsSection";
-import ClosingCTASection from "./sections/ClosingCTASection";
+import ResellerHeroSection from "../../../components/sections/reseller/ResellerHeroSection";
+import ResellerPainPointsSection from "../../../components/sections/reseller/ResellerPainPointsSection";
+import ResellerWhyLamonteSection from "../../../components/sections/reseller/ResellerWhyLamonteSection";
+import ResellerResearchSection from "../../../components/sections/reseller/ResellerResearchSection";
+import ResellerBenefitsSection from "../../../components/sections/reseller/ResellerBenefitsSection";
+import ResellerHowToJoinSection from "../../../components/sections/reseller/ResellerHowToJoinSection";
+import ResellerTermsSection from "../../../components/sections/reseller/ResellerTermsSection";
+import ResellerTestimonialsSection from "../../../components/sections/reseller/ResellerTestimonialsSection";
+import ResellerClosingCTASection from "../../../components/sections/reseller/ResellerClosingCTASection";
 
 export const metadata: Metadata = {
     title: "Reseller Baju Anak & Bayi | Daftar Mitra Lamonte Sekarang",
@@ -40,15 +40,15 @@ export const metadata: Metadata = {
 
 export default function Reseller() {
     const sections = [
-        HeroSection,
-        PainPointsSection,
-        WhyLamonteSection,
-        ResearchSection,
-        BenefitsSection,
-        HowToJoinSection,
-        TermsSection,
-        TestimonialsSection,
-        ClosingCTASection
+        ResellerHeroSection,
+        ResellerPainPointsSection,
+        ResellerWhyLamonteSection,
+        ResellerResearchSection,
+        ResellerBenefitsSection,
+        ResellerHowToJoinSection,
+        ResellerTermsSection,
+        ResellerTestimonialsSection,
+        ResellerClosingCTASection
     ];
 
     return (

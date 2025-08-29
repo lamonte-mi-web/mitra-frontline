@@ -22,7 +22,7 @@ const responsive = {
     mobile: { breakpoint: { max: 639, min: 0 }, items: 1 },
 };
 
-export default function TransactionProofSection() {
+export default function HomeTransactionProofSection() {
     return (
         <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 pb-20">
 

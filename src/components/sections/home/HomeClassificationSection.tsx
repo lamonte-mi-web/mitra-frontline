@@ -34,7 +34,7 @@ const packages = [
     }
 ];
 
-export default function ClassificationSection() {
+export default function HomeClassificationSection() {
     return (
         <section className="w-full bg-[#fcd92b] py-16">
             <div className="max-w-6xl mx-auto px-6 bg-white py-10 rounded-2xl shadow-xl">

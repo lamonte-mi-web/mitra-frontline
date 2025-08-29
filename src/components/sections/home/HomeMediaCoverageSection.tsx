@@ -10,7 +10,7 @@ const responsive = {
     mobile: { breakpoint: { max: 639, min: 0 }, items: 3 },
 };
 
-export default function MediaCoverageSection() {
+export default function HomeMediaCoverageSection() {
     const mediaItems = [
         { src: "/assets/img/media/TribunNews.png", alt: "Tribun News", link: "https://www.tribunnews.com/corona/2023/04/01/lamonte-beri-edukasi-masyarakat-jualan-itu-mudah-dan-menyenangkan" },
         { src: "/assets/img/media/Detikcom.png", alt: "Detikcom", link: "https://inet.detik.com/business/d-6656463/peluang-besar-pasarkan-pakaian-ibu-dan-anak-secara-online-saat-lebaran" },
@@ -58,8 +58,7 @@ export default function MediaCoverageSection() {
                     {mediaItems.map(({ src, alt, link }) => (
                         <div
                             key={src}
-                            className="relative bg-white rounded-lg flex items-center justify-center aspect-[9/4] w-full max-w-[150px] md:max-w-[150px] lg:max-w-[200px]
-                         transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-xl"
+                            className="relative bg-white rounded-lg flex items-center justify-center aspect-[9/4] w-full max-w-[150px] md:max-w-[150px] lg:max-w-[200px] transition-transform duration-300 ease-in-out hover:scale-110 hover:shadow-xl"
                         >
                             <a href={link} target="_blank" rel="noopener noreferrer">
                                 <Image src={src} alt={alt} fill className="object-contain p-2" />

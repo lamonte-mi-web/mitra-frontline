@@ -13,7 +13,7 @@ const BENEFITS = [
     { icon: faGift, title: "Sample & Paket Starter", desc: "Free sample dan paket awal agar Anda langsung bisa mulai jualan." },
 ];
 
-export default function WhyLamonteSection() {
+export default function ResellerWhyLamonteSection() {
     return (
         <section id="why-lamonte" className="mx-auto w-full p-6 my-10 bg-[#fcd92b]" aria-labelledby="why-lamonte-heading">
             <div className="container mx-auto px-4 max-w-6xl">

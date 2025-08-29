@@ -43,7 +43,7 @@ const formatIncomeID = (income: number) =>
     income.toLocaleString("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 });
 
 
-export default function RankingSection() {
+export default function HomeRankingSection() {
     const [activeCategory, setActiveCategory] = useState<Category>("distributor");
     const [isHovered, setIsHovered] = useState(false);
 

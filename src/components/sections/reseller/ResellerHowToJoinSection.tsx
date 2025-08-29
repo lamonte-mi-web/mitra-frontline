@@ -36,7 +36,7 @@ const stepVariants: Variants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] } }
 };
 
-export default function HowToJoinSection() {
+export default function ResellerHowToJoinSection() {
     return (
         <section
             id="how-to-join"

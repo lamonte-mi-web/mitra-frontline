@@ -1,7 +1,7 @@
 // MiddleCTASection.tsx
 import CTAButton from "@/components/CTAButton";
 
-export default function MiddleCTASection() {
+export default function HomeMiddleCTASection() {
   return (
     <section className="w-full bg-[#FFF6E8] py-12">
       <div className="max-w-4xl mx-auto px-6 text-center">

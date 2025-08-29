@@ -17,7 +17,7 @@ const researchPoints = [
     }
 ];
 
-export default function ResearchSection() {
+export default function HomeResearchSection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col items-center justify-center mb-6">

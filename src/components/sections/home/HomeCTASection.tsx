@@ -3,7 +3,7 @@ import CustomButton from "@/components/CustomButton";
 import { OrangeDivider } from "@/components/OrangeDivider";
 import Image from "next/image";
 
-export default function CTASection() {
+export default function HomeCTASection() {
     return (
         <section className="w-full bg-[#33A940] py-16">
             <div className="max-w-6xl mx-auto px-6">

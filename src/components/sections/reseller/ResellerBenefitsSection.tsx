@@ -29,7 +29,7 @@ const itemVariants: Variants = {
     }
 };
 
-export default function BenefitsSection() {
+export default function ResellerBenefitsSection() {
     return (
         <section
             id="benefits"

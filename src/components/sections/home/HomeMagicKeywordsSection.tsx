@@ -15,7 +15,7 @@ const MagicKeywords = [
     { icon: faHandshake, text: "Transparansi dan kepercayaan yang dibuktikan, bukan dijanjikan." },
 ];
 
-export default function MagicKeywordsSection() {
+export default function HomeMagicKeywordsSection() {
     return (
         <section className="relative w-full py-12">
             <Image

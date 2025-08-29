@@ -1,21 +1,21 @@
-// app/page.tsx
+// app/(home)/page.tsx
 import { Metadata } from "next";
-import HeroSection from "./sections/HeroSection";
-import TestimonySection from "./sections/TestimonySection";
-import MediaCoverageSection from "./sections/MediaCoverageSection";
-import AboutUsSection from "./sections/AboutUsSection";
-import CoreValueSection from "./sections/CoreValueSection";
-import StatisticSection from "./sections/StatisticSection";
-import MiddleCTASection from "./sections/MiddleCTASection";
-import MagicKeywordsSection from "./sections/MagicKeywordsSection";
-import ResearchSection from "./sections/ResearchSection";
-import ClassificationSection from "./sections/ClassificationSection";
-import RankingSection from "./sections/RankingSection";
-import OtherProductsSection from "./sections/OtherProductsSection";
-import TransactionProofSection from "./sections/TransactionProofSection";
-import ReviewProofSection from "./sections/ReviewProofSection";
-import DeliverySection from "./sections/DeliverySection";
-import CTASection from "./sections/CTASection";
+import HomeHeroSection from "../../components/sections/home/HomeHeroSection";
+import HomeTestimonySection from "../../components/sections/home/HomeTestimonySection";
+import HomeMediaCoverageSection from "../../components/sections/home/HomeMediaCoverageSection";
+import HomeAboutUsSection from "../../components/sections/home/HomeAboutUsSection";
+import HomeCoreValueSection from "../../components/sections/home/HomeCoreValueSection";
+import HomeStatisticSection from "../../components/sections/home/HomeStatisticSection";
+import HomeMiddleCTASection from "../../components/sections/home/HomeMiddleCTASection";
+import HomeMagicKeywordsSection from "../../components/sections/home/HomeMagicKeywordsSection";
+import HomeResearchSection from "../../components/sections/home/HomeResearchSection";
+import HomeClassificationSection from "../../components/sections/home/HomeClassificationSection";
+import HomeRankingSection from "../../components/sections/home/HomeRankingSection";
+import HomeOtherProductsSection from "../../components/sections/home/HomeOtherProductsSection";
+import HomeTransactionProofSection from "../../components/sections/home/HomeTransactionProofSection";
+import HomeReviewProofSection from "../../components/sections/home/HomeReviewProofSection";
+import HomeDeliverySection from "../../components/sections/home/HomeDeliverySection";
+import HomeCTASection from "../../components/sections/home/HomeCTASection";
 
 export const metadata: Metadata = {
   title: "Mitra Lamonte - Kemitraan Bisnis Baju Anak No. 1 di Indonesia",
@@ -39,22 +39,22 @@ export const metadata: Metadata = {
 // Page
 export default function Home() {
   const sections = [
-    HeroSection,
-    TestimonySection,
-    MediaCoverageSection,
-    AboutUsSection,
-    CoreValueSection,
-    StatisticSection,
-    MiddleCTASection,
-    MagicKeywordsSection,
-    ResearchSection,
-    ClassificationSection,
-    RankingSection,
-    OtherProductsSection,
-    TransactionProofSection,
-    ReviewProofSection,
-    DeliverySection,
-    CTASection,
+    HomeHeroSection,
+    HomeTestimonySection,
+    HomeMediaCoverageSection,
+    HomeAboutUsSection,
+    HomeCoreValueSection,
+    HomeStatisticSection,
+    HomeMiddleCTASection,
+    HomeMagicKeywordsSection,
+    HomeResearchSection,
+    HomeClassificationSection,
+    HomeRankingSection,
+    HomeOtherProductsSection,
+    HomeTransactionProofSection,
+    HomeReviewProofSection,
+    HomeDeliverySection,
+    HomeCTASection,
   ];
 
   return (

@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 
-export default function AboutUsSection() {
+export default function HomeAboutUsSection() {
   return (
     <section className="w-full bg-[#fcd92b] py-16">
       <div className="max-w-6xl mx-auto px-6">

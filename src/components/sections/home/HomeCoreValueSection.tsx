@@ -40,7 +40,7 @@ const coreValues = [
     },
 ];
 
-export default function CoreValueSection() {
+export default function HomeCoreValueSection() {
     return (
         <section className="w-full bg-[#F59607] py-16">
             <div className="max-w-6xl mx-auto px-6">

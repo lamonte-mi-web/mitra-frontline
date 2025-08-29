@@ -1,4 +1,4 @@
-export default function TestimonySection() {
+export default function HomeTestimonySection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col justify-center items-center text-center p-4">

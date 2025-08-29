@@ -45,7 +45,7 @@ const cardVariants: Variants = {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.42, 0, 0.58, 1] } }
 };
 
-export default function TargetMarketSection() {
+export default function ResellerTargetMarketSection() {
     return (
         <section
             id="target-market"

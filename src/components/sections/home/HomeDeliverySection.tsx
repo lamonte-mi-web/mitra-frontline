@@ -1,6 +1,6 @@
 
 
-export default function DeliverySection() {
+export default function HomeDeliverySection() {
     return (
         <section className="max-w-6xl mx-auto p-6 my-10">
             <div className="flex flex-col items-center justify-center mb-6">

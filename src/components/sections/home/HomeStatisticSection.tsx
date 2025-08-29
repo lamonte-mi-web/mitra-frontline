@@ -28,7 +28,7 @@ const stats = [
     },
 ];
 
-export default function StatisticSection() {
+export default function HomeStatisticSection() {
     return (
         <section className="w-full min-h-[210px] flex items-center justify-center p-4 bg-[#fdf6e3]">
             <div className="max-w-6xl mx-auto px-6 py-10">
