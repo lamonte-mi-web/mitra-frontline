@@ -23,8 +23,9 @@
 }
 
 
-html, body {
-  overflow-x: hidden;
+html,
+body {
+    overflow-x: hidden;
 }
 
 
@@ -133,19 +134,26 @@ body {
 
 /* WhatsApp button */
 .custom-btn.whatsapp {
-    background: #25D366; /* WhatsApp green */
+    background: #25D366;
+    /* WhatsApp green */
     color: #fff;
 }
 
 .custom-btn.whatsapp:hover {
     color: #fff;
-    background: #1ebe5d; /* darker green */
+    background: #1ebe5d;
+    /* darker green */
 }
 
 .custom-btn.whatsapp span {
     background: rgba(255, 255, 255, 0.25);
 }
 
+.custom-btn.disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
 
 @keyframes scaleout {
     0% {

@@ -7,7 +7,7 @@ import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSch
 import type { FormData } from "@/lib/formSchema";
 import { insertMitraAction } from "../actions";
 
-
+// Import useState
 import { useState } from "react";
 
 import Step0 from "./Step0";
@@ -17,6 +17,15 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import CustomButton from "@/components/CustomButton";
 import { APIFormData } from "@/lib/APIFormSchema";
+
+import { translateSupabaseError } from "@/lib/supabaseErrorUtils"
+
+
+// UPDATED: Allow the message to be a string OR a React component
+type SubmissionResult = {
+    success: boolean;
+    message: string | React.ReactNode;
+};
 
 export default function MultiStepForm({
     mitraTypes,
@@ -36,6 +45,9 @@ export default function MultiStepForm({
     sources: { id: string, name: string, channel_id: string | null }[]
 }) {
     const [currentStep, setCurrentStep] = useState(0);
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submissionResult, setSubmissionResult] = useState<SubmissionResult | null>(null);
+
 
     const { control, handleSubmit, trigger, watch, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(fullSchema),
@@ -68,24 +80,22 @@ export default function MultiStepForm({
             tahuDari: '',
         },
     });
+
     const selectedMitraTypeId = watch("mitraType");
     const selectedMitraTypeName = mitraTypes.find(m => m.id === selectedMitraTypeId)?.name ?? "";
+
     const steps = [
         { name: "Ingin Bergabung Menjadi Apa?", component: <Step0 control={control} errors={errors} watch={watch} mitraTypes={mitraTypes} />, schema: classificationSchema },
         { name: "Informasi Pribadi", component: <Step1 control={control} errors={errors} watch={watch} agama={agama} />, schema: personalInfoSchema },
-        // hide Step2 if B2C
         ...(selectedMitraTypeName === "B2C" ? [] : [
-            { name: "Profil Perusahaan", component: <Step2 control={control} errors={errors} watch={watch} companies={companies} mitraTypes={mitraTypes} />, schema: companyProfileSchema }
+            { name: "Profil Perusahaan", component: <Step2 control={control} errors={errors} watch={watch} companies={companies} selectedMitraTypeName={selectedMitraTypeName} />, schema: companyProfileSchema }
         ]),
         { name: "Detail Pembayaran", component: <Step3 control={control} errors={errors} banks={banks} />, schema: paymentSchema },
         { name: "Info Tambahan", component: <Step4 control={control} errors={errors} csStaff={csStaff} channels={channels} sources={sources} />, schema: extraSchema },
     ];
 
-
-    // serialize form data to string | number
     const serializeData = (data: FormData): APIFormData => {
         const isDate = (value: unknown): value is Date => value instanceof Date;
-
         return Object.fromEntries(
             Object.entries(data).map(([key, value]) => {
                 if (isDate(value)) {
@@ -95,11 +105,10 @@ export default function MultiStepForm({
                 } else if (typeof value === "string" || typeof value === "number" || value === undefined) {
                     return [key, value];
                 }
-                return [key, undefined];
+                return [key, String(value)];
             })
         ) as APIFormData;
     };
-
 
 
     const handleNext = async () => {
@@ -111,26 +120,55 @@ export default function MultiStepForm({
     const handleBack = () => setCurrentStep(prev => prev - 1);
 
     const onSubmit = async (data: FormData) => {
-        const payload = serializeData(data);
+        setIsSubmitting(true);
+        setSubmissionResult(null);
 
+        const payload = serializeData(data);
         const result = await insertMitraAction(payload, "Form Pendaftaran Online");
 
         if (result.success) {
-            alert(`Form berhasil dikirim! ID Mitra: ${result.mitraId}`);
+            setSubmissionResult({ success: true, message: `Pendaftaran berhasil! ID Mitra Anda adalah: ${result.mitraId}. Silahkan Hubungi Tim kami lagi untuk proses selanjutnya.` });
         } else {
-            // Check if error has code and message
-            if (result.error && "code" in result.error && "message" in result.error) {
-                alert(`Gagal mengirim form!\nKode Error: ${result.error.code}\nPesan: ${JSON.stringify(result.error.message, null, 2)}`);
-                console.error(`Submit failed at step: ${result.error.code}`, result.error.message);
-            } else {
-                alert(`Gagal mengirim form! ${JSON.stringify(result.error, null, 2)}`);
-                console.error("Submit failed:", result.error);
+            // UPDATED: This block now uses the translator function
+            let errorContent: string | React.ReactNode = "Terjadi kesalahan yang tidak diketahui.";
+
+            if (result.error) {
+                // Check for Zod validation errors first (from the server action)
+                if (result.error.code === 'VALIDATION_ERROR' && typeof result.error.message === 'object' && result.error.message !== null) {
+                    const fieldErrors = result.error.message as Record<string, string[] | undefined>;
+                    errorContent = (
+                        <div>
+                            <p className="font-semibold mb-2">Harap perbaiki kesalahan berikut:</p>
+                            <ul className="list-disc list-inside text-left max-w-md mx-auto">
+                                {Object.entries(fieldErrors).map(([field, messages]) =>
+                                    messages ? <li key={field}><strong>{field}:</strong> {messages.join(', ')}</li> : null
+                                )}
+                            </ul>
+                        </div>
+                    );
+                } else {
+                    // If it's not a validation error, use our new translator for database errors!
+                    errorContent = translateSupabaseError(result.error);
+                }
             }
+
+            setSubmissionResult({ success: false, message: errorContent });
+            console.error("Submit failed:", result.error);
         }
+        setIsSubmitting(false);
     };
 
     const progress = Math.round(((currentStep + 1) / steps.length) * 100);
 
+    if (submissionResult) {
+        return (
+            <div className={`p-6 rounded-lg text-center ${submissionResult.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+                <h3 className="text-2xl font-bold mb-4">{submissionResult.success ? "Terima Kasih!" : "Oops! Terjadi Kesalahan"}</h3>
+                {/* This <p> tag can now render a string or the JSX list */}
+                <div>{submissionResult.message}</div>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -146,20 +184,19 @@ export default function MultiStepForm({
                     Step {currentStep + 1} of {steps.length}
                 </p>
                 {steps[currentStep].component}
-
                 <div className="flex justify-between mt-8">
                     {currentStep > 0 && (
-                        <CustomButton type="button" onClick={handleBack}>
+                        <CustomButton type="button" onClick={handleBack} disabled={isSubmitting}>
                             ← Kembali
                         </CustomButton>
                     )}
                     {currentStep < steps.length - 1 ? (
-                        <CustomButton type="button" onClick={handleNext}>
+                        <CustomButton type="button" onClick={handleNext} disabled={isSubmitting}>
                             Selanjutnya →
                         </CustomButton>
                     ) : (
-                        <CustomButton type="submit" className="font-medium">
-                            Kirim Formulir
+                        <CustomButton type="submit" className="font-medium" disabled={isSubmitting}>
+                            {isSubmitting ? "Mengirim..." : "Kirim Formulir"}
                         </CustomButton>
                     )}
                 </div>

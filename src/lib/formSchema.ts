@@ -36,10 +36,14 @@ export const companyProfileSchema = z.object({
 });
 
 export const paymentSchema = z.object({
-  bank: z.string().min(1, "Bank wajib dipilih"),
+  // BEFORE: bank: z.string().min(1, "Bank wajib dipilih"),
+  // AFTER:
+  bank: z.string().uuid({ message: "Anda harus memilih bank yang valid." }),
+
   rekening: z.string().min(1, "Nomor rekening wajib diisi"),
   namaRekening: z.string().min(1, "Nama pemilik rekening wajib diisi"),
 });
+
 
 export const extraSchema = z.object({
   cs: z.string().min(1, "Customer service wajib dipilih"),

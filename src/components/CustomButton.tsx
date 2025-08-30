@@ -14,6 +14,7 @@ type BaseProps = {
 
 type ButtonProps = BaseProps & {
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 };
 
 type LinkProps = BaseProps & {
@@ -24,17 +25,12 @@ type LinkProps = BaseProps & {
 
 export type CustomButtonProps = ButtonProps | LinkProps;
 
-/**
- * CustomButton
- * - Renders a semantic <button> when no href
- * - Renders a Next <Link> (internal) with ref forwarded to Link (which forwards to <a>)
- * - Renders a plain <a> for external links
- */
 const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomButtonProps>(
   (props, ref) => {
-    const classes = `custom-btn ${props.styles ?? "default"} ${props.className ?? ""}`.trim();
+    const classes = `custom-btn ${props.styles ?? "default"} ${props.className ?? ""} ${(props as ButtonProps).disabled ? "disabled" : ""}`.trim();
 
     if ("href" in props && typeof props.href === "string") {
+      // Link logic (no changes here)
       const href = props.href;
       const isInternal = href.startsWith("/");
 
@@ -49,7 +45,6 @@ const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomBut
       };
 
       if (isInternal) {
-        // Next Link (no legacyBehavior). Pass ref directly to Link so Next can forward to <a>.
         return (
           <Link href={href} ref={ref as React.Ref<HTMLAnchorElement>} {...anchorProps}>
             <span></span>
@@ -58,7 +53,6 @@ const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomBut
         );
       }
 
-      // External link — plain anchor
       return (
         <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} {...anchorProps}>
           <span></span>
@@ -76,7 +70,9 @@ const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomBut
         className={classes}
         onClick={props.onClick as React.MouseEventHandler<HTMLButtonElement>}
         aria-label={props["aria-label"]}
+        // FIXED: Replaced the incorrect colon with an equals sign.
         data-cta={props["data-cta"]}
+        disabled={(props as ButtonProps).disabled}
       >
         <span></span>
         {props.children}
