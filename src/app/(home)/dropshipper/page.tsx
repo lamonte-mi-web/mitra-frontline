@@ -10,6 +10,7 @@ import DropshipperCommissionSection from "@/components/sections/dropshipper/Drop
 import DropshipperHowToJoinSection from "@/components/sections/dropshipper/DropshipperHowToJoinSection";
 import DropshipperAboutUsSection from "@/components/sections/dropshipper/DropshipperAboutUsSection";
 import DropshipperClosingCTASection from "@/components/sections/dropshipper/DropshipperClosingCTASection";
+import DropshipperUpsellSection from "@/components/sections/dropshipper/DropshipperUpsellSection";
 
 export const metadata: Metadata = {
     title: "Dropshipper Baju Anak & Bayi | Gabung Lamonte Tanpa Modal",
@@ -51,6 +52,7 @@ export default function DropshipperPage() {
         DropshipperCommissionSection,
         DropshipperHowToJoinSection,
         DropshipperAboutUsSection,
+        DropshipperUpsellSection,
         DropshipperClosingCTASection,
         // Anda bisa menambahkan section lain untuk halaman dropshipper di sini
     ];
