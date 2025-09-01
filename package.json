@@ -29,6 +29,7 @@
     "react-dom": "19.1.0",
     "react-hook-form": "^7.62.0",
     "react-hot-toast": "^2.6.0",
+    "react-intersection-observer": "^9.16.0",
     "react-map-gl": "^8.0.4",
     "react-multi-carousel": "^2.8.6",
     "uuid": "^11.1.0",

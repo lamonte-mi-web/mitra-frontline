@@ -1,5 +1,4 @@
 "use client";
-
 import CTAButton from "@/components/CTAButton";
 import Image from "next/image";
 import { motion, Variants } from "framer-motion";
@@ -45,26 +44,26 @@ export default function DropshipperHeroSection() {
                             className="text-4xl lg:text-5xl font-bold text-[#166534] leading-tight mb-4"
                             variants={itemVariants}
                         >
-                            Mulai Bisnis Fashion Anak, <span className="text-[#FF9000]">Tanpa Modal.</span>
+                            Wujudkan Bisnis Impian Anda: <br /> Jadi <span className="text-[#FF9000]">Dropshipper</span> Fashion Anak.
                         </motion.h1>
 
                         <motion.p
                             className="text-lg text-gray-600 max-w-lg mb-8"
                             variants={itemVariants}
                         >
-                            Jualkan ratusan produk terlaris tanpa perlu stok barang, packing, atau kirim paket. Kami siapkan semuanya untuk Anda.
+                            Fokus pada hal terpenting: berjualan dan raih keuntungan. Biarkan kami yang mengurus ribuan produk terlaris, packing, hingga pengiriman langsung ke pelanggan atas nama Anda.
                         </motion.p>
 
                         <motion.ul className="space-y-3 text-left mb-8" variants={itemVariants}>
                             {[
-                                "Pendaftaran 100% Gratis",
-                                "Komisi & Keuntungan Menarik",
-                                "Materi Marketing Disediakan",
-                                "Tanpa Stok & Urus Pengiriman",
+                                { text: "Gabung Gratis, Tanpa Biaya Tersembunyi" },
+                                { text: "Potensi Komisi Progresif & Menguntungkan" },
+                                { text: "Dukungan Penuh: Katalog & Materi Promosi Siap Pakai" },
+                                { text: "Bebas Repot: Tanpa Stok, Tanpa Packing, Tanpa Kirim" },
                             ].map(point => (
-                                <li key={point} className="flex items-center text-gray-700 font-medium">
+                                <li key={point.text} className="flex items-center text-gray-700 font-medium">
                                     <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 w-5 h-5 mr-3" />
-                                    {point}
+                                    {point.text}
                                 </li>
                             ))}
                         </motion.ul>
@@ -85,7 +84,7 @@ export default function DropshipperHeroSection() {
                         initial="hidden"
                         animate="visible"
                     >
-                        <div className="absolute inset-0 bg-[#fcd92b] rounded-full transform z-1 -translate-x-1/4 scale-150"></div>
+                        <div className="absolute inset-0 bg-[#fcd92b] rounded-full transform -translate-x-1/4 scale-150"></div>
                         <Image
                             src="/assets/img/dropshipper-hero.png"
                             alt="Ibu Indonesia sukses menjalankan bisnis dropshipper baju anak Lamonte dari rumah"

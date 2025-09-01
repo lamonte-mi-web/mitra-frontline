@@ -10,41 +10,41 @@ import {
     faShippingFast
 } from "@fortawesome/free-solid-svg-icons";
 
-// Data Keunggulan diambil dari PDF Halaman 10
+// --- COPYWRITING DIPERTAJAM DENGAN PRINSIP NLP ---
 const BENEFITS = [
     {
         icon: faPiggyBank,
-        title: "Profit Tinggi, Tanpa Modal",
-        description: "Raih margin keuntungan yang menarik tanpa perlu investasi awal untuk stok barang.",
+        title: "Profit Langsung, Tanpa Risiko",
+        description: "Raih keuntungan dari penjualan pertama Anda tanpa mengeluarkan modal sepeser pun untuk stok barang.",
     },
     {
         icon: faRocket,
-        title: "Produk Laris & Mudah Dijual",
-        description: "Jualkan koleksi fast-moving yang selalu update sesuai tren pasar fashion anak terkini.",
+        title: "Jualan Produk Juara",
+        description: "Anda akan menjual koleksi fashion anak yang terbukti laris dan selalu dinanti pasar, membuat penjualan jadi lebih mudah.",
     },
     {
         icon: faLightbulb,
-        title: "Update Tren & Banyak Pilihan",
-        description: "Dapatkan akses ke ratusan pilihan produk baru setiap minggunya agar jualan Anda tetap segar.",
+        title: "Selalu Jadi yang Paling Update",
+        description: "Dapatkan akses ke ratusan produk tren terbaru setiap minggunya, jadikan toko Anda selalu segar dan relevan.",
     },
     {
         icon: faHeadset,
-        title: "Dibantu Sampai Sukses",
-        description: "Kami menyediakan materi promosi, pelatihan, dan bimbingan penuh dari tim profesional.",
+        title: "Anda Tidak Pernah Sendirian",
+        description: "Kami bukan sekadar supplier. Tim ahli kami siap membimbing Anda dengan materi promosi dan pelatihan agar Anda sukses.",
     },
     {
         icon: faCogs,
-        title: "Didukung Sistem Terintegrasi",
-        description: "Manfaatkan sistem mandiri kami yang memudahkan Anda dalam proses order hingga pelacakan.",
+        title: "Sistem Canggih, Kerja Mudah",
+        description: "Nikmati kemudahan mengelola pesanan hingga melacak pengiriman dengan sistem terintegrasi yang kami siapkan.",
     },
     {
         icon: faShippingFast,
-        title: "Pengiriman Seluruh Indonesia",
-        description: "Kami yang mengurus packing dan pengiriman langsung ke pelanggan Anda di seluruh Indonesia.",
+        title: "Fokus Jualan, Kami Urus Sisanya",
+        description: "Bebaskan diri Anda dari repotnya packing dan pengiriman. Kami akan mengirimkan setiap pesanan langsung ke pelanggan Anda.",
     },
 ];
 
-// Animation Variants diadaptasi dari contoh Anda
+// ... (Animation Variants tetap sama)
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -69,7 +69,6 @@ const itemVariants: Variants = {
 
 export default function DropshipperWhyLamonteSection() {
     return (
-        // MODIFIED: Menggunakan styling background dan padding dari contoh
         <section
             id="why-lamonte"
             className="w-full bg-[#F59607] py-16 sm:py-24"
@@ -83,16 +82,16 @@ export default function DropshipperWhyLamonteSection() {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6 }}
                 >
+                    {/* --- COPYWRITING DIPERTAJAM --- */}
                     <h2 id="why-lamonte-heading" className="text-4xl font-bold text-center text-amber-100">
-                        Kenapa Bergabung Dengan Lamonte?
+                        Lebih dari Sekadar Supplier, Kami Adalah Partner Sukses Anda
                     </h2>
                     <p className="mt-4 text-lg text-white max-w-3xl mx-auto">
-                        Anda bukan sekadar mitra, tapi bagian dari ekosistem bisnis yang kami dukung untuk tumbuh dan sukses bersama.
+                        Kami membangun sebuah ekosistem bisnis di mana kesuksesan Anda adalah prioritas utama kami.
                     </p>
                 </motion.div>
 
                 <motion.div
-                    // MODIFIED: Menggunakan grid layout dari contoh
                     className="grid sm:grid-cols-2 lg:grid-cols-3 gap-12"
                     variants={containerVariants}
                     initial="hidden"
@@ -102,7 +101,6 @@ export default function DropshipperWhyLamonteSection() {
                     {BENEFITS.map((benefit, index) => (
                         <motion.div
                             key={index}
-                            // MODIFIED: Menggunakan layout item dari contoh
                             className="flex flex-col text-center items-center md:flex-row md:text-left md:items-start space-y-4 md:space-y-0 md:space-x-4"
                             variants={itemVariants}
                             whileHover={{ scale: 1.05 }}
@@ -110,8 +108,7 @@ export default function DropshipperWhyLamonteSection() {
                         >
                             <FontAwesomeIcon
                                 icon={benefit.icon}
-                                // MODIFIED: Warna dan ukuran ikon disesuaikan
-                                className="text-green-800 text-4xl flex-shrink-0 w-12 h-12 p-3 bg-amber-100 rounded-full"
+                                className="text-[#FF9000] text-4xl flex-shrink-0 w-12 h-12 p-3 bg-amber-100 rounded-full"
                                 aria-hidden="true"
                             />
                             <div>
@@ -125,4 +122,3 @@ export default function DropshipperWhyLamonteSection() {
         </section>
     );
 }
-

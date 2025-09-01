@@ -11,41 +11,45 @@ import {
     faLaptopCode,
     faBoxes
 } from "@fortawesome/free-solid-svg-icons";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
+import CTAButton from "@/components/CTAButton";
 
+// --- COPYWRITING DIPERTAJAM DENGAN PRINSIP NLP ---
 const REASONS = [
     {
         icon: faUsers,
-        title: "Permintaan Tinggi & Stabil",
-        description: "Populasi anak di Indonesia sangat besar dan terus bertumbuh, menciptakan permintaan yang tidak pernah berhenti untuk pakaian anak.",
+        title: "Permintaan yang Tak Pernah Padam",
+        description: "Setiap anak butuh pakaian, dan mereka tumbuh begitu cepat. Ini menciptakan pasar yang stabil dan permintaan berkelanjutan sepanjang tahun.",
     },
     {
         icon: faTags,
-        title: "Margin Keuntungan Menarik",
-        description: "Meskipun harga jual terjangkau, volume penjualan yang tinggi di segmen ini bisa menghasilkan keuntungan yang signifikan.",
+        title: "Margin Profit Menggiurkan",
+        description: "Dengan volume penjualan tinggi di pasar yang luas, Anda berpotensi meraih keuntungan signifikan bahkan dari produk dengan harga terjangkau.",
     },
     {
         icon: faSyncAlt,
-        title: "Tren yang Cepat Berubah",
-        description: "Orang tua modern gemar mengikuti tren fashion terbaru untuk anak, mendorong pembelian model-model baru secara rutin.",
+        title: "Tren Selalu Baru, Penjualan Terus Berputar",
+        description: "Orang tua modern suka mendandani anak mereka. Tren baru berarti peluang baru untuk Anda menjual koleksi terkini secara rutin.",
     },
     {
         icon: faLaptopCode,
-        title: "Pemasaran Digital yang Efektif",
-        description: "Produk baju anak sangat cocok dipasarkan di media sosial dan e-commerce, sehingga mudah menjangkau target pasar",
+        title: "Era Digital, Jualan Makin Mudah",
+        description: "Manfaatkan kekuatan media sosial dan e-commerce. Produk fashion anak sangat visual dan mudah viral, membuka pintu ke jutaan calon pelanggan.",
     },
     {
         icon: faBoxes,
-        title: "Risiko Stok Minimal (Untuk Dropshipper)",
-        description: "Dengan model dropship, Anda tidak perlu khawatir dengan risiko stok menumpuk karena kami yang mengurus semuanya.",
+        title: "Bisnis Bebas Risiko Stok",
+        description: "Sebagai dropshipper, risiko barang menumpuk adalah nol. Anda hanya perlu fokus pada promosi, kami yang urus sisanya.",
     },
     {
         icon: faChartLine,
-        title: "Pasar yang Terus Bertumbuh",
-        description: "Data menunjukkan pasar pakaian anak di Indonesia terus naik setiap tahun, dengan proyeksi pertumbuhan yang kuat hingga 2029.",
+        title: "Investasi di Pasar yang Terus Naik",
+        description: "Anda tidak sedang berspekulasi. Data membuktikan pasar ini terus tumbuh, menjadikan bisnis Anda investasi jangka panjang yang cerdas.",
     },
 ];
 
-// Animation Variants
+// ... (Animation Variants tetap sama)
 const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
@@ -57,8 +61,13 @@ const itemVariants: Variants = {
 };
 
 export default function DropshipperMarketOpportunitySection() {
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.5,
+    });
+
     return (
-        <section id="market-opportunity" className="w-full py-16 sm:py-24" aria-labelledby="market-opportunity-heading">
+        <section id="market-opportunity" className="w-full bg-transparent py-16 sm:py-24" aria-labelledby="market-opportunity-heading">
             <div className="max-w-6xl mx-auto px-6">
                 <motion.div
                     className="text-center mb-12"
@@ -67,15 +76,15 @@ export default function DropshipperMarketOpportunitySection() {
                     viewport={{ once: true, amount: 0.5 }}
                     transition={{ duration: 0.6 }}
                 >
+                    {/* --- COPYWRITING DIPERTAJAM --- */}
                     <h2 id="market-opportunity-heading" className="text-3xl md:text-4xl font-bold text-[#ff9000]">
-                        Kenapa Bisnis Fashion Anak? Peluangnya Terbuka Lebar.
+                        Anda Berada di Tengah Peluang Emas.
                     </h2>
                     <p className="mt-4 text-lg text-[#166534] max-w-3xl mx-auto">
-                        Pasar yang terus bertumbuh, permintaan stabil, dan keuntungan menarik. Inilah alasan mengapa ratusan mitra kami berhasil.
+                        Bisnis fashion anak bukan sekadar tren, tapi sebuah pasar raksasa yang terus bertumbuh. Inilah mengapa ini adalah pilihan bisnis yang cerdas.
                     </p>
                 </motion.div>
 
-                {/* Grid of Reasons */}
                 <motion.div
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
                     variants={containerVariants}
@@ -86,23 +95,24 @@ export default function DropshipperMarketOpportunitySection() {
                     {REASONS.map((reason, index) => (
                         <motion.div
                             key={index}
-                            className="bg-white p-6 rounded-xl shadow-md"
+                            className="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1 border-l-4 border-[#FF9000]"
                             variants={itemVariants}
                         >
-                            <FontAwesomeIcon
-                                icon={reason.icon}
-                                className="h-8 w-8 text-[#ff9000] mb-4"
-                                aria-hidden="true"
-                            />
-                            <h3 className="text-xl font-bold text-gray-800 mb-2">{reason.title}</h3>
-                            <p className="text-gray-600 text-base">{reason.description}</p>
+                            <div className="p-6">
+                                <FontAwesomeIcon
+                                    icon={reason.icon}
+                                    className="h-8 w-8 text-[#166534] mb-4"
+                                    aria-hidden="true"
+                                />
+                                <h3 className="text-xl font-bold text-gray-800 mb-2">{reason.title}</h3>
+                                <p className="text-gray-600 text-base">{reason.description}</p>
+                            </div>
                         </motion.div>
                     ))}
                 </motion.div>
 
-                {/* Data Fact Section */}
                 <motion.div
-                    className="mt-16 bg-white rounded-2xl shadow-xl p-8 md:p-12"
+                    className="mt-16 bg-gradient-to-br from-[#166534] to-green-800 text-white rounded-2xl shadow-xl p-8 md:p-12"
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
@@ -113,16 +123,20 @@ export default function DropshipperMarketOpportunitySection() {
                 >
                     <div className="grid md:grid-cols-2 gap-10 items-center">
                         <div>
-                            <h3 className="text-2xl font-bold text-[#166534] mb-4">Didukung Oleh Fakta & Data</h3>
-                            <p className="text-gray-700 text-lg leading-relaxed mb-4">
-                                Data dari Statista menunjukkan bahwa segmen pasar pakaian anak (Children's Apparel) di Indonesia terus mengalami kenaikan setiap tahunnya.
+                            {/* --- COPYWRITING DIPERTAJAM --- */}
+                            <h3 className="text-2xl font-bold text-[#fcd92b] mb-4">Angka Tidak Pernah Bohong</h3>
+                            <p className="text-green-100 text-lg leading-relaxed mb-6">
+                                Pasar pakaian anak di Indonesia diproyeksikan akan meroket, dengan nilai pasar mencapai lebih dari:
                             </p>
-                            <p className="text-gray-700 text-lg leading-relaxed font-semibold">
-                                Proyeksi pertumbuhan hingga tahun 2029 menyiratkan potensi bisnis jangka panjang yang sangat kuat dan menjanjikan di sektor ini. Anda sudah berada di jalur yang tepat!
+                            <div ref={ref} className="text-5xl md:text-6xl font-bold text-white mb-6">
+                                {inView && <CountUp start={0} end={5512} duration={2.5} prefix="$" suffix=" Juta" />}
+                                <span className="block text-xl font-normal text-green-200 mt-2">pada tahun 2029.</span>
+                            </div>
+                            <p className="text-green-100 font-semibold">
+                                Bergabung sekarang berarti Anda ikut bertumbuh bersama pasar raksasa ini.
                             </p>
                         </div>
-                        <div className="relative w-full aspect-video rounded-lg overflow-hidden">
-                            {/* Pastikan gambar ini ada di folder public/assets/img/ */}
+                        <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-white/10 p-2">
                             <Image
                                 src="/assets/img/research.png"
                                 alt="Grafik Pertumbuhan Pasar Pakaian di Indonesia oleh Statista"
@@ -131,6 +145,11 @@ export default function DropshipperMarketOpportunitySection() {
                                 sizes="(max-width: 768px) 100vw, 50vw"
                             />
                         </div>
+                    </div>
+                    <div className="mt-8 text-center">
+                        <CTAButton href="/form" styles="default">
+                            Saya Siap Ambil Peluang Ini
+                        </CTAButton>
                     </div>
                 </motion.div>
             </div>
