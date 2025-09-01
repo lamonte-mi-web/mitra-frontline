@@ -1,9 +1,9 @@
 "use client";
 
-import { OrangeDivider } from "@/components/OrangeDivider";
-import { faCrown } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCrown, faTruck, faStore, faUserTie } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
 type Performer = {
     mitraId: string;
@@ -43,147 +43,143 @@ const formatIncomeID = (income: number) =>
     income.toLocaleString("id-ID", { style: "currency", currency: "IDR", minimumFractionDigits: 0 });
 
 
+// Animation Variants
+const podiumContainerVariants: Variants = {
+    hidden: { opacity: 1 }, // Start visible to avoid flash
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+};
+
+const podiumStepVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: { duration: 0.5, ease: "easeOut" },
+    },
+    exit: {
+        opacity: 0,
+        y: -50,
+        transition: { duration: 0.3, ease: "easeIn" },
+    },
+};
+
 export default function HomeRankingSection() {
     const [activeCategory, setActiveCategory] = useState<Category>("distributor");
     const [isHovered, setIsHovered] = useState(false);
-
-    // New state to track desktop/mobile after mount
     const [isDesktop, setIsDesktop] = useState(false);
 
-    // Detect desktop width on mount & on resize
     useEffect(() => {
-        function handleResize() {
-            setIsDesktop(window.innerWidth >= 768);
-        }
-        handleResize(); // set initial value
+        const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+        handleResize();
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-    // Auto play category tabs every 4s
     useEffect(() => {
-        if (isHovered) return; // pause autoplay on hover
-
+        if (isHovered) return;
         const categories: Category[] = ["distributor", "agen", "reseller"];
-        let index = categories.indexOf(activeCategory);
-
         const interval = setInterval(() => {
-            index = (index + 1) % categories.length;
-            setActiveCategory(categories[index]);
+            setActiveCategory(current => {
+                const index = categories.indexOf(current);
+                return categories[(index + 1) % categories.length];
+            });
         }, 4000);
-
         return () => clearInterval(interval);
-    }, [activeCategory, isHovered]);
+    }, [isHovered]);
 
-    // Use isDesktop to determine order
     const orderedPerformers = isDesktop
-        ? [2, 1, 3]
-            .map((place) => topPerformers[activeCategory].find((p) => p.place === place))
-            .filter(Boolean) as Performer[]
+        ? [2, 1, 3].map(place => topPerformers[activeCategory].find(p => p.place === place)).filter(Boolean) as Performer[]
         : topPerformers[activeCategory].slice().sort((a, b) => a.place - b.place);
 
     return (
         <section className="w-full max-w-full overflow-x-hidden py-10 px-4 md:px-6 mx-auto">
-            <div className="flex flex-col items-center justify-center mb-6">
+            <motion.div
+                className="flex flex-col items-center justify-center mb-6"
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+            >
                 <h2 className="text-4xl font-bold capitalize text-[#FF9000] mb-3 text-center">
                     Update terkini top kemitraan lamonte
                 </h2>
-            </div>
+            </motion.div>
             <div className="container mx-auto px-4">
-                {/* Category Tabs */}
                 <div className="flex justify-center mb-8 gap-4">
-                    {(Object.keys(topPerformers) as Category[]).map((category) => (
+                    {(Object.keys(topPerformers) as Category[]).map(category => (
                         <button
                             onMouseEnter={() => setIsHovered(true)}
                             onMouseLeave={() => setIsHovered(false)}
                             key={category}
                             onClick={() => setActiveCategory(category)}
-                            className={`category-tab ${activeCategory === category
-                                ? "text-[#FF9000] border-b-2 border-[#FF9000]"
-                                : "text-gray-700"
-                                } bg-white px-6 py-3 rounded-full shadow-md font-medium hover:text-[#FF9000] hover:border-b-2 hover:border-[#FF9000]`}
+                            className={`relative px-6 py-3 rounded-full shadow-md font-medium transition-colors duration-300 ${activeCategory !== category ? "text-gray-700 bg-white hover:text-[#FF9000]" : "text-white"}`}
                         >
-                            {category === "distributor" && <i className="fas fa-truck mr-2"></i>}
-                            {category === "agen" && <i className="fas fa-store mr-2"></i>}
-                            {category === "reseller" && <i className="fas fa-user-tie mr-2"></i>}
-                            {category.charAt(0).toUpperCase() + category.slice(1)}
+                            {activeCategory === category && (
+                                <motion.div layoutId="activeTab" className="absolute inset-0 bg-[#FF9000] rounded-full z-0" />
+                            )}
+                            <span className="relative z-10 capitalize">
+                                {category}
+                            </span>
                         </button>
                     ))}
                 </div>
 
-                {/* Podium */}
-                <div className="flex flex-col md:flex-row justify-center items-center md:items-end h-auto md:h-96 gap-6 md:gap-8 overflow-x-hidden">
-                    {orderedPerformers.map((p) => {
-                        if (!p) return null;
-                        return (
-                            <div
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeCategory} // This key is crucial for AnimatePresence
+                        className="flex flex-col md:flex-row justify-center items-center md:items-end h-auto md:h-96 gap-6 md:gap-8"
+                        variants={podiumContainerVariants}
+                        initial="hidden"
+                        animate="visible"
+                        exit="hidden"
+                    >
+                        {orderedPerformers.map(p => (
+                            <motion.div
                                 key={p.place}
-                                className="podium-step group flex flex-col items-center transition-transform duration-300 hover:-translate-y-2 w-[45%] sm:w-[40%] md:w-1/4 max-w-xs"
+                                className="podium-step group flex flex-col items-center w-[45%] sm:w-[40%] md:w-1/4 max-w-xs"
                                 onMouseEnter={() => setIsHovered(true)}
                                 onMouseLeave={() => setIsHovered(false)}
+                                variants={podiumStepVariants}
+                                whileHover={{ y: -8 }}
+                                transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <div
-                                    className={`${podiumColors[p.color][
-                                        p.place === 1 ? 0 : p.place === 3 ? 2 : 1
-                                    ]} w-full rounded-t-lg`}
-                                    style={{
-                                        height: p.place === 1 ? "240px" : p.place === 2 ? "180px" : "140px",
-                                    }}
+                                    className={`${podiumColors[p.color][p.place === 1 ? 0 : p.place === 3 ? 2 : 1]} w-full rounded-t-lg`}
+                                    style={{ height: p.place === 1 ? "240px" : p.place === 2 ? "180px" : "140px" }}
                                 >
                                     <div className="flex justify-center items-center h-full">
-                                        <div
-                                            className={`bg-white rounded-full ${p.place === 1 ? "w-20 h-20" : "w-16 h-16"
-                                                } flex items-center justify-center shadow-lg relative`}
-                                        >
+                                        <div className={`bg-white rounded-full ${p.place === 1 ? "w-20 h-20" : "w-16 h-16"} flex items-center justify-center shadow-lg relative`}>
                                             {p.place === 1 && (
                                                 <div className="absolute -top-5 -right-1 transform transition duration-300 group-hover:scale-125 group-hover:drop-shadow-[0_0_8px_rgba(255,144,0,0.8)]">
-                                                    <FontAwesomeIcon
-                                                        icon={faCrown}
-                                                        className="text-[#FF9000] text-3xl rotate-[25deg] transition-transform duration-300 group-hover:scale-110 group-hover:drop-shadow-[0_0_8px_rgba(255,144,0,0.8)]"
-                                                    />
+                                                    <FontAwesomeIcon icon={faCrown} className="text-[#FF9000] text-3xl rotate-[25deg] transition-transform duration-300 group-hover:scale-110" />
                                                 </div>
                                             )}
-
-                                            <span
-                                                className={`${p.place === 1 ? "text-3xl" : "text-2xl"
-                                                    } font-bold text-gray-700`}
-                                            >
-                                                {p.place}
-                                            </span>
+                                            <span className={`${p.place === 1 ? "text-3xl" : "text-2xl"} font-bold text-gray-700`}>{p.place}</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div
-                                    className={`${p.place === 1
-                                        ? podiumColors[p.color][1]
-                                        : p.place === 3
-                                            ? podiumColors[p.color][2]
-                                            : podiumColors[p.color][0]
-                                        } w-full py-4 rounded-b-lg text-center`}
-                                >
-                                    <h3 className={`font-bold ${p.place === 3 ? "text-white" : "text-gray-800"}`}>
-                                        {p.name}
-                                    </h3>
-                                    <p className={`text-sm ${p.place === 3 ? "text-white" : "text-gray-600"}`}>
-                                        Rp{formatIncomeID(p.income)}
-                                    </p>
+                                <div className={`${p.place === 1 ? podiumColors[p.color][1] : p.place === 3 ? podiumColors[p.color][2] : podiumColors[p.color][0]} w-full py-4 rounded-b-lg text-center`}>
+                                    <h3 className={`font-bold ${p.place === 3 ? "text-white" : "text-gray-800"}`}>{p.name}</h3>
+                                    <p className={`text-sm ${p.place === 3 ? "text-white" : "text-gray-600"}`}>{formatIncomeID(p.income)}</p>
                                 </div>
-                            </div>
-                        );
-                    })}
-                </div>
+                            </motion.div>
+                        ))}
+                    </motion.div>
+                </AnimatePresence>
 
-                {/* Carousel Navigation */}
                 <div className="flex justify-center mt-8 gap-2">
-                    {(Object.keys(topPerformers) as Category[]).map((category) => (
+                    {(Object.keys(topPerformers) as Category[]).map(category => (
                         <button
                             key={category}
                             aria-label={`Go to ${category} ranking`}
                             onClick={() => setActiveCategory(category)}
-                            className={`carousel-nav w-3 h-3 rounded-full ${activeCategory === category ? "bg-[#FF9000]" : "bg-gray-300"
-                                }`}
+                            className={`carousel-nav w-3 h-3 rounded-full transition-colors duration-300 ${activeCategory === category ? "bg-[#FF9000]" : "bg-gray-300"}`}
                         />
-
                     ))}
                 </div>
             </div>

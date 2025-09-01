@@ -1,5 +1,6 @@
 'use client';
 import CountUp from "react-countup";
+import { motion, Variants } from "framer-motion";
 
 const stats = [
     {
@@ -28,19 +29,57 @@ const stats = [
     },
 ];
 
+// Animation Variants
+const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+        },
+    },
+};
+
+const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.5,
+            ease: "easeOut",
+        },
+    },
+};
+
 export default function HomeStatisticSection() {
     return (
         <section className="w-full min-h-[210px] flex items-center justify-center p-4 bg-[#fdf6e3]">
             <div className="max-w-6xl mx-auto px-6 py-10">
-                <h2 className="text-4xl font-bold text-center text-[#FF9000] mb-8">
+                <motion.h2
+                    className="text-4xl font-bold text-center text-[#FF9000] mb-8"
+                    initial={{ opacity: 0, y: -20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                >
                     Keberhasilan Kami dalam Angka
-                </h2>
+                </motion.h2>
 
-                <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl w-full">
+                <motion.div
+                    className="grid sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl w-full"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, amount: 0.2 }}
+                >
                     {stats.map(({ end, suffix, label, description }, idx) => (
-                        <div
+                        <motion.div
                             key={idx}
-                            className="p-6 flex flex-col transform transition-transform duration-300 ease-in-out bg-white rounded-xl shadow-md hover:shadow-xl hover:scale-105"
+                            className="p-6 flex flex-col bg-white rounded-xl shadow-md cursor-pointer"
+                            variants={itemVariants}
+                            whileHover={{ scale: 1.05, y: -5 }}
+                            transition={{ type: "spring", stiffness: 300 }}
                         >
                             <CountUp
                                 end={end}
@@ -52,13 +91,19 @@ export default function HomeStatisticSection() {
                             />
                             <h5 className="mt-2 text-xl text-gray-800 font-semibold text-center">{label}</h5>
                             <p className="text-center text-gray-500 text-lg mt-1">{description}</p>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
 
-                <p className="text-center text-xl mt-8 text-[#166534] max-w-3xl mx-auto">
+                <motion.p
+                    className="text-center text-xl mt-8 text-[#166534] max-w-3xl mx-auto"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6, delay: 0.5 }} // Delay to appear after cards
+                >
                     Bergabunglah dengan <strong>99% Mitra Sukses Bersama Lamonte</strong> dan rasakan pertumbuhan bisnis fashion anak Anda dengan sistem yang sudah terbukti.
-                </p>
+                </motion.p>
             </div>
         </section>
     );

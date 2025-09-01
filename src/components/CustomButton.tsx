@@ -1,6 +1,7 @@
 "use client";
 import React, { forwardRef } from "react";
 import Link from "next/link";
+import clsx from "clsx"; // Import clsx untuk menggabungkan class dengan lebih mudah
 
 type BaseProps = {
   children?: React.ReactNode;
@@ -10,6 +11,9 @@ type BaseProps = {
   onClick?: React.MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>;
   "aria-label"?: string;
   "data-cta"?: string;
+  // ADDED: New props for icon and animation
+  icon?: React.ReactNode;
+  animated?: boolean;
 };
 
 type ButtonProps = BaseProps & {
@@ -27,10 +31,26 @@ export type CustomButtonProps = ButtonProps | LinkProps;
 
 const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomButtonProps>(
   (props, ref) => {
-    const classes = `custom-btn ${props.styles ?? "default"} ${props.className ?? ""} ${(props as ButtonProps).disabled ? "disabled" : ""}`.trim();
+    // MODIFIED: Menggunakan clsx untuk manajemen class yang lebih bersih
+    const classes = clsx(
+      "custom-btn",
+      props.styles ?? "default",
+      {
+        "disabled": (props as ButtonProps).disabled,
+        "animated-pulse": props.animated, // Class untuk animasi
+      },
+      props.className,
+    );
+
+    // Konten tombol dengan ikon
+    const content = (
+      <div className="btn-content-wrapper">
+        {props.children}
+        {props.icon && <span className="btn-icon">{props.icon}</span>}
+      </div>
+    );
 
     if ("href" in props && typeof props.href === "string") {
-      // Link logic (no changes here)
       const href = props.href;
       const isInternal = href.startsWith("/");
 
@@ -47,16 +67,16 @@ const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomBut
       if (isInternal) {
         return (
           <Link href={href} ref={ref as React.Ref<HTMLAnchorElement>} {...anchorProps}>
-            <span></span>
-            {props.children}
+            <span className="ripple-effect"></span>
+            {content}
           </Link>
         );
       }
 
       return (
         <a ref={ref as React.Ref<HTMLAnchorElement>} href={href} {...anchorProps}>
-          <span></span>
-          {props.children}
+          <span className="ripple-effect"></span>
+          {content}
         </a>
       );
     }
@@ -70,12 +90,11 @@ const CustomButton = forwardRef<HTMLAnchorElement | HTMLButtonElement, CustomBut
         className={classes}
         onClick={props.onClick as React.MouseEventHandler<HTMLButtonElement>}
         aria-label={props["aria-label"]}
-        // FIXED: Replaced the incorrect colon with an equals sign.
         data-cta={props["data-cta"]}
         disabled={(props as ButtonProps).disabled}
       >
-        <span></span>
-        {props.children}
+        <span className="ripple-effect"></span>
+        {content}
       </button>
     );
   }

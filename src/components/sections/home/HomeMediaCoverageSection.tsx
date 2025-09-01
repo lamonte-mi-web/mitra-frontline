@@ -2,12 +2,48 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Image from "next/image";
+import { motion, Variants } from "framer-motion";
 
 const responsive = {
     superLargeDesktop: { breakpoint: { max: 4000, min: 1536 }, items: 5 },
     desktop: { breakpoint: { max: 1535, min: 1024 }, items: 5 },
     tablet: { breakpoint: { max: 1023, min: 640 }, items: 3 },
     mobile: { breakpoint: { max: 639, min: 0 }, items: 3 },
+};
+
+// Animation Variants
+const textContainerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.2,
+        },
+    },
+};
+
+const textItemVariants: Variants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.6,
+            ease: "easeOut",
+        },
+    },
+};
+
+const carouselVariants: Variants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        transition: {
+            duration: 0.8,
+            ease: "easeOut",
+        },
+    },
 };
 
 export default function HomeMediaCoverageSection() {
@@ -29,20 +65,41 @@ export default function HomeMediaCoverageSection() {
     return (
         <section className="w-full max-w-6xl mx-auto px-4 sm:px-6 pb-20">
             {/* Heading */}
-            <div className="flex flex-col items-center justify-center mb-10">
-                <h2 className="text-4xl font-bold capitalize text-[#FF9000] leading-snug text-center mt-6 mb-4">
+            <motion.div
+                className="flex flex-col items-center justify-center mb-10"
+                variants={textContainerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.5 }}
+            >
+                <motion.h2
+                    className="text-4xl font-bold capitalize text-[#FF9000] leading-snug text-center mt-6 mb-4"
+                    variants={textItemVariants}
+                >
                     Diakui Media Nasional
-                </h2>
-                <blockquote className="text-xl text-center text-[#FF9000] border-l-4 border-[#FF9000] py-5 italic w-full max-w-4xl">
+                </motion.h2>
+                <motion.blockquote
+                    className="text-xl text-center text-[#FF9000] border-l-4 border-[#FF9000] py-5 italic w-full max-w-4xl"
+                    variants={textItemVariants}
+                >
                     "Lamonte Mode Internasional, Pemain Kuat di Fashion Anak Digital"
-                </blockquote>
-                <p className="text-lg text-center text-[#166534] max-w-3xl">
+                </motion.blockquote>
+                <motion.p
+                    className="text-lg text-center text-[#166534] max-w-3xl"
+                    variants={textItemVariants}
+                >
                     Inovasi dan kualitas kami menarik perhatian media terkemuka Indonesia. Lamonte telah terbukti sebagai pemimpin dalam industri fashion anak, menghadirkan produk dan sistem yang mengubah cara mitra meraih sukses.
-                </p>
-            </div>
+                </motion.p>
+            </motion.div>
 
             {/* Carousel */}
-            <div className="w-full overflow-hidden">
+            <motion.div
+                className="w-full overflow-hidden"
+                variants={carouselVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+            >
                 <Carousel
                     responsive={responsive}
                     infinite
@@ -66,7 +123,7 @@ export default function HomeMediaCoverageSection() {
                         </div>
                     ))}
                 </Carousel>
-            </div>
+            </motion.div>
         </section>
     );
-}
+} 

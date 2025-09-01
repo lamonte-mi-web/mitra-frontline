@@ -9,12 +9,14 @@ import clsx from "clsx";
 type CTAButtonProps = Omit<React.ComponentProps<typeof CustomButton>, "href"> & {
     href?: string;
     ariaLabel?: string;
-    source?: string; // <- added
+    source?: string;
+    // ADDED: Props untuk diteruskan ke CustomButton
+    animated?: boolean;
+    icon?: React.ReactNode;
 };
 
 const DEFAULT_FORM = "/form";
-const DEFAULT_WHATSAPP =
-    "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F";
+const DEFAULT_WHATSAPP = "https://wa.me/+628111089921?text=Halo%20Mila%2C%20saya%20sudah%20lihat%20penawarannya%20dan%20ingin%20langsung%20daftar.%20Bisa%20dibantu%20sekarang%3F";
 
 export default function CTAButton({
     children = "Gabung Sekarang",
@@ -22,11 +24,13 @@ export default function CTAButton({
     ariaLabel,
     className,
     source,
+    animated, // Destructure prop baru
+    icon,     // Destructure prop baru
     ...props
 }: CTAButtonProps) {
     const btnRef = useRef<HTMLAnchorElement | HTMLButtonElement>(null);
     const { register } = useCTAContext();
-    const pathname = usePathname(); // use as sensible default for source
+    const pathname = usePathname();
 
     useEffect(() => {
         if (btnRef.current && typeof register === "function") {
@@ -34,10 +38,10 @@ export default function CTAButton({
         }
     }, [register]);
 
+
+
     const isExternal = /^(https?:)?\/\//i.test(href);
-
     const defaultSource = source ?? pathname ?? "global";
-
     const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
         try {
             sendGTMEvent({
@@ -69,8 +73,12 @@ export default function CTAButton({
             onClick={handleClick}
             aria-label={ariaLabel ?? (typeof children === "string" ? children : "Gabung Sekarang")}
             data-cta={dataCta}
+            // @ts-ignore
             data-source={defaultSource}
             className={clsx("cta-button", className)}
+            // ADDED: Teruskan prop baru
+            animated={animated}
+            icon={icon}
             {...linkProps}
             {...(props as any)}
         >

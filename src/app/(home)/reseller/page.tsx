@@ -9,6 +9,8 @@ import ResellerHowToJoinSection from "../../../components/sections/reseller/Rese
 import ResellerTermsSection from "../../../components/sections/reseller/ResellerTermsSection";
 import ResellerTestimonialsSection from "../../../components/sections/reseller/ResellerTestimonialsSection";
 import ResellerClosingCTASection from "../../../components/sections/reseller/ResellerClosingCTASection";
+import ResellerReviewsSection from "@/components/sections/reseller/ResellerReviewsSection";
+import ResellerUpsellSection from "@/components/sections/reseller/ResellerUpsellingSection.";
 
 export const metadata: Metadata = {
     title: "Reseller Baju Anak & Bayi | Daftar Mitra Lamonte Sekarang",
@@ -48,6 +50,8 @@ export default function Reseller() {
         ResellerHowToJoinSection,
         ResellerTermsSection,
         ResellerTestimonialsSection,
+        ResellerReviewsSection,
+        ResellerUpsellSection,
         ResellerClosingCTASection
     ];
 

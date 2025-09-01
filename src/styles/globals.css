@@ -35,34 +35,56 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
 .custom-btn {
     font-family: 'Heebo', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    height: 45px;
-    line-height: 45px;
-    border-radius: 2rem;
+    font-size: 20px;
+    font-weight: 700;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 3rem;
     overflow: hidden;
     position: relative;
     transition: all 0.3s ease;
     z-index: 1;
     cursor: pointer;
     display: inline-block;
-    /* Makes it naturally resize & center */
     max-width: 100%;
-    /* Prevents overflow */
     width: fit-content;
-    /* Shrinks to content */
-    padding: 0 1.5rem;
-    /* Relative padding instead of fixed 35px */
+    padding: 0 2.8rem;
     white-space: nowrap;
-    /* Keep text on one line */
     box-sizing: border-box;
-    /* Include padding in width */
-
+    border: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
-.custom-btn span {
+.btn-content-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    transition: transform 0.3s ease;
+}
+
+.custom-btn .ripple-effect {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -76,18 +98,32 @@ body {
     z-index: -1;
 }
 
+/* MODIFIED: Ukuran dikecilkan agar sesuai untuk layar mobile */
 @media (max-width: 480px) {
     .custom-btn {
-        font-size: 14px;
-        /* Slightly smaller on very small screens */
+        font-size: 12px;
+        height: 50px;
+        line-height: 50px;
         padding: 0 1rem;
     }
 }
 
-/* Hover ripple effect */
-.custom-btn:hover span {
+.custom-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 7px 20px rgba(0, 0, 0, 0.15);
+}
+
+.custom-btn:hover .ripple-effect {
     width: 700px;
     height: 700px;
+}
+
+.custom-btn:hover .btn-icon {
+    transform: translateX(4px);
+}
+
+.custom-btn.animated-pulse {
+    animation: pulse 2.5s infinite;
 }
 
 /* Default button */
@@ -100,7 +136,7 @@ body {
     color: #fff;
 }
 
-.custom-btn.default span {
+.custom-btn.default .ripple-effect {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -114,7 +150,7 @@ body {
     color: #fff;
 }
 
-.custom-btn.reverse span {
+.custom-btn.reverse .ripple-effect {
     background: rgba(255, 255, 255, 0.2);
 }
 
@@ -128,24 +164,22 @@ body {
     color: #fff;
 }
 
-.custom-btn.brown span {
+.custom-btn.brown .ripple-effect {
     background: rgba(255, 255, 255, 0.2);
 }
 
 /* WhatsApp button */
 .custom-btn.whatsapp {
     background: #25D366;
-    /* WhatsApp green */
     color: #fff;
 }
 
 .custom-btn.whatsapp:hover {
     color: #fff;
     background: #1ebe5d;
-    /* darker green */
 }
 
-.custom-btn.whatsapp span {
+.custom-btn.whatsapp .ripple-effect {
     background: rgba(255, 255, 255, 0.25);
 }
 
@@ -153,7 +187,10 @@ body {
     background-color: #ccc;
     cursor: not-allowed;
     opacity: 0.6;
+    transform: none;
+    box-shadow: none;
 }
+
 
 @keyframes scaleout {
     0% {
