@@ -129,7 +129,7 @@ export default function DropshipperMarketOpportunitySection() {
                                 Pasar pakaian anak di Indonesia diproyeksikan akan meroket, dengan nilai pasar mencapai lebih dari:
                             </p>
                             <div ref={ref} className="text-5xl md:text-6xl font-bold text-white mb-6">
-                                {inView && <CountUp start={0} end={5512} duration={2.5} prefix="$" suffix=" Juta" />}
+                                {inView && <CountUp start={0} end={88} duration={2.5} prefix="Rp " suffix=" Triliun" />}
                                 <span className="block text-xl font-normal text-green-200 mt-2">pada tahun 2029.</span>
                             </div>
                             <p className="text-green-100 font-semibold">
