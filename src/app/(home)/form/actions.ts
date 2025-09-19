@@ -27,8 +27,7 @@ export async function insertMitraAction(data: APIFormData, createdBy: string) {
         // 🚀 2. Call the database function, ensuring all optional params default to null
         const { data: newMitraId, error } = await supabase.rpc("create_full_mitra", {
             p_mitra_type_id: formData.mitraType,
-            p_cs_id: formData.cs,
-            p_lead_source_id: formData.tahuDari,
+            p_lead_source_id: formData.leadSource, // Added leadSource
             p_created_by: createdBy,
             p_nama: formData.nama,
             p_email: formData.email,

@@ -1,16 +1,13 @@
 'use client';
 
-import { Control, FieldErrors, UseFormWatch } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form'; // Import useFormContext
 import { FormData } from '@/lib/formSchema';
 import FormInput from '@/components/FormInput';
 
-type Props = {
-  control: Control<FormData>;
-  errors: FieldErrors<FormData>;
-  watch: UseFormWatch<FormData>;
-};
+type Props = {}; // No props needed
 
-export default function Step1({ control, errors, watch }: Props) {
+export default function Step1({}: Props) {
+  const { control, watch, formState: { errors } } = useFormContext<FormData>(); // Use useFormContext
   const mitraType = watch('mitraType');
 
   return (

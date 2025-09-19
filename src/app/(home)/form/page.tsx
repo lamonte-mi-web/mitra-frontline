@@ -8,7 +8,7 @@ export default async function MitraForm() {
   const supabase = supabaseAdmin();
   const { data: mitraTypes, error: mitraError } = await supabase.from("mitra_type").select("id, name, level, description_id, description_en").order('level', { ascending: true });
   const { data: companies, error: companiesError } = await supabase.from("jenis_perusahaan").select("id, name");
-  const { data: csStaff, error: csStaffError } = await supabase.from("cs_staff").select("id, name, phone");
+  const { data: csStaff, error: csStaffError } = await supabase.from("cs_staff").select("id, name, phone, mitra_type_id"); // Added mitra_type_id
   const { data: channels, error: channelsError } = await supabase.from("lead_channel").select("id, name, description_id, description_en");
   const { data: sources, error: sourcesError } = await supabase.from("lead_source").select("id, name, channel_id, description_id, description_en");
 
@@ -48,7 +48,7 @@ export default async function MitraForm() {
             companies={companies ?? []}
             csStaff={csStaff ?? []}
             channels={channels ?? []}
-            sources={sources ?? []}
+            leadSources={sources ?? []}
           />
         </div>
       </div>

@@ -3,6 +3,7 @@ import { z } from "zod";
 
 export const apiSchema = z.object({
     mitraType: z.uuid(),
+    leadSource: z.uuid("Sumber informasi wajib dipilih"),
 
     // Personal Info (made non-empty)
     nama: z.string().min(1, "Nama lengkap harus diisi"),
@@ -31,9 +32,6 @@ export const apiSchema = z.object({
     alamatUsaha: z.string().optional(),
 
     // Payment Info (made non-empty)
-    // Extra Info
-    cs: z.uuid(),
-    tahuDari: z.uuid(),
 });
 
 export type APIFormData = z.infer<typeof apiSchema>;

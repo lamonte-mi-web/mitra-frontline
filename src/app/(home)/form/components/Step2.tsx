@@ -1,23 +1,19 @@
 // /form/components/Step2.tsx
 'use client';
 
-import { Control, FieldErrors, UseFormWatch } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form'; // Import useFormContext
 import { FormData } from '@/lib/formSchema';
 import FormInput from '@/components/FormInput';
 
 type Props = {
-    control: Control<FormData>;
-    errors: FieldErrors<FormData>;
-    watch: UseFormWatch<FormData>; // watch is still useful if you have logic *within* this step
     companies: { id: string; name: string }[];
-    // UPDATED: Receive this as a prop
     selectedMitraTypeName: string;
 };
 
-export default function Step2({ control, errors, watch, companies, selectedMitraTypeName }: Props) {
-    // REMOVED: No need to watch and find the name here anymore.
+export default function Step2({ companies, selectedMitraTypeName }: Props) {
+    const { control, watch, formState: { errors } } = useFormContext<FormData>(); // Use useFormContext
 
-    const hideDocsFor = ["B2C", "Dropshipper", "Reseller"];
+    const hideDocsFor = ["Retail", "Dropshipper", "Reseller"];
     const shouldHideDocs = hideDocsFor.includes(selectedMitraTypeName);
 
     return (

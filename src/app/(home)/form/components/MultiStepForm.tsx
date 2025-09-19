@@ -1,9 +1,9 @@
 // /form/components/MultiStepForm.tsx
 'use client';
 
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form"; // Import FormProvider
 import { zodResolver } from "@hookform/resolvers/zod";
-import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema, extraSchema } from "@/lib/formSchema";
+import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema, leadSourceSchema } from "@/lib/formSchema";
 import type { FormData } from "@/lib/formSchema";
 import { insertMitraAction } from "../actions";
 
@@ -13,7 +13,7 @@ import { useState } from "react";
 import Step0 from "./Step0";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
-import Step4 from "./Step4";
+import StepInfo from "./StepInfo"; // Import the new StepInfo component
 import CustomButton from "@/components/CustomButton";
 import { APIFormData } from "@/lib/APIFormSchema";
 
@@ -31,20 +31,20 @@ export default function MultiStepForm({
     companies,
     csStaff,
     channels,
-    sources,
+    leadSources,
 }: {
     mitraTypes: { id: string, name: string, description_id: string | null, description_en: string | null }[]
     companies: { id: string, name: string }[]
-    csStaff: { id: string, name: string, phone: string }[]
+    csStaff: { id: string, name: string, phone: string, mitra_type_id: string }[] // Updated CS Staff type
     channels: { id: string, name: string, description_id: string | null, description_en: string | null }[]
-    sources: { id: string, name: string, channel_id: string | null, description_id: string | null, description_en: string | null }[]
+    leadSources: { id: string, name: string, channel_id: string | null, description_id: string | null, description_en: string | null }[] // Added leadSources
 }) {
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionResult, setSubmissionResult] = useState<SubmissionResult | null>(null);
 
 
-    const { control, handleSubmit, trigger, watch, formState: { errors }, setValue } = useForm<FormData>({
+    const methods = useForm<FormData>({ // Create methods object
         resolver: zodResolver(fullSchema),
         defaultValues: {
             nama: '',
@@ -64,21 +64,18 @@ export default function MultiStepForm({
             rataPenghasilan: "0",
             buyPower: "0",
             alamatUsaha: '',
-            cs: '',
-            tahuDari: '',
-            channel: '',
         },
     });
-    const selectedMitraTypeId = watch("mitraType");
+    const selectedMitraTypeId = methods.watch("mitraType"); // Use methods.watch
     const selectedMitraTypeName = mitraTypes.find(m => m.id === selectedMitraTypeId)?.name ?? "";
 
     const steps = [
-        { name: "Ingin Bergabung Menjadi Apa?", component: <Step0 control={control} errors={errors} watch={watch} mitraTypes={mitraTypes} />, schema: classificationSchema },
-        { name: "Informasi Pribadi", component: <Step1 control={control} errors={errors} watch={watch} />, schema: personalInfoSchema },
+        { name: "Ingin Bergabung Menjadi Apa?", component: <Step0 mitraTypes={mitraTypes} csStaff={csStaff} selectedMitraTypeName={selectedMitraTypeName} />, schema: classificationSchema },
+        { name: "Informasi Tambahan", component: <StepInfo leadSources={leadSources} />, schema: leadSourceSchema }, // New Step
+        { name: "Informasi Pribadi", component: <Step1 />, schema: personalInfoSchema },
         ...(selectedMitraTypeName === "Retail" || selectedMitraTypeName === "Dropshipper" ? [] : [
-            { name: "Profil Perusahaan", component: <Step2 control={control} errors={errors} watch={watch} companies={companies} selectedMitraTypeName={selectedMitraTypeName} />, schema: companyProfileSchema }
+            { name: "Profil Perusahaan", component: <Step2 companies={companies} selectedMitraTypeName={selectedMitraTypeName} />, schema: companyProfileSchema }
         ]),
-        { name: "Info Tambahan", component: <Step4 control={control} errors={errors} watch={watch} setValue={setValue} csStaff={csStaff} channels={channels} sources={sources} />, schema: extraSchema },
     ];
 
     const serializeData = (data: FormData): APIFormData => {
@@ -100,7 +97,7 @@ export default function MultiStepForm({
 
     const handleNext = async () => {
         const keys = Object.keys(steps[currentStep].schema.shape) as (keyof FormData)[];
-        const valid = await trigger(keys);
+        const valid = await methods.trigger(keys); // Use methods.trigger
         if (valid) setCurrentStep(prev => prev + 1);
     };
 
@@ -162,14 +159,14 @@ export default function MultiStepForm({
     }
 
     return (
-        <>
+        <FormProvider {...methods}> {/* Correctly spread the methods object */}
             <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
                 <div
                     className="bg-[#F59607] h-2 rounded-full transition-all duration-300"
                     style={{ width: `${progress}%` }}
                 />
             </div>
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6 max-w-3xl mx-auto px-4 sm:px-6">
+            <form onSubmit={methods.handleSubmit(onSubmit)} className="space-y-6 max-w-3xl mx-auto px-4 sm:px-6">
                 <h2 className="text-2xl font-bold mb-4">{steps[currentStep].name}</h2>
                 <p className="text-sm text-gray-600 mb-2">
                     Step {currentStep + 1} of {steps.length}
@@ -192,6 +189,6 @@ export default function MultiStepForm({
                     )}
                 </div>
             </form>
-        </>
+        </FormProvider>
     );
 }

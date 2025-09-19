@@ -2,7 +2,11 @@
 import { z } from "zod";
 
 export const classificationSchema = z.object({
-  mitraType: z.string().min(1, "Jenis mitra wajib dipilih"),
+  mitraType: z.uuid("Jenis mitra wajib dipilih"),
+});
+
+export const leadSourceSchema = z.object({
+  leadSource: z.uuid("Sumber informasi wajib dipilih"),
 });
 
 export const personalInfoSchema = z.object({
@@ -29,15 +33,10 @@ export const companyProfileSchema = z.object({
   alamatUsaha: z.string().optional(),
 });
 
-export const extraSchema = z.object({
-  cs: z.string().min(1, "Customer service wajib dipilih"),
-  tahuDari: z.string().min(1, "Sumber informasi wajib dipilih"),
-  channel: z.string().optional(),
-});
 
 export const fullSchema = classificationSchema
+  .merge(leadSourceSchema)
   .merge(personalInfoSchema)
   .merge(companyProfileSchema)
-  .merge(extraSchema);
 
 export type FormData = z.infer<typeof fullSchema>;
