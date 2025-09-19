@@ -12,12 +12,6 @@ export const personalInfoSchema = z.object({
   nikKtp: z.string().min(1, "NIK KTP wajib diisi"),
   alamat: z.string().min(1, "Alamat wajib diisi"),
   bod: z.string().optional(),
-  agama: z.string().min(1, "Agama wajib dipilih"),
-
-  // keep them as string for form
-  pendapatanBulanan: z.string().min(1, "Pendapatan bulanan wajib diisi"),
-  pengeluaranBulanan: z.string().min(1, "Pengeluaran bulanan wajib diisi"),
-  jumlahTanggungan: z.string().min(1, "Jumlah tanggungan wajib diisi"),
 });
 
 export const companyProfileSchema = z.object({
@@ -35,25 +29,15 @@ export const companyProfileSchema = z.object({
   alamatUsaha: z.string().optional(),
 });
 
-export const paymentSchema = z.object({
-  // BEFORE: bank: z.string().min(1, "Bank wajib dipilih"),
-  // AFTER:
-  bank: z.string().uuid({ message: "Anda harus memilih bank yang valid." }),
-
-  rekening: z.string().min(1, "Nomor rekening wajib diisi"),
-  namaRekening: z.string().min(1, "Nama pemilik rekening wajib diisi"),
-});
-
-
 export const extraSchema = z.object({
   cs: z.string().min(1, "Customer service wajib dipilih"),
   tahuDari: z.string().min(1, "Sumber informasi wajib dipilih"),
+  channel: z.string().optional(),
 });
 
 export const fullSchema = classificationSchema
   .merge(personalInfoSchema)
   .merge(companyProfileSchema)
-  .merge(paymentSchema)
   .merge(extraSchema);
 
 export type FormData = z.infer<typeof fullSchema>;

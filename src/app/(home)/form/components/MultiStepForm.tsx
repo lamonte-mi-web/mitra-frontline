@@ -3,7 +3,7 @@
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema, paymentSchema, extraSchema } from "@/lib/formSchema";
+import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema, extraSchema } from "@/lib/formSchema";
 import type { FormData } from "@/lib/formSchema";
 import { insertMitraAction } from "../actions";
 
@@ -13,7 +13,6 @@ import { useState } from "react";
 import Step0 from "./Step0";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
-import Step3 from "./Step3";
 import Step4 from "./Step4";
 import CustomButton from "@/components/CustomButton";
 import { APIFormData } from "@/lib/APIFormSchema";
@@ -29,27 +28,23 @@ type SubmissionResult = {
 
 export default function MultiStepForm({
     mitraTypes,
-    agama,
-    banks,
     companies,
     csStaff,
     channels,
     sources,
 }: {
-    mitraTypes: { id: string, name: string }[]
-    agama: { id: string, name: string }[]
-    banks: { id: string, name: string }[]
+    mitraTypes: { id: string, name: string, description_id: string | null, description_en: string | null }[]
     companies: { id: string, name: string }[]
     csStaff: { id: string, name: string, phone: string }[]
-    channels: { id: string, name: string }[]
-    sources: { id: string, name: string, channel_id: string | null }[]
+    channels: { id: string, name: string, description_id: string | null, description_en: string | null }[]
+    sources: { id: string, name: string, channel_id: string | null, description_id: string | null, description_en: string | null }[]
 }) {
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submissionResult, setSubmissionResult] = useState<SubmissionResult | null>(null);
 
 
-    const { control, handleSubmit, trigger, watch, formState: { errors } } = useForm<FormData>({
+    const { control, handleSubmit, trigger, watch, formState: { errors }, setValue } = useForm<FormData>({
         resolver: zodResolver(fullSchema),
         defaultValues: {
             nama: '',
@@ -58,10 +53,6 @@ export default function MultiStepForm({
             alamat: '',
             nikKtp: '',
             bod: '',
-            agama: '',
-            pendapatanBulanan: "0",
-            pengeluaranBulanan: "0",
-            jumlahTanggungan: "0",
             jenisPerusahaan: '',
             namaPerusahaan: '',
             nib: '',
@@ -73,25 +64,21 @@ export default function MultiStepForm({
             rataPenghasilan: "0",
             buyPower: "0",
             alamatUsaha: '',
-            bank: '',
-            rekening: '',
-            namaRekening: '',
             cs: '',
             tahuDari: '',
+            channel: '',
         },
     });
-
     const selectedMitraTypeId = watch("mitraType");
     const selectedMitraTypeName = mitraTypes.find(m => m.id === selectedMitraTypeId)?.name ?? "";
 
     const steps = [
         { name: "Ingin Bergabung Menjadi Apa?", component: <Step0 control={control} errors={errors} watch={watch} mitraTypes={mitraTypes} />, schema: classificationSchema },
-        { name: "Informasi Pribadi", component: <Step1 control={control} errors={errors} watch={watch} agama={agama} />, schema: personalInfoSchema },
-        ...(selectedMitraTypeName === "B2C" ? [] : [
+        { name: "Informasi Pribadi", component: <Step1 control={control} errors={errors} watch={watch} />, schema: personalInfoSchema },
+        ...(selectedMitraTypeName === "Retail" || selectedMitraTypeName === "Dropshipper" ? [] : [
             { name: "Profil Perusahaan", component: <Step2 control={control} errors={errors} watch={watch} companies={companies} selectedMitraTypeName={selectedMitraTypeName} />, schema: companyProfileSchema }
         ]),
-        { name: "Detail Pembayaran", component: <Step3 control={control} errors={errors} banks={banks} />, schema: paymentSchema },
-        { name: "Info Tambahan", component: <Step4 control={control} errors={errors} csStaff={csStaff} channels={channels} sources={sources} />, schema: extraSchema },
+        { name: "Info Tambahan", component: <Step4 control={control} errors={errors} watch={watch} setValue={setValue} csStaff={csStaff} channels={channels} sources={sources} />, schema: extraSchema },
     ];
 
     const serializeData = (data: FormData): APIFormData => {
@@ -123,8 +110,12 @@ export default function MultiStepForm({
         setIsSubmitting(true);
         setSubmissionResult(null);
 
+        console.log("1. Raw form data:", data);
         const payload = serializeData(data);
+        console.log("2. Serialized payload:", payload);
+
         const result = await insertMitraAction(payload, "Form Pendaftaran Online");
+        console.log("5. Result from server action:", result);
 
         if (result.success) {
             setSubmissionResult({ success: true, message: `Pendaftaran berhasil! ID Mitra Anda adalah: ${result.mitraId}. Silahkan Hubungi Tim kami lagi untuk proses selanjutnya.` });

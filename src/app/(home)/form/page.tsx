@@ -6,13 +6,11 @@ import { supabaseAdmin } from "@/lib/supabaseAdmin";
 
 export default async function MitraForm() {
   const supabase = supabaseAdmin();
-  const { data: mitraTypes, error: mitraError } = await supabase.from("mitra_type").select("id, name");
-  const { data: agama, error: agamaError } = await supabase.from("agama").select("id, name");
-  const { data: banks, error: banksError } = await supabase.from("bank_list").select("id, name");
+  const { data: mitraTypes, error: mitraError } = await supabase.from("mitra_type").select("id, name, level, description_id, description_en").order('level', { ascending: true });
   const { data: companies, error: companiesError } = await supabase.from("jenis_perusahaan").select("id, name");
   const { data: csStaff, error: csStaffError } = await supabase.from("cs_staff").select("id, name, phone");
-  const { data: channels, error: channelsError } = await supabase.from("lead_channel").select("id, name");
-  const { data: sources, error: sourcesError } = await supabase.from("lead_source").select("id, name, channel_id");
+  const { data: channels, error: channelsError } = await supabase.from("lead_channel").select("id, name, description_id, description_en");
+  const { data: sources, error: sourcesError } = await supabase.from("lead_source").select("id, name, channel_id, description_id, description_en");
 
   // console.log("mitraTypes", mitraTypes, mitraError);
   // console.log("agama", agama, agamaError);
@@ -47,8 +45,6 @@ export default async function MitraForm() {
           {/* Form */}
           <MultiStepForm
             mitraTypes={mitraTypes ?? []}
-            agama={agama ?? []}
-            banks={banks ?? []}
             companies={companies ?? []}
             csStaff={csStaff ?? []}
             channels={channels ?? []}

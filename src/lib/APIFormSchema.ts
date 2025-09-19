@@ -11,12 +11,6 @@ export const apiSchema = z.object({
     nikKtp: z.string().min(1, "NIK KTP harus diisi"),
     alamat: z.string().min(1, "Alamat harus diisi"),
     bod: z.string().optional(),
-    agama: z.uuid(),
-
-    // Financials
-    pendapatanBulanan: z.coerce.number().nonnegative(),
-    pengeluaranBulanan: z.coerce.number().nonnegative(),
-    jumlahTanggungan: z.coerce.number().nonnegative(),
 
     // Company Info (simplified optional field)
     jenisPerusahaan: z.preprocess(
@@ -37,10 +31,6 @@ export const apiSchema = z.object({
     alamatUsaha: z.string().optional(),
 
     // Payment Info (made non-empty)
-    bank: z.uuid(),
-    rekening: z.string().min(1, "Nomor rekening harus diisi"),
-    namaRekening: z.string().min(1, "Nama akun harus diisi"),
-
     // Extra Info
     cs: z.uuid(),
     tahuDari: z.uuid(),

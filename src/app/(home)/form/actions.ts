@@ -7,7 +7,10 @@ const supabase = supabaseAdmin();
 
 export async function insertMitraAction(data: APIFormData, createdBy: string) {
     // ✅ 1. Validate incoming data with Zod
+    console.log("3. Data received in server action:", data);
     const parsed = apiSchema.safeParse(data);
+    console.log("4. Zod parsing result:", parsed);
+
     if (!parsed.success) {
         return {
             success: false,
@@ -33,10 +36,6 @@ export async function insertMitraAction(data: APIFormData, createdBy: string) {
             p_nik_ktp: formData.nikKtp,
             p_alamat_domisili: formData.alamat,
             p_bod: formData.bod || null, // Changed
-            p_agama_id: formData.agama,
-            p_pendapatan_bulanan: formData.pendapatanBulanan,
-            p_pengeluaran_bulanan: formData.pengeluaranBulanan,
-            p_jumlah_tanggungan: formData.jumlahTanggungan,
             p_jenis_perusahaan_id: formData.jenisPerusahaan || null, // Changed
             p_nama_perusahaan: formData.namaPerusahaan || null, // Changed
             p_nib: formData.nib || null, // Changed
@@ -48,9 +47,6 @@ export async function insertMitraAction(data: APIFormData, createdBy: string) {
             p_rata_penghasilan_tahun: formData.rataPenghasilan || null, // Changed
             p_buy_power_bulanan: formData.buyPower || null, // Changed
             p_alamat_usaha: formData.alamatUsaha || null, // Changed
-            p_bank_id: formData.bank,
-            p_no_rekening: formData.rekening,
-            p_nama_akun: formData.namaRekening,
         });
 
         if (error) {
