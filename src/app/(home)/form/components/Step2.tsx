@@ -4,9 +4,10 @@
 import { useFormContext } from 'react-hook-form'; // Import useFormContext
 import { FormData } from '@/lib/formSchema';
 import FormInput from '@/components/FormInput';
+import { Tables } from "@/types/database.types"; // Import Tables type
 
 type Props = {
-    companies: { id: string; name: string }[];
+    companies: Tables<'jenis_perusahaan'>[]; // Use Tables type
     selectedMitraTypeName: string;
 };
 
@@ -20,7 +21,7 @@ export default function Step2({ companies, selectedMitraTypeName }: Props) {
         <div className="space-y-4">
             <FormInput
                 name="jenisPerusahaan"
-                label="Jenis Perusahaan"
+                label="Jenis Usaha"
                 type="select"
                 options={companies.map((c) => ({ value: c.id, label: c.name })) || []}
                 control={control}
@@ -29,7 +30,7 @@ export default function Step2({ companies, selectedMitraTypeName }: Props) {
 
             <FormInput
                 name="namaPerusahaan"
-                label="Nama Perusahaan"
+                label="Nama Usaha"
                 control={control}
                 errors={errors}
             />

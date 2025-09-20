@@ -15,10 +15,10 @@ export const apiSchema = z.object({
 
     // Company Info (simplified optional field)
     jenisPerusahaan: z.preprocess(
-        (val) => (val === "" ? undefined : val),
-        z.uuid().optional()
+        (val) => (val === "" ? null : val), // Change undefined to null for database compatibility
+        z.uuid().nullable().optional() // Allow null explicitly
     ),
-    namaPerusahaan: z.string().optional(),
+    namaPerusahaan: z.string().nullable().optional(), // Also allow null for consistency
     nib: z.string().nullable().optional(),
     skdu: z.string().nullable().optional(),
     npwp: z.string().nullable().optional(),

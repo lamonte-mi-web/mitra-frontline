@@ -3,10 +3,7 @@ import { z } from "zod";
 
 export const classificationSchema = z.object({
   mitraType: z.uuid("Jenis mitra wajib dipilih"),
-});
-
-export const leadSourceSchema = z.object({
-  leadSource: z.uuid("Sumber informasi wajib dipilih"),
+  leadSource: z.uuid("Sumber informasi wajib dipilih"), // Merged leadSource
 });
 
 export const personalInfoSchema = z.object({
@@ -35,7 +32,6 @@ export const companyProfileSchema = z.object({
 
 
 export const fullSchema = classificationSchema
-  .merge(leadSourceSchema)
   .merge(personalInfoSchema)
   .merge(companyProfileSchema)
 

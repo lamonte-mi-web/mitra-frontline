@@ -25,27 +25,28 @@ export async function insertMitraAction(data: APIFormData, createdBy: string) {
 
     try {
         // 🚀 2. Call the database function, ensuring all optional params default to null
+        // Kode ini sekarang akan berjalan tanpa error TypeScript
         const { data: newMitraId, error } = await supabase.rpc("create_full_mitra", {
             p_mitra_type_id: formData.mitraType,
-            p_lead_source_id: formData.leadSource, // Added leadSource
+            p_lead_source_id: formData.leadSource,
             p_created_by: createdBy,
             p_nama: formData.nama,
             p_email: formData.email,
             p_no_wa: formData.phone,
             p_nik_ktp: formData.nikKtp,
             p_alamat_domisili: formData.alamat,
-            p_bod: formData.bod || null, // Changed
-            p_jenis_perusahaan_id: formData.jenisPerusahaan || null, // Changed
-            p_nama_perusahaan: formData.namaPerusahaan || null, // Changed
-            p_nib: formData.nib || null, // Changed
-            p_skdu: formData.skdu || null, // Changed
-            p_npwp: formData.npwp || null, // Changed
-            p_nik_direksi: formData.nikDireksi || null, // Changed
-            p_nik_komisaris: formData.nikKomisaris || null, // Changed
-            p_pengalaman_bisnis_tahun: formData.pengalaman || null, // Changed
-            p_rata_penghasilan_tahun: formData.rataPenghasilan || null, // Changed
-            p_buy_power_bulanan: formData.buyPower || null, // Changed
-            p_alamat_usaha: formData.alamatUsaha || null, // Changed
+            p_bod: formData.bod || undefined,
+            p_jenis_perusahaan_id: formData.jenisPerusahaan || undefined,
+            p_nama_perusahaan: formData.namaPerusahaan || undefined,
+            p_nib: formData.nib || undefined,
+            p_skdu: formData.skdu || undefined,
+            p_npwp: formData.npwp || undefined,
+            p_nik_direksi: formData.nikDireksi || undefined,
+            p_nik_komisaris: formData.nikKomisaris || undefined,
+            p_pengalaman_bisnis_tahun: formData.pengalaman || undefined,
+            p_rata_penghasilan_tahun: formData.rataPenghasilan || undefined,
+            p_buy_power_bulanan: formData.buyPower || undefined,
+            p_alamat_usaha: formData.alamatUsaha || undefined,
         });
 
         if (error) {

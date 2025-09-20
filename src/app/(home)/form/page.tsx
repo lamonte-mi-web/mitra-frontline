@@ -1,14 +1,50 @@
 // /form/page.tsx
 import Image from "next/image";
 import MultiStepForm from "./components/MultiStepForm";
-import { supabaseAdmin } from "@/lib/supabaseAdmin";
+import { supabaseAdmin } from "@/lib/supabaseAdmin"; // Corrected import
+import { Database, Tables } from "@/types/database.types"; // Import Database and Tables types
 
 
 export default async function MitraForm() {
-  const supabase = supabaseAdmin();
+  const supabase = supabaseAdmin(); // Corrected usage
+
+  type MitraTypeRow = Tables<'mitra_type'>; // Removed ['Row']
+  type JenisPerusahaanRow = Tables<'jenis_perusahaan'>; // Removed ['Row']
+  type LeadChannelRow = Tables<'lead_channel'>; // Removed ['Row']
+  type LeadSourceRow = Tables<'lead_source'>; // Removed ['Row']
+  type CsRow = Tables<'cs'>; // Removed ['Row']
+
   const { data: mitraTypes, error: mitraError } = await supabase.from("mitra_type").select("id, name, level, description_id, description_en").order('level', { ascending: true });
   const { data: companies, error: companiesError } = await supabase.from("jenis_perusahaan").select("id, name");
-  const { data: csStaff, error: csStaffError } = await supabase.from("cs_staff").select("id, name, phone, mitra_type_id"); // Added mitra_type_id
+  
+  // Updated CS Staff fetching
+  const { data: rawCsStaff, error: csStaffError } = await supabase
+    .from("mitra_type_cs")
+    .select(`
+      mitra_type_id,
+      cs (
+        id,
+        name,
+        number
+      )
+    `);
+
+  console.log("Raw CS Staff Data:", rawCsStaff); // Log raw data for debugging
+
+  type RawCsStaffItem = {
+    mitra_type_id: string;
+    cs: CsRow | null; // Explicitly type cs as CsRow or null
+  };
+
+  const csStaff: { id: string, name: string, phone: string, mitra_type_id: string }[] = (rawCsStaff as RawCsStaffItem[])?.map(item => ({
+    id: item.cs?.id || '', // Access cs object directly
+    name: item.cs?.name || '', // Access cs object directly
+    phone: item.cs?.number ? String(item.cs.number) : '', // Access cs object directly
+    mitra_type_id: item.mitra_type_id,
+  })) ?? [];
+
+  console.log("csStaff:", csStaff); // Log raw data for debugging
+
   const { data: channels, error: channelsError } = await supabase.from("lead_channel").select("id, name, description_id, description_en");
   const { data: sources, error: sourcesError } = await supabase.from("lead_source").select("id, name, channel_id, description_id, description_en");
 

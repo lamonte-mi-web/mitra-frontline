@@ -3,17 +3,18 @@
 
 import { useForm, FormProvider } from "react-hook-form"; // Import FormProvider
 import { zodResolver } from "@hookform/resolvers/zod";
-import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema, leadSourceSchema } from "@/lib/formSchema";
+import { fullSchema, classificationSchema, personalInfoSchema, companyProfileSchema } from "@/lib/formSchema"; // Removed leadSourceSchema
 import type { FormData } from "@/lib/formSchema";
 import { insertMitraAction } from "../actions";
+import { Tables } from "@/types/database.types"; // Import Tables type
 
 // Import useState
-import { useState } from "react";
+import { useState } from "react"; // Removed useEffect
 
 import Step0 from "./Step0";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
-import StepInfo from "./StepInfo"; // Import the new StepInfo component
+// import StepInfo from "./StepInfo"; // StepInfo is no longer needed
 import CustomButton from "@/components/CustomButton";
 import { APIFormData } from "@/lib/APIFormSchema";
 
@@ -33,11 +34,11 @@ export default function MultiStepForm({
     channels,
     leadSources,
 }: {
-    mitraTypes: { id: string, name: string, description_id: string | null, description_en: string | null }[]
-    companies: { id: string, name: string }[]
-    csStaff: { id: string, name: string, phone: string, mitra_type_id: string }[] // Updated CS Staff type
-    channels: { id: string, name: string, description_id: string | null, description_en: string | null }[]
-    leadSources: { id: string, name: string, channel_id: string | null, description_id: string | null, description_en: string | null }[] // Added leadSources
+    mitraTypes: Tables<'mitra_type'>[], // Use Tables type
+    companies: Tables<'jenis_perusahaan'>[], // Use Tables type
+    csStaff: { id: string, name: string, phone: string, mitra_type_id: string }[], // Specific type for transformed CS staff
+    channels: Tables<'lead_channel'>[], // Use Tables type
+    leadSources: Tables<'lead_source'>[], // Use Tables type
 }) {
     const [currentStep, setCurrentStep] = useState(0);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -70,8 +71,7 @@ export default function MultiStepForm({
     const selectedMitraTypeName = mitraTypes.find(m => m.id === selectedMitraTypeId)?.name ?? "";
 
     const steps = [
-        { name: "Ingin Bergabung Menjadi Apa?", component: <Step0 mitraTypes={mitraTypes} csStaff={csStaff} selectedMitraTypeName={selectedMitraTypeName} />, schema: classificationSchema },
-        { name: "Informasi Tambahan", component: <StepInfo leadSources={leadSources} />, schema: leadSourceSchema }, // New Step
+        { name: "Informasi Mitra", component: <Step0 mitraTypes={mitraTypes} leadSources={leadSources} csStaff={csStaff} selectedMitraTypeName={selectedMitraTypeName} />, schema: classificationSchema }, // Merged StepInfo into Step0
         { name: "Informasi Pribadi", component: <Step1 />, schema: personalInfoSchema },
         ...(selectedMitraTypeName === "Retail" || selectedMitraTypeName === "Dropshipper" ? [] : [
             { name: "Profil Perusahaan", component: <Step2 companies={companies} selectedMitraTypeName={selectedMitraTypeName} />, schema: companyProfileSchema }
@@ -95,7 +95,8 @@ export default function MultiStepForm({
     };
 
 
-    const handleNext = async () => {
+    const handleNext = async (event?: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>) => { // Adjusted event type
+        event?.preventDefault(); // Prevent default form submission
         const keys = Object.keys(steps[currentStep].schema.shape) as (keyof FormData)[];
         const valid = await methods.trigger(keys); // Use methods.trigger
         if (valid) setCurrentStep(prev => prev + 1);
