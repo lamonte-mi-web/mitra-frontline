@@ -14,6 +14,7 @@ import { useState } from "react"; // Removed useEffect
 import Step0 from "./Step0";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
+import SubmissionResult from "./SubmissionResult"; // Import the new component
 // import StepInfo from "./StepInfo"; // StepInfo is no longer needed
 import CustomButton from "@/components/CustomButton";
 import { APIFormData } from "@/lib/APIFormSchema";
@@ -149,14 +150,29 @@ export default function MultiStepForm({
 
     const progress = Math.round(((currentStep + 1) / steps.length) * 100);
 
+    const handleResetForm = () => {
+        setCurrentStep(0);
+        setSubmissionResult(null);
+        methods.reset(); // Reset all form fields
+    };
+
     if (submissionResult) {
+        const submittedUserName = methods.getValues("nama");
+        const submittedMitraTypeId = methods.getValues("mitraType");
+        const submittedMitraTypeName = mitraTypes.find(m => m.id === submittedMitraTypeId)?.name;
+        const dedicatedCs = csStaff.find(cs => cs.mitra_type_id === submittedMitraTypeId);
+        const csPhoneNumber = dedicatedCs?.phone;
+
         return (
-            <div className={`p-6 rounded-lg text-center ${submissionResult.success ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
-                <h3 className="text-2xl font-bold mb-4">{submissionResult.success ? "Terima Kasih!" : "Oops! Terjadi Kesalahan"}</h3>
-                {/* This <p> tag can now render a string or the JSX list */}
-                <div>{submissionResult.message}</div>
-            </div>
-        )
+            <SubmissionResult
+                success={submissionResult.success}
+                message={submissionResult.message}
+                onBack={handleResetForm}
+                userName={submittedUserName}
+                mitraTypeName={submittedMitraTypeName}
+                csPhoneNumber={csPhoneNumber}
+            />
+        );
     }
 
     return (
