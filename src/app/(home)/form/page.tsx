@@ -1,6 +1,8 @@
 // /form/page.tsx
 import Image from "next/image";
 import MultiStepForm from "./components/MultiStepForm";
+
+export const dynamic = 'force-dynamic';
 import { supabaseAdmin } from "@/lib/supabaseAdmin"; // Corrected import
 import { Database, Tables } from "@/types/database.types"; // Import Database and Tables types
 
