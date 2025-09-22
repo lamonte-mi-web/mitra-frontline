@@ -9,25 +9,25 @@ const otherServices = [
         title: "Produksi Custom & Seragam",
         description: "Punya brand sendiri atau butuh seragam? Wujudkan desain impian Anda dengan layanan maklon eksklusif dan produksi seragam berkualitas dari kami.",
         icon: faIndustry,
-        link: "/custom-produk",
+        link: "/",
     },
     {
         title: "Paket Usaha Siap Jual",
         description: "Mulai bisnis tanpa ribet. Dapatkan paket usaha baju anak terlaris yang sudah kami kurasi, lengkap dengan produk pilihan untuk Anda.",
         icon: faBoxesPacking,
-        link: "/paket-usaha",
+        link: "/",
     },
     {
         title: "Lamonte Academy",
         description: "Ikuti program bootcamp intensif kami untuk menjadi talenta siap kerja di industri fashion, dibimbing langsung oleh para praktisi ahli.",
         icon: faGraduationCap,
-        link: "/academy",
+        link: "/",
     },
     {
         title: "Virtual Shopping",
         description: "Rasakan sensasi belanja grosir personal dari rumah Anda melalui video call langsung dengan tim gudang kami yang interaktif.",
         icon: faMobileAlt,
-        link: "/virtual-shopping",
+        link: "/",
     },
 ];
 
