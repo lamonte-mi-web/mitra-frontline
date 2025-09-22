@@ -13,11 +13,22 @@ export default function Step1({}: Props) {
   return (
     <div className="space-y-4">
       <FormInput name="nama" label="Nama Lengkap" control={control} errors={errors} />
+      <FormInput name="bod" label="Tanggal Lahir" type="date" control={control} errors={errors} />
+      <FormInput
+        name="gender"
+        label="Jenis Kelamin"
+        type="select"
+        control={control}
+        errors={errors}
+        options={[
+          { value: "Laki-laki", label: "Laki-laki" },
+          { value: "Perempuan", label: "Perempuan" },
+        ]}
+      />
       <FormInput name="email" label="Email" type="email" control={control} errors={errors} />
       <FormInput name="phone" label="Nomor WA Aktif" control={control} errors={errors} />
       <FormInput name="nikKtp" label="NIK KTP" control={control} errors={errors} />
       <FormInput name="alamat" label="Alamat Domisili" type="textarea" control={control} errors={errors} />
-      <FormInput name="bod" label="Tanggal Lahir" type="date" control={control} errors={errors} />
     </div>
   );
 }

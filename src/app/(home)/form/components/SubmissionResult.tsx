@@ -21,7 +21,7 @@ export default function SubmissionResult({
     csPhoneNumber,
 }: SubmissionResultProps) {
     const whatsappMessage = encodeURIComponent(
-        `Halo Kak, Saya, ${userName || 'Calon Mitra'} sudah mendaftar sebagai ${mitraTypeName || 'Mitra'} melalui form, info selanjutnya bagaimana...`
+        `Halo Kak, Saya ingin menginformasikan bahwa saya telah berhasil mendaftar sebagai Mitra Lamonte.\n\nBerikut adalah data saya:\nNama: ${userName || 'Calon Mitra'}\nJenis Kemitraan: ${mitraTypeName || 'Mitra'}\n\nMohon informasinya untuk langkah selanjutnya. Terima kasih.`
     );
     const whatsappLink = csPhoneNumber ? `https://wa.me/${csPhoneNumber}?text=${whatsappMessage}` : '#';
 

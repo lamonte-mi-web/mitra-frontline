@@ -35,6 +35,7 @@ export async function insertMitraAction(data: APIFormData, createdBy: string) {
             p_no_wa: formData.phone,
             p_nik_ktp: formData.nikKtp,
             p_alamat_domisili: formData.alamat,
+            p_gender: formData.gender || undefined,
             p_bod: formData.bod || undefined,
             p_jenis_perusahaan_id: formData.jenisPerusahaan || undefined,
             p_nama_perusahaan: formData.namaPerusahaan || undefined,

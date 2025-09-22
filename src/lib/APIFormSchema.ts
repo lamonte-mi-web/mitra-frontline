@@ -12,6 +12,7 @@ export const apiSchema = z.object({
     nikKtp: z.string().min(1, "NIK KTP harus diisi"),
     alamat: z.string().min(1, "Alamat harus diisi"),
     bod: z.string().optional(),
+    gender: z.enum(["Laki-laki", "Perempuan"]).optional(),
 
     // Company Info (simplified optional field)
     jenisPerusahaan: z.preprocess(

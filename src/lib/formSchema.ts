@@ -13,6 +13,7 @@ export const personalInfoSchema = z.object({
   nikKtp: z.string().min(1, "NIK KTP wajib diisi"),
   alamat: z.string().min(1, "Alamat wajib diisi"),
   bod: z.string().optional(),
+  gender: z.enum(["Laki-laki", "Perempuan"], { message: "Jenis kelamin wajib dipilih." }),
 });
 
 export const companyProfileSchema = z.object({
