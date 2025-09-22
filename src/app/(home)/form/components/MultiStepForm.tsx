@@ -160,6 +160,8 @@ export default function MultiStepForm({
         const submittedUserName = methods.getValues("nama");
         const submittedMitraTypeId = methods.getValues("mitraType");
         const submittedMitraTypeName = mitraTypes.find(m => m.id === submittedMitraTypeId)?.name;
+        const submittedLeadSourceId = methods.getValues("leadSource");
+        const submittedLeadSourceName = leadSources.find(ls => ls.id === submittedLeadSourceId)?.name;
         const dedicatedCs = csStaff.find(cs => cs.mitra_type_id === submittedMitraTypeId);
         const csPhoneNumber = dedicatedCs?.phone;
 
@@ -171,6 +173,7 @@ export default function MultiStepForm({
                 userName={submittedUserName}
                 mitraTypeName={submittedMitraTypeName}
                 csPhoneNumber={csPhoneNumber}
+                leadSourceName={submittedLeadSourceName}
             />
         );
     }

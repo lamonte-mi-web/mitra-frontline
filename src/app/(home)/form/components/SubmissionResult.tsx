@@ -10,6 +10,7 @@ interface SubmissionResultProps {
     userName?: string;
     mitraTypeName?: string;
     csPhoneNumber?: string;
+    leadSourceName?: string;
 }
 
 export default function SubmissionResult({
@@ -19,9 +20,10 @@ export default function SubmissionResult({
     userName,
     mitraTypeName,
     csPhoneNumber,
+    leadSourceName,
 }: SubmissionResultProps) {
     const whatsappMessage = encodeURIComponent(
-        `Halo Kak, Saya ingin menginformasikan bahwa saya telah berhasil mendaftar sebagai Mitra Lamonte.\n\nBerikut adalah data saya:\nNama: ${userName || 'Calon Mitra'}\nJenis Kemitraan: ${mitraTypeName || 'Mitra'}\n\nMohon informasinya untuk langkah selanjutnya. Terima kasih.`
+        `Halo Kak, Saya ingin menginformasikan bahwa saya telah berhasil mendaftar sebagai Mitra Lamonte.\n\nBerikut adalah data saya:\nNama: ${userName || 'Calon Mitra'}\nJenis Kemitraan: ${mitraTypeName || 'Mitra'}${leadSourceName ? `\nSumber Lead: ${leadSourceName}` : ''}\n\nMohon informasinya untuk langkah selanjutnya. Terima kasih.`
     );
     const whatsappLink = csPhoneNumber ? `https://wa.me/${csPhoneNumber}?text=${whatsappMessage}` : '#';
 
