@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, Variants } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { whatsappContacts } from "@/lib/whatsappContacts";
+import { CONTACTS } from "@/lib/whatsappContacts";
 
 // Animation Variants
 const containerVariants: Variants = {
@@ -71,7 +71,7 @@ export default function ResellerHeroSection() {
                             variants={itemVariants}
                         >
                             <CTAButton href="/form" styles="default">Daftar Jadi Reseller</CTAButton>
-                            <CTAButton href={"https://wa.me/" + whatsappContacts.kakMona.phoneNumber + "?text=" + whatsappContacts.kakMona.message} styles="whatsapp">Tanya Kami</CTAButton>
+                            <CTAButton href={`https://wa.me/${CONTACTS.kakMona.phoneNumber}?text=${encodeURIComponent(CONTACTS.kakMona.message)}`} styles="whatsapp">Tanya Kami</CTAButton>
                         </motion.div>
                     </motion.div>
 
@@ -117,4 +117,3 @@ export default function ResellerHeroSection() {
         </section>
     );
 }
-
