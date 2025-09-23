@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleUp } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { whatsappContacts } from "@/lib/whatsappContacts";
+import { CONTACTS } from "@/lib/whatsappContacts";
 
 export default function FloatingButtons() {
   const [showScroll, setShowScroll] = useState(false);
@@ -53,7 +53,7 @@ export default function FloatingButtons() {
             <CTAButton />
           </div>
           <div className="max-sm:self-start">
-            <CTAButton styles="whatsapp" href={`https://wa.me/${whatsappContacts.kakMona.phoneNumber}?text=${encodeURIComponent(whatsappContacts.kakMona.message)}`}><FontAwesomeIcon icon={faWhatsapp} /> Tanya Sekarang</CTAButton>
+            <CTAButton styles="whatsapp" href={`https://wa.me/${CONTACTS.kakMona.phoneNumber}?text=${encodeURIComponent(CONTACTS.kakMona.message)}`}><FontAwesomeIcon icon={faWhatsapp} /> Tanya Sekarang</CTAButton>
           </div>
         </>
       )}
